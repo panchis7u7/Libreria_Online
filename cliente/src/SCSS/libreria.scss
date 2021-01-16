@@ -1,11 +1,27 @@
 main {
     padding: 20px 20px 20px 20px;
+    font-family: sans-serif;
     .banner {
-        object-fit: none; /* Do not scale the image */ 
-        object-position: center; /* Center the image within the element */ 
-        width: 100%; 
-        max-height: 40vh; 
-        margin-bottom: 1rem; 
+        position: relative;
+        height: auto;
+        margin-bottom: 4rem;
+        .banner-img {
+            position: relative;
+            object-fit: none; /* Do not scale the image */
+            object-position: center; /* Center the image within the element */ 
+            width: 100%; 
+            max-height: 40vh; 
+            margin: 0%;
+        }
+        .centered {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 1rem;
+            background-color: rgba(255, 255, 255, 0.8);
+            font-size: 2em;
+        }
     }
     .popular {
         margin-top: 2%;
@@ -28,6 +44,11 @@ main {
                 background-color: rgb(221, 220, 179);
                 -ms-interpolation-mode: bicubic;
             }
+            .book-footer {
+                text-align: center;
+                margin: 4px;
+            }
         }
+
     }
 }

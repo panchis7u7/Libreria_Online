@@ -15,8 +15,8 @@ export default function NavBar(){
 
                     </ReactBootStrap.Nav>
                     <ReactBootStrap.Nav>
-                        <Link to="/cliente">
-                            <ReactBootStrap.Nav.Link href="/cliente"><span className="navItem">Clientes</span></ReactBootStrap.Nav.Link>
+                        <Link to="/libros">
+                            <ReactBootStrap.Nav.Link href="/libros"><span className="navItem">Libros</span></ReactBootStrap.Nav.Link>
                         </Link>
                         <Link to="/factura">
                             <ReactBootStrap.Nav.Link href="/factura"><span className="navItem">Facturas</span></ReactBootStrap.Nav.Link>
