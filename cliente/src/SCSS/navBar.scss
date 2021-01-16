@@ -1,0 +1,15 @@
+$ColorBack: rgb(32, 92, 62);
+$ColorTexto: white;
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+  }
+  
+  .nav {
+    background-color: $ColorBack;
+    font-family: sans-serif;
+    .navItem {
+        color: $ColorTexto;
+      }
+  }

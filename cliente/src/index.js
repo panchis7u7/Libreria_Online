@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './SCSS/index.scss';
+import "bootstrap/dist/css/bootstrap.css";
 import Rutas from './Components/Routing';
 import reportWebVitals from './Components/reportWebVitals';
 
