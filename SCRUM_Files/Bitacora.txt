@@ -1,0 +1,215 @@
+@@@@@@@@@@@ 15 de enero del 2021 @@@@@@@@@@@@@ 11:00hrs - 14:00hrs @@@@@@@@@@@@@
+
+-------------------- Product Backlog Refinement Meeting ------------------------
+
+-> Identificar epicas.
+-> Convertir requerimientos a hisstorias de usuario.
+
+--------------------------------------------------------------------------------
+
+---------------------------- Sprint Planning Meeting ---------------------------
+
+-> Normas de las juntas.
+-> Generar Vision de Proyecto.
+-> Identificacion de Roles:
+  Katherine Arzate Serrano: FrontEnd Developer - Scrum team.
+  Carlos Daniel Villa: BackEnd Developer - Scrum team.
+  Carlos Alexis Moreno Cortes: DataBase Engineer.
+  Carlos Sebastian Madrigal Rodriguez.
+-> Definicion de "Tarea terminada" o "Done" para el equipo de Scrum.
+  Serie de requisitos que las tareas deben de tener para ser consideradas como
+  "terminadas":
+    => Preubas pasaron.
+    => Codigo hecho por programcion por pares y todos los integrantes del
+       equipo hayan hecho una reseña.
+    => Refactorizacion de codigo (eliminar codigo repetido).
+-> Estimar y Comprometer las historias de usuario.
+  => Scrum poker usando numeros Fibonacci.
+
+--------------------------------------------------------------------------------
+
+
+---------------------------- Historias de usuario ------------------------------
+Prioridad = |#|
+Story Points = (#)
+Resumen = [#]  #Resumen para el software de administracion de proyectos.
+
+1
+################################################################################
+
+|1| (1)
+[Toda la informacion del libro asi como el autor y la editorial]
+Como DBA quiero cada libro tiene un identificador único, título, isbn,
+año de publicación y descripción. También es interesante almacenar los
+datos del autor/es y de la editorial que ha publicado el libro para
+estructurar el manejo de libros.
+
+*> Crear entidades e interrelaciones en mysql.
+*> Desarrollo del Formulario.
+*> Diseño de la pagina Formulario.
+*> Pruebas de los Formularios y Backend.
+*> Generar Conexion a BD
+*> Manejo de solicitudes.
+
+################################################################################
+2
+################################################################################
+
+|2| (5)
+[Version fisica con lugar y fecha de impresion, asi como su version digital con tamaño]
+Como dueno quiero que los libros que se podrán comprar en la web pueden ser
+libros de papel o libros electrónicos (ebooks). En el caso de los libros de
+papel interesa guardar donde ha sido impreso y la fecha de impresión. En el caso
+de un ebook guardaremos el tamaño del archivo. Hay que tener en cuenta que un
+mismo libro tiene precios diferentes en papel y en formato ebook para tener
+opciones de compra que se adequen a tus necesidades.
+
+*> Crear entidades e interrelaciones en mysql.
+*> Desarrollo del Formulario.
+*> Diseño de la pagina Formulario.
+*> Disenos UI y UX.
+*> Pruebas Formularioss y Backend.
+*> Manejo de solicitudes.
+
+*/
+Como cliente quiero la compra de libros de papel para tener opciones de compra
+que se adequen a tus necesidades.
+Como cliente quiero la compra de libros electronicos para tener opciones de
+compra que se adequen a tus necesidades.
+/*
+
+################################################################################
+3
+################################################################################
+|3| (1)
+[almacenar los datos completos del autor y contacto]
+Como autores quiero almacenar el nombre, apellidos, dirección, localidad,
+provincia, url de mi página web y un identificador único de autor para generar
+seguimiento a nuestro trabajo.
+
+*> Crear entidades e interrelaciones en mysql.
+*> Desarrollo del Formulario.
+*> Diseño de la pagina Formulario.
+*> Pruebas Formularioss y Backend.
+*> Manejo de solicitudes.
+
+################################################################################
+4
+################################################################################
+
+|4| (1)
+[almacenar datos completos de la editorial y contacto]
+Como dueño de una editorial quiero guardare un identificador, nombre, dirección,
+localidad, provincia, número de teléfono y la url de su página web para generar
+popularidad y potenciales escritores que quieran publicar su libro.
+
+*> Crear entidades e interrelaciones en mysql.
+*> Desarrollo del Formulario.
+*> Pruebas Formularioss y Backend.
+*> Manejo de solicitudes.
+
+################################################################################
+5
+################################################################################
+
+|5| (3)
+[almacenar la ubicacion y contacto de distintos almacenes]
+Como vendedor quiero disponer de varios almacenes, de cada uno guardaremos un
+identificador, una dirección, localidad, provincia y un teléfono de contacto
+para tener un analisis de logistica optimo de la gestion de encargos de los libros.
+
+*> Crear entidades e interrelaciones en mysql.
+*> Desarrollo del Formulario.
+*> Pruebas Formularioss y Backend.
+*> Manejo de solicitudes.
+
+################################################################################
+6
+################################################################################
+
+|6| (2)
+[almacenar diferentes libros y copias de cada uno]
+Como vendedor quiero y puedo almacenar diferentes libros. Un mismo libro puede estar
+almacenado en diferentes almacenes. Nos interesa saber el número de copias de
+cada libro que hay en cada almacén para tener control de disponibilidad de
+productos.
+
+*> Crear entidades e interrelaciones en mysql.
+*> Desarrollo del Formulario.
+*> Pruebas Formularioss y Backend.
+*> Manejo de solicitudes.
+
+################################################################################
+7
+################################################################################
+
+|7| (1)
+[almacenar los datos completos y contactos de los clientes]
+Como jefe de mercadotecnia quiero que la base de datos debe almacenar los datos de
+los clientes. De cada cliente guardamos su nombre, apellidos, dirección, localidad,
+provincia, email y teléfono para tener una gestion de los datos clientes
+
+*> Crear entidades e interrelaciones en mysql.
+*> Desarrollo del Formulario.
+*> Pruebas Formularioss y Backend.
+*> Manejo de solicitudes.
+
+################################################################################
+8
+################################################################################
+
+|8| (3)
+[tener varias cestas e historial de compras ]
+Como cliente quiero tener varias cestas de la compra en el sitio web. Cada cesta de la
+compra está identificada por un identificador único, contiene la fecha de la compra
+y puede contener varios libros. Algunas cestas de la compra pueden tener más de
+una copia del mismo libro, por lo que será necesario almacenar la cantidad de
+copias que se han comprado de cada libro en cada cesta de la compra para facilitar
+el proceso de selección de productos así como la compra.
+
+*> Crear entidades e interrelaciones en mysql.
+*> Crear UI para interaccion y recepacion de informacion.
+*> Disenos UI y UX.
+*> Pruebas UI y Backend.
+*> Manejo de solicitudes.
+
+################################################################################
+9
+################################################################################
+
+|9| //PA Login (3)
+Como usuario quiero tener una seccion de login para tener un ingreso seguro a la
+plataforma y asi proteger mis datos personales.
+
+*> Crear entidades e interrelaciones en mysql.
+*> Desarrollo del formulario.
+*> Modulo de encriptacion (mysql y envio de datos).
+*> Pruebas formulario y Backend.
+*> Manejo de solicitudes.
+
+################################################################################
+10
+################################################################################
+
+*--10 // PA Generos (3)
+Como Cliente quiero tener una sección de géneros para ubicar el contexto de los
+libros en referencia a mi interés.
+
+*> Disenos UI y UX.
+*> Pruebas UI y Backend.
+*> Manejo de solicitudes.
+
+################################################################################
+11
+################################################################################
+
+*--11 // PA Comentarios (3)
+Como Cliente quiero tener la opción de obtener feedback de la comunidad de un
+libro para ayudarme a decidir si es una buena opción.
+
+*> Crear entidades e interrelaciones en mysql.
+*> Disenos UI, Formulario y UX.
+*> Pruebas UI, Formulario y Backend.
+*> Manejo de solicitudes.
+
+################################################################################
