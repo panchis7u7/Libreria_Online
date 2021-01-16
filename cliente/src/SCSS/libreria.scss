@@ -7,4 +7,27 @@ main {
         max-height: 40vh; 
         margin-bottom: 1rem; 
     }
+    .popular {
+        margin-top: 2%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        .book {
+            margin: 0vw 1.5em 2.5em 1.5em;
+            position: relative;
+            width: 200px;
+            border: 2px solid black;
+            .book-top {
+                background-color: rgba(7, 14, 44, 0.938);
+                text-align: center;
+                padding: 0.8em;
+                color: white;
+            }
+            .book-cover {
+                margin: 0.5em auto 0.5em auto;
+                background-color: rgb(221, 220, 179);
+                -ms-interpolation-mode: bicubic;
+            }
+        }
+    }
 }
