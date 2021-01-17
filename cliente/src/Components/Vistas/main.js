@@ -1,5 +1,4 @@
 import React from 'react';
-import {Container, Image} from 'react-bootstrap';
 import Carousel from 'react-multi-carousel'; 
 import "react-multi-carousel/lib/styles.css";
 import '../../SCSS/libreria.scss';
