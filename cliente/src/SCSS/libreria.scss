@@ -18,21 +18,23 @@ main {
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            padding: 1rem;
-            background-color: rgba(255, 255, 255, 0.8);
+            padding: 3rem 1rem 3rem 1rem;
+            background-color: rgba(255, 255, 255, 1);
             font-size: 2em;
         }
     }
     .popular {
         margin-top: 2%;
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
+        width: 100%;
+        //display: flex;
+        //flex-wrap: wrap;
+        //justify-content: center;
         .book {
-            margin: 0vw 1.5em 2.5em 1.5em;
+            //margin: 0vw 1.5em 2.5em 1.5em;
             position: relative;
-            width: 200px;
-            border: 2px solid black;
+            width: 300px;
+            border: 2px solid rgba(7, 14, 44, 0.938);
+            border-radius: 10px;
             .book-top {
                 background-color: rgba(7, 14, 44, 0.938);
                 text-align: center;
