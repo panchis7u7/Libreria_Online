@@ -213,3 +213,76 @@ libro para ayudarme a decidir si es una buena opción.
 *> Manejo de solicitudes.
 
 ################################################################################
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+
+@@@@@@@@@@@@@@@@@@@@@@@ SCRUM Diario 16 de enero del 2021 @@@@@@@@@@@@@@@@@@@@@@
+
+1) Katherine:
+
+¿Que hiciste ayer?
+	*> Realice el diseño de las interfaces, una vez fueron aprobadas, empece
+	con el desarrollo de las mismas en el frontend.
+¿Tuviste algun impedimento?
+	*> No tuve nigun problema.
+¿Que haras hoy?
+	*> Terminar el desarrollo de las interfaces y empezar a hacer testing.
+	
+2) Alexis:
+¿Que hiciste ayer?
+	*> Realice el analisis relacional de la base de datos asi como la implementacion
+	de las tablas requeridas en el sprint, tambien me reuni con carlos para 
+	vincular la base e datos con el backend.
+¿Tuviste algun impedimento?
+	*> No, solo esperar a que carlos tenga el backend listo para la conexion.
+¿Que haras hoy?
+	*> Testear la basse de datos.
+	
+2) Carlos:
+¿Que hiciste ayer?
+	*> Estuve trabajando en el backend con php, estuve a su vez elaborando lo
+	necesario para realizar las pruebas sbre el mismo.
+¿Tuviste algun impedimento?
+	*> Problemas cn dependencias de laravel.
+¿Que haras hoy?
+	*> Tener laravel listo y corrieno y terminar las pruebas.
+	
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+@@@@@@@@@@@@@@@@@@@@@@@ SCRUM Diario 17 de enero del 2021 @@@@@@@@@@@@@@@@@@@@@@
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+@@@@@@@@@@@@@@@@@@@@@@@ SCRUM Diario 18 de enero del 2021 @@@@@@@@@@@@@@@@@@@@@@
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+@@@@@@@@@@@@@@@@@@@@@@@ SCRUM Diario 19 de enero del 2021 @@@@@@@@@@@@@@@@@@@@@@
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+@@@@@@@@@@@@@@@@@@@@@@@ SCRUM Diario 20 de enero del 2021 @@@@@@@@@@@@@@@@@@@@@@
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+@@@@@@@@@@@@@@@@@@@@@@@ SCRUM Diario 21 de enero del 2021 @@@@@@@@@@@@@@@@@@@@@@
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+@@@@@@@@@@@@@@@@@@@@@@@ SCRUM Diario 22 de enero del 2021 @@@@@@@@@@@@@@@@@@@@@@
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+@@@@@@@@@@@@@@@@@@@@@@@ SCRUM Diario 23 de enero del 2021 @@@@@@@@@@@@@@@@@@@@@@
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+@@@@@@@@@@@@@@@@@@@@@@@ SCRUM Diario 24 de enero del 2021 @@@@@@@@@@@@@@@@@@@@@@
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+@@@@@@@@@@@@@@@@@@@@@@@ SCRUM Diario 25 de enero del 2021 @@@@@@@@@@@@@@@@@@@@@@
+
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
