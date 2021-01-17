@@ -49,12 +49,8 @@ export default class Main extends React.Component {
           };
         return(
             <main className="cuerpo">
-                <div className="banner container">
-                    <Image className="banner-img" src="https://i.pinimg.com/originals/66/4e/af/664eaf44e0443f0030f7faff7630f5e9.jpg" fluid></Image>
-                {/*<Image className="banner-img" src="https://images.wallpaperscraft.com/image/monstera_leaves_art_128418_1920x1080.jpg" fluid></Image>*/}
-                 {/*<Image className="banner-img" src="https://images.wallpaperscraft.com/image/monstera_leaves_art_128418_1920x1080.jpg" fluid></Image>*/}
-                 {/*<Image className="banner-img" src="https://i.pinimg.com/originals/09/2b/8e/092b8e002e1e7b3ddc6fec7cf70b1b88.jpg" fluid></Image> */}
-                    <p className="centered"><strong>Suscribete</strong></p>
+                <div className="banner">
+                    <p className="bottom"><strong>Conoce un mundo<br></br>lleno de imaginacion</strong></p>
                 </div>
 
                 {/*---------------------------------------------------------------------------------------------------------------- 
