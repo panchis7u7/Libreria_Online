@@ -11,8 +11,8 @@ export default class Libros extends React.Component {
             isbn: "",
             anio_publicacion: "",
             descripcion: "",
-            autor: "",
-            editorial: "",
+            //autor: "",
+            //editorial: "",
             //categoria: "",
             ebook: "",
             precio_electronico: "",
@@ -21,8 +21,8 @@ export default class Libros extends React.Component {
             precio_fisico: "",
             fecha_impresion: "",
             lugar_impresion: "",
-            //pdf: "",
-            //portada: "",
+            pdf: "",
+            portada: "",
             alerta: false,
             msgAlerta: "",
             tipoAlerta: "success",
@@ -30,7 +30,7 @@ export default class Libros extends React.Component {
         this.fetchRegistros();
     }
 
-    //componentDidMount(){this.fetchRegistros()};
+    componentDidMount(){this.fetchRegistros()};
 
     handleChange = (evt) => {
         this.setState({
@@ -65,8 +65,8 @@ export default class Libros extends React.Component {
             isbn: this.state.isbn,
             anio_publicacion: this.state.anio_publicacion,
             descripcion: this.state.descripcion,
-            autor: this.state.autor,
-            editorial: this.state.editorial,
+            //autor: this.state.autor,
+            //editorial: this.state.editorial,
             //categoria: this.state.categoria,
             ebook: this.state.ebook,
             precio_electronico: this.state.precio_electronico,
@@ -75,6 +75,8 @@ export default class Libros extends React.Component {
             precio_fisico: this.state.precio_fisico,
             lugar_impresion: this.state.lugar_impresion,
             fecha_impresion: this.state.fecha_impresion,
+            pdf: this.state.pdf,
+            portada: this.state.portada,
         })
         fetch("http://localhost:3001/libros", {
             method: "POST",
@@ -89,8 +91,8 @@ export default class Libros extends React.Component {
                     isbn: "",
                     anio_publicacion: "",
                     descripcion: "",
-                    autor: "",
-                    editorial: "",
+                    //autor: "",
+                    //editorial: "",
                     //categoria: "",
                     ebook: "",
                     precio_electronico: "",
@@ -99,8 +101,8 @@ export default class Libros extends React.Component {
                     precio_fisico: "",
                     fecha_impresion: "",
                     lugar_impresion: "",
-                    //pdf: "",
-                    //portada: "",
+                    pdf: "",
+                    portada: "",
                     alerta: true,
                     msgAlerta: resultado.response,
                     tipoAlerta: "success",
