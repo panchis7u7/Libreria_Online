@@ -1,0 +1,89 @@
+.main{
+    font-family: sans-serif;
+    h2{
+        text-align: center;
+        font-size: 2em;
+        font-weight: bold;
+        padding: 1.5em 0 0.1em 0;
+    }
+    .contenedor-1{
+        display: grid;
+        grid-template-columns: 50% 50%;
+        .propietarios{
+            label{
+                float: left;
+                width: 11em;
+                padding-right: 2px;
+            }
+            input{
+                margin-bottom: 0.5em;
+                width: 60%;
+                height: 2.2em;
+            }
+        }
+        .foraneos{
+            label{
+                padding-left: 4em;
+                float: left;
+                width: 11em;
+                padding-right: 2px;
+            }
+            select{
+                margin-bottom: 0.5em;
+                width: 60%;
+                height: 2.2em;
+            }
+        }
+    }
+    .contenedor-2{
+        .largos{
+            label{
+                float: left;
+                width: 11em;
+                padding-right: 5px;
+            }
+            input{
+                margin-bottom: 0.5em;
+                width: 80%;
+                height: 2.2em;
+            }
+        }
+    }
+    .contenedor-3{
+        display: grid;
+        grid-template-columns: 50% 50%;
+        .electronico{
+            label{
+                float: left;
+                width: 11em;
+                padding-right: 2px;
+            }
+            input{
+                margin-bottom: 0.5em;
+                width: 60%;
+                height: 2.2em;
+            }
+        }
+        .papel{
+            label{
+                float: left;
+                width: 11em;
+                padding-right: 2px;
+            }
+            input{
+                margin-bottom: 0.5em;
+                width: 60%;
+                height: 2.2em;
+            }
+        }
+    }
+
+    button{
+        padding: 1em;
+        background-color: rgb(15, 15, 105);
+        border-radius: 10px;
+        width: 20%;
+        margin-left: 40%;
+        margin-top: 1em;
+    }
+}

@@ -1,6 +1,6 @@
 import React from 'react';
-import {Container, Image,Form, FormControl, FormLabel, Button, Alert, Col, DropdownButton, InputGroup} from 'react-bootstrap';
-import '../../SCSS/libreria.scss'
+import {Container, Image,Form, FormControl, FormLabel, Button, Alert, Col, DropdownButton, InputGroup,ListGroup} from 'react-bootstrap';
+import '../../SCSS/libro.scss'
 
 export default class Libros extends React.Component {
     constructor(props){
@@ -108,59 +108,73 @@ export default class Libros extends React.Component {
             })
     }
 
+/************************************************************************************************************************/
+
     render(){
         return(
-            <div>
-                <Container className="contenedor">
-                    <h2>Registro de libro</h2>
-                    <FormLabel>Titulo:</FormLabel>
-                    <FormControl type="text" name="titulo" placeholder="Ingrese el título." onChange={this.handleChange} value={this.state.titulo} required={true}/>
-                    <FormLabel>ISBN:</FormLabel>
-                    <FormControl type="text" name="isbn" placeholder="Ingrese el ISBN." onChange={this.handleChange} value={this.state.isbn} required={true}/>
-                    <FormLabel>Año de publicación:</FormLabel> 
-                    <FormControl type="text" name="anio_publicacion" placeholder="Ingrese el año de publicación." onChange={this.handleChange} value={this.state.anio_publicacion}/>
-                    <FormLabel>Descripcion:</FormLabel>
-                    <FormControl type="text" name="descripcion" placeholder="Ingrese el descripción." onChange={this.handleChange} value={this.state.descripcion}/>
-                    
-                    <FormLabel>Electrónico:</FormLabel>
-                    <FormControl type="checkbox" name="ebook" onChange={this.handleChange} value={this.state.ebook}/>
-                    <FormLabel>Precio:</FormLabel>
-                    <InputGroup className="precio_e">
-                        <InputGroup.Prepend>
-                            <InputGroup.Text>$</InputGroup.Text>
-                        </InputGroup.Prepend>
-                        <FormControl type="number" name="precio_electronico" placeholder="Precio del ebook." onChange={this.handleChange} value={this.state.precio_electronico}/>
-                    </InputGroup>
-                    <FormLabel>Tamaño:</FormLabel>
-                    <FormControl type="text" name="tamanio" onChange={this.handleChange} value={this.state.tamanio}/>
-
-                    <FormLabel>En papel:</FormLabel>
-                    <FormControl type="checkbox" name="papel" onChange={this.handleChange} value={this.state.papel}/>
-                    <FormLabel>Precio:</FormLabel>
-                    <InputGroup className="precio_f">
-                        <InputGroup.Prepend>
-                            <InputGroup.Text>$</InputGroup.Text>
-                        </InputGroup.Prepend>
-                        <FormControl type="number" name="precio_fisico" placeholder="Precio del libro impreso." onChange={this.handleChange} value={this.state.precio_fisico}/>
-                    </InputGroup>
-                    <FormLabel>Lugar de impresion:</FormLabel>
-                    <FormControl type="text" name="lugar_impresion" onChange={this.handleChange} value={this.state.lugar_impresion}/>
-                    <FormLabel>Fecha de impresion:</FormLabel>
-                    <FormControl type="text" name="fecha_impresion" onChange={this.handleChange} value={this.state.fecha_impresion}/><br></br>
-                    <Button type="submit" onClick={this.addRegistro} variant="primary" block>
-                        Agregar libro
-                    </Button><br></br>
+            <div className="main">
+                <h2>Registro de libro</h2><hr></hr>
+                <Container className="contenedor-1">
+                    <div className="propietarios">
+                        <FormLabel>Titulo:</FormLabel>
+                        <FormControl type="text" name="titulo" placeholder="Ingrese el título." onChange={this.handleChange} value={this.state.titulo} required={true}/>
+                        <FormLabel>ISBN:</FormLabel>
+                        <FormControl type="text" name="isbn" placeholder="Ingrese el ISBN." onChange={this.handleChange} value={this.state.isbn} required={true}/>
+                        <FormLabel>Año de publicación:</FormLabel> 
+                        <FormControl type="text" name="anio_publicacion" placeholder="Ingrese el año de publicación." onChange={this.handleChange} value={this.state.anio_publicacion}/>
+                    </div>
+                    <div className="foraneos">
+                        <FormLabel>Autor:</FormLabel>
+                        <select name="autor">
+                            <option value="">ejemplo1</option>
+                            <option value="">ejemplo2</option>
+                        </select>
+                        <FormLabel>Editorial:</FormLabel>
+                        <select name="editorial">
+                            <option value="">ejemplo1</option>
+                            <option value="">ejemplo2</option>
+                        </select>
+                        <FormLabel>Categoria:</FormLabel>
+                        <select name="categoria">
+                            <option value="">ejemplo1</option>
+                            <option value="">ejemplo2</option>
+                        </select>
+                    </div>
                 </Container>
+                <Container className="contenedor-2">
+                    <div className="largos">
+                        <FormLabel>Descripcion:</FormLabel>
+                        <FormControl type="text" name="descripcion" placeholder="Ingrese el descripción." onChange={this.handleChange} value={this.state.descripcion}/>
+                        <FormLabel>Portada (URL):</FormLabel>
+                        <FormControl type="url" name="url" placeholder="Ingrese el url de la imagen de portada." onChange={this.handleChange} value={this.state.url}/>    
+                    </div>
+                </Container><br></br>
+                <Container className="contenedor-3">
+                    <div className="electronico">
+                        <FormLabel>Electrónico:</FormLabel>
+                        <FormControl type="checkbox" name="ebook" onChange={this.handleChange} value={this.state.ebook}/>
+                        <FormLabel>Precio:</FormLabel>
+                        <FormControl type="number" name="precio_electronico" placeholder="Ingrese precio del ebook." onChange={this.handleChange} value={this.state.precio_electronico}/>
+                        <FormLabel>Tamaño:</FormLabel>
+                        <FormControl type="number" name="tamanio" placeholder="Ingrese pdf del libro." onChange={this.handleChange} value={this.state.pdf}/>
+                        <FormLabel>Archivo:</FormLabel>
+                        <FormControl type="file" name="pdf" placeholder="Ingrese tamaño del archivo en MB." onChange={this.handleChange} value={this.state.tamanio}/>
+                    </div>
+                    <div className="papel">
+                        <FormLabel>En papel:</FormLabel>
+                        <FormControl type="checkbox" name="papel" onChange={this.handleChange} value={this.state.papel}/>
+                        <FormLabel>Precio:</FormLabel>
+                        <FormControl type="number" name="precio_fisico" placeholder="Ingrese precio del libro impreso." onChange={this.handleChange} value={this.state.precio_fisico}/>
+                        <FormLabel>Lugar de impresion:</FormLabel>
+                        <FormControl type="text" name="lugar_impresion" placeholder="Ingrese el lugar de impresión." onChange={this.handleChange} value={this.state.lugar_impresion}/>
+                        <FormLabel>Fecha de impresion:</FormLabel>
+                        <FormControl type="date" name="fecha_impresion" onChange={this.handleChange} value={this.state.fecha_impresion}/>
+                    </div>
+                </Container>
+                <Button type="submit" onClick={this.addRegistro} variant="primary" block>
+                    Agregar libro
+                </Button><br></br>
             </div>
         );
     }
 }
-
-/*
-                    <DropdownButton id="dropdown-basic-button" title="Tipo del libro ..?">
-                        <Dropdown.Item href="#/action-1">Electrónico</Dropdown.Item>
-                        <Dropdown.Item href="#/action-2">Papel</Dropdown.Item>
-                    </DropdownButton> 
-
-                    esto sirve para hacer un menu desplegable en caso de que se requiera para elegir tipo
-*/
