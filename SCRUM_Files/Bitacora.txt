@@ -228,17 +228,17 @@ libro para ayudarme a decidir si es una buena opción.
 	*> No tuve nigun problema.
 ¿Que haras hoy?
 	*> Terminar el desarrollo de las interfaces y empezar a hacer testing.
-	
+
 2) Alexis:
 ¿Que hiciste ayer?
 	*> Realice el analisis relacional de la base de datos asi como la implementacion
-	de las tablas requeridas en el sprint, tambien me reuni con carlos para 
+	de las tablas requeridas en el sprint, tambien me reuni con carlos para
 	vincular la base e datos con el backend.
 ¿Tuviste algun impedimento?
 	*> No, solo esperar a que carlos tenga el backend listo para la conexion.
 ¿Que haras hoy?
 	*> Testear la basse de datos.
-	
+
 2) Carlos:
 ¿Que hiciste ayer?
 	*> Estuve trabajando en el backend con php, estuve a su vez elaborando lo
@@ -247,7 +247,7 @@ libro para ayudarme a decidir si es una buena opción.
 	*> Problemas cn dependencias de laravel.
 ¿Que haras hoy?
 	*> Tener laravel listo y corrieno y terminar las pruebas.
-	
+
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
