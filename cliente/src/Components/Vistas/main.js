@@ -9,20 +9,21 @@ export default class Main extends React.Component {
         this.state = {
             libros: [],
         }
-        //this.fetchLibros();
+        this.fetchLibros();
     }
 
     fetchLibros = () => {
         let headers = new Headers();
         headers.append("Content-Type", "application/json");
-        fetch("http://localhost:3001/main/libros/", {
+        fetch("http://127.0.0.1:8000/", {
             method: "GET",
             headers: headers,
         })
         .then((respuesta) => respuesta.json())
         .then((resultado) => {
+            console.log(resultado);
             this.setState({
-                libros: resultado.respuesta,
+                libros: resultado.response,
             });
         }).catch((error) => console.log("error: ", error));
     }

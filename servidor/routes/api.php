@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', 'librosController@index');
+Route::get('/', ['middleware' => 'cors'], 'librosController@index');
 
 /* Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();

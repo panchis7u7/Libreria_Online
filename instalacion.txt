@@ -16,5 +16,7 @@ sudo mv composer.phar /usr/local/bin/composer
 
 https://www.technhit.in/setup-laravel-on-ubuntu-with-apache/
 
+udo apt-get install php-mysql
+
 //En la carpeta servidor usar el comando:
 php artisan serve
