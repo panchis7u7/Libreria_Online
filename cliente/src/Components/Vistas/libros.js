@@ -30,7 +30,9 @@ export default class Libros extends React.Component {
         this.fetchRegistros();
     }
 
-    componentDidMount(){this.fetchRegistros()};
+    componentDidMount(){
+        this.fetchRegistros()
+    };
 
     handleChange = (evt) => {
         this.setState({

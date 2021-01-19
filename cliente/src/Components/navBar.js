@@ -7,7 +7,7 @@ export default function NavBar(){
         <div>
             <ReactBootStrap.Navbar className="nav" collapseOnSelect expand="lg" variant="dark">
                 <Link to="/">
-                    <ReactBootStrap.Navbar.Brand href="/"><span className="navItem">Libreria Online</span></ReactBootStrap.Navbar.Brand>
+                    <ReactBootStrap.Navbar.Brand href="/"><span className="navItem">Libreria Panchitos</span></ReactBootStrap.Navbar.Brand>
                 </Link>
                 <ReactBootStrap.Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <ReactBootStrap.Navbar.Collapse id="responsive-navbar-nav">
@@ -18,17 +18,12 @@ export default function NavBar(){
                         <Link to="/libros">
                             <ReactBootStrap.Nav.Link href="/libros"><span className="navItem">Libros</span></ReactBootStrap.Nav.Link>
                         </Link>
-                        <Link to="/factura">
-                            <ReactBootStrap.Nav.Link href="/factura"><span className="navItem">Facturas</span></ReactBootStrap.Nav.Link>
+                        <Link to="/autores">
+                            <ReactBootStrap.Nav.Link href="/autores"><span className="navItem">Autores</span></ReactBootStrap.Nav.Link>
                         </Link>
-                        <ReactBootStrap.NavDropdown title="Personal" id="collasible-nav-dropdown">
-                            <Link to="/empleado">
-                                <ReactBootStrap.NavDropdown.Item href="/empleado"><span className="navItem">Empleados</span></ReactBootStrap.NavDropdown.Item>
-                            </Link>
-                            <Link to="/proveedor">
-                                <ReactBootStrap.NavDropdown.Item href="/proveedor"><span className="navItem">Proveedores</span></ReactBootStrap.NavDropdown.Item>
-                            </Link>
-                        </ReactBootStrap.NavDropdown>
+                        <Link to="/editoriales">
+                            <ReactBootStrap.Nav.Link href="/editorales"><span className="navItem">Editoriales</span></ReactBootStrap.Nav.Link>
+                        </Link>
                         <ReactBootStrap.NavDropdown title="Productos" id="collasible-nav-dropdown">
                             <Link to="/bodega">
                                 <ReactBootStrap.NavDropdown.Item href="/bodega"><span className="navItem">Bodega</span></ReactBootStrap.NavDropdown.Item>
