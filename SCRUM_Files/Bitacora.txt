@@ -230,6 +230,7 @@ libro para ayudarme a decidir si es una buena opción.
 	*> Terminar el desarrollo de las interfaces y empezar a hacer testing.
 
 2) Alexis:
+
 ¿Que hiciste ayer?
 	*> Realice el analisis relacional de la base de datos asi como la implementacion
 	de las tablas requeridas en el sprint, tambien me reuni con carlos para
@@ -239,23 +240,111 @@ libro para ayudarme a decidir si es una buena opción.
 ¿Que haras hoy?
 	*> Testear la basse de datos.
 
-2) Carlos:
+3) Carlos:
+
 ¿Que hiciste ayer?
 	*> Estuve trabajando en el backend con php, estuve a su vez elaborando lo
-	necesario para realizar las pruebas sbre el mismo.
+	necesario para realizar las pruebas sobre el mismo.
 ¿Tuviste algun impedimento?
 	*> Problemas cn dependencias de laravel.
 ¿Que haras hoy?
-	*> Tener laravel listo y corrieno y terminar las pruebas.
+	*> Tener laravel corriendo y terminar las pruebas.
 
+4) Sebastian:
+
+¿Que hiciste ayer?
+	*> Implemente la pagina principal, basandome en el disño aprobado.
+¿Tuviste algun impedimento?
+	*> No tuve nigun impedimento.
+¿Que haras hoy?
+	*> Investigar sobre el framwork de laravel.
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
 @@@@@@@@@@@@@@@@@@@@@@@ SCRUM Diario 17 de enero del 2021 @@@@@@@@@@@@@@@@@@@@@@
 
+1) Katherine:
+
+¿Que hiciste ayer?
+	*> Implemente el formulario aprobado.
+¿Tuviste algun impedimento?
+	*> Solo tarde mucho en alinear los componentes.
+¿Que haras hoy?
+	*> Iniciar las pruebas (testing) y el diseño de los formularios pendeintes en el sprint.
+
+2) Alexis:
+
+¿Que hiciste ayer?
+	*> Me junte con carlos para integrar el backend con mysql.
+¿Tuviste algun impedimento?
+	*> No, ninguno.
+¿Que haras hoy?
+	*> Juntarme con kate para ayudarla con el disño de componentes.
+
+3) Carlos:
+
+¿Que hiciste ayer?
+	*> Me junte con alexis para la integracion del backend asi como investigar
+	la instalacion y uso de laravel.
+¿Tuviste algun impedimento?
+	*> Problemas cn dependencias de laravel.
+¿Que haras hoy?
+	*> Tener laravel listo y corrieno y terminar las pruebas.
+
+4) Sebastian:
+
+¿Que hiciste ayer?
+	*> Instale y realice la integracion de laravel con un modulo el frontend, asi como
+	generar las APIs o requests en el servidor.
+¿Tuviste algun impedimento?
+	*> Documentacion.
+¿Que haras hoy?
+	*> Actualizar las url de las peticiones del formularios en desarrollo asi
+	   como asociarlas en el backend.
+
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
 @@@@@@@@@@@@@@@@@@@@@@@ SCRUM Diario 18 de enero del 2021 @@@@@@@@@@@@@@@@@@@@@@
+
+1) Katherine:
+
+¿Que hiciste ayer?
+	*> Investigando sobre las pruebas y el diseño de las interfaces.
+¿Tuviste algun impedimento?
+	*> El desarrollo de pruebas.
+¿Que haras hoy?
+	*> terminar el diseño y enviarlas para valoracion y empezar con las interfaces.
+
+2) Alexis:
+
+¿Que hiciste ayer?
+	*> Investigue sobre el uso del programa POSTMAN para el desarollo de puebas
+	   y el desarrollo de las entidades en mysql.
+¿Tuviste algun impedimento?
+	*> Trabajo con el Postman.
+¿Que haras hoy?
+	*> Establecer llaves foraneas y crear registros para insertar a la bd, asi como
+	   corregir el archivo.
+
+3) Carlos:
+
+¿Que hiciste ayer?
+	*> Entendiendo la instalacion y uso de laravel.
+¿Tuviste algun impedimento?
+	*> NO ninguno.
+¿Que haras hoy?
+	*> Integracion del backend con el frontend.
+
+4) Sebastian:
+
+¿Que hiciste ayer?
+	*> Instale y realice la integracion de laravel con un modulo el frontend, asi como
+	generar las APIs o requests en el servidor.
+¿Tuviste algun impedimento?
+	*> Documentacion.
+¿Que haras hoy?
+	*> Actualizar las url de las peticiones del formularios en desarrollo asi
+	   como asociarlas en el backend.
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 

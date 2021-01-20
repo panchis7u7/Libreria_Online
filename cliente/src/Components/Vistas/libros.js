@@ -43,7 +43,7 @@ export default class Libros extends React.Component {
     fetchRegistros = () => {
         let headers = new Headers();
         headers.append("Content-Type", "application/json");
-        fetch("http://localhost:3001/libros", {
+        fetch("http://localhost:8000/libros", {
           method: "GET",
           headers: headers,
         })
