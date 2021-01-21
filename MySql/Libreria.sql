@@ -104,6 +104,7 @@ CREATE TABLE IF NOT EXISTS editorial_publica_libro (
 CREATE TABLE IF NOT EXISTS almacen_almacena_libro (
 	id_almacen INT NOT NULL,
     id_libro INT NOT NULL,
+    stick INT DEFAULT 0 NOT NULL,
     PRIMARY KEY (id_almacen, id_libro),
     FOREIGN KEY (id_almacen) REFERENCES almacenes(id_almacen) ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (id_libro) REFERENCES libros(id_libro) ON DELETE CASCADE ON UPDATE CASCADE
