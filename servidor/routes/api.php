@@ -35,7 +35,6 @@ Route::get('/posts', function () {
         'fecha_impresion' => '2007-05-05',
         'lugar_impresion' => 'mexico'
     ]);
-
     return $post;
 });
 
