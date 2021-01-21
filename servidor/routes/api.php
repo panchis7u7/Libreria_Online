@@ -22,6 +22,8 @@ use App\Models\Libro;
 
 Route::resource('libros', 'App\Http\Controllers\LibrosController');
 
+Route::get('/basic', 'App\Http\Controllers\LibrosController@getBasic');
+
 Route::get('/posts', function () {
     $post = Libro::create([
         'id_libro' => 2,
@@ -35,7 +37,6 @@ Route::get('/posts', function () {
         'fecha_impresion' => '2007-05-05',
         'lugar_impresion' => 'mexico'
     ]);
-
     return $post;
 });
 

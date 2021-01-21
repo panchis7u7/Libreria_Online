@@ -3,10 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Libro;
-use Illuminate\Support\Facades\DB;
 
-class LibrosController extends Controller
+class AlmacenesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +13,7 @@ class LibrosController extends Controller
      */
     public function index()
     {
-        //return Libro::all();
-        return DB::table('libros')->get();
+        //
     }
 
     /**
@@ -62,13 +59,5 @@ class LibrosController extends Controller
     public function destroy($id)
     {
         //
-    }
-
-    ////////////////////////////////////////////////
-    //                 Consultas
-    ////////////////////////////////////////////////
-
-    public function getBasic(){
-        return DB::table('libros')->select('titulo', 'precio_fisico', 'url')->get();
     }
 }
