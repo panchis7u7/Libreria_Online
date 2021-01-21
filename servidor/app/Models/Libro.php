@@ -9,8 +9,9 @@ class Libro extends Model
 {
     use HasFactory;
 
+    public $timestamps = false;
+
     protected $fillable = [
-        'id_libro',
         'isbn',
         'anio_publicacion',
         'descripcion',
@@ -19,7 +20,8 @@ class Libro extends Model
         'precio_electronico',
         'tamanio',
         'fecha_impresion',
-        'lugar_impresion'
+        'lugar_impresion',
+        'url',
     ];
     /*
     return [

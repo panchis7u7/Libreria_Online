@@ -22,6 +22,8 @@ use App\Models\Libro;
 
 Route::resource('libros', 'App\Http\Controllers\LibrosController');
 
+Route::get('/basic', 'App\Http\Controllers\LibrosController@getBasic');
+
 Route::get('/posts', function () {
     $post = Libro::create([
         'id_libro' => 2,

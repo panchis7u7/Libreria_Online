@@ -32,6 +32,7 @@ class LibroFactory extends Factory
             'tamanio' => Str::random(4),
             'fecha_impresion' => $this->faker->date('Y-m-d','now'),
             'lugar_impresion' => $this->faker->regexify('[A-Za-z0-9]{10}'),
+            'url' => 'https://images-na.ssl-images-amazon.com/images/I/71OTIK6DywL.jpg',
         ];
     }
 }

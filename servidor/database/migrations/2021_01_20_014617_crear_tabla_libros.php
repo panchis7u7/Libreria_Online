@@ -25,13 +25,13 @@ class CrearTablaLibros extends Migration
             $table->date('fecha_impresion');
             $table->string('lugar_impresion');
             $table->string('url');
-            $table->integer('stock');
+            /*$table->integer('stock');
             $table->foreignId('id_editorial')->references('id_editorial')->on('editoriales')
             ->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('id_autor')->references('id_autor')->on('autores')
             ->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('id_almacen')->references('id_almacen')->on('almacenes')
-            ->onDelete('cascade')->onUpdate('cascade');
+            ->onDelete('cascade')->onUpdate('cascade');*/
             $table->timestamps();
         });
     }
