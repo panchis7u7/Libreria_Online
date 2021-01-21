@@ -1,3 +1,15 @@
+@mixin labels {
+    float: left;
+    width: 11em;
+    padding-right: 2px;
+}
+
+@mixin inputs {
+    margin-bottom: 0.5em;
+    width: 60%;
+    height: 2.2em;
+}
+
 .main{
     font-family: sans-serif;
     h2{
@@ -11,41 +23,31 @@
         grid-template-columns: 50% 50%;
         .propietarios{
             label{
-                float: left;
-                width: 11em;
-                padding-right: 2px;
+                @include labels();
             }
             input{
-                margin-bottom: 0.5em;
-                width: 60%;
-                height: 2.2em;
+                @include inputs();
             }
         }
         .foraneos{
             label{
+                @include labels();
                 padding-left: 4em;
-                float: left;
-                width: 11em;
-                padding-right: 2px;
             }
             select{
-                margin-bottom: 0.5em;
-                width: 60%;
-                height: 2.2em;
+                @include inputs();
             }
         }
     }
     .contenedor-2{
         .largos{
             label{
-                float: left;
-                width: 11em;
+                @include labels();
                 padding-right: 5px;
             }
             input{
-                margin-bottom: 0.5em;
+                @include inputs();
                 width: 80%;
-                height: 2.2em;
             }
         }
     }
@@ -54,26 +56,18 @@
         grid-template-columns: 50% 50%;
         .electronico{
             label{
-                float: left;
-                width: 11em;
-                padding-right: 2px;
+                @include labels();
             }
             input{
-                margin-bottom: 0.5em;
-                width: 60%;
-                height: 2.2em;
+                @include inputs();
             }
         }
         .papel{
             label{
-                float: left;
-                width: 11em;
-                padding-right: 2px;
+                @include labels();
             }
             input{
-                margin-bottom: 0.5em;
-                width: 60%;
-                height: 2.2em;
+                @include inputs();
             }
         }
     }
