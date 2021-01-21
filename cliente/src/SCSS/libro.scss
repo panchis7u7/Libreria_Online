@@ -10,10 +10,13 @@
     height: 2.2em;
 }
 
-.main{
+.main {
+    text-align: center;
+}
+
+.popup-content{
     font-family: sans-serif;
     h2{
-        text-align: center;
         font-size: 2em;
         font-weight: bold;
         padding: 1.5em 0 0.1em 0;
@@ -72,7 +75,7 @@
         }
     }
 
-    button{
+    .submit {
         padding: 1em;
         background-color: rgb(15, 15, 105);
         border-radius: 10px;
@@ -81,3 +84,78 @@
         margin-top: 1em;
     }
 }
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+}
+
+table {
+    margin-top: 0.5em;
+    overflow: auto;
+    display: block;
+    table-layout: auto;
+    height: 85%;
+}
+
+.padd {
+    padding: 0.5em 20px 0pc 20px;
+}
+
+h1{
+    width: 100%;
+    padding-top: 0.8em;
+    font-size: 10px;
+    text-align: center;
+ }
+
+ tr {
+     text-align: center;
+ }
+ .popup-content {
+    position: absolute;
+    top: 0;
+    margin: auto;
+    background: rgb(255, 255, 255);
+    width: 50%;
+    padding: 5px;
+    border: 1px solid #d7d7d7;
+  }
+
+  .popup-arrow {
+    color: rgb(255, 255, 255);
+  }
+
+  [role='tooltip'].popup-content {
+    width: 60%;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 0px 3px;
+    border-radius: 5px;
+  }
+  
+  .popup-overlay {
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+  
+  .popup-arrow {
+    filter: drop-shadow(0 -3px 3px rgba(0, 0, 0, 0.16));
+    color: #fff;
+    stroke-width: 2px;
+    stroke: #d7d7d7;
+    stroke-dasharray: 30px;
+    stroke-dashoffset: -54px;
+  }
+
+  html[data-theme='dark'] .popup-arrow > svg {
+    color: rgb(41, 45, 62);
+    stroke-width: 2px;
+    stroke: #9a9595;
+    stroke-dasharray: 30px;
+    stroke-dashoffset: -54px;
+  }
+
+  .popup-root{
+      width: 100%;
+      text-align: center;
+      position: relative;
+
+  }

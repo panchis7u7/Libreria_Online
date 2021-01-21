@@ -1,11 +1,13 @@
 import React from 'react';
-import {Container, Image,Form, FormControl, FormLabel, Button, Alert, Col, DropdownButton, InputGroup,ListGroup} from 'react-bootstrap';
-import '../../SCSS/libro.scss'
+import {Container, FormControl, FormLabel, Button, Alert, Row, Table} from 'react-bootstrap';
+import '../../SCSS/libro.scss';
+import Popup from 'reactjs-popup';
 
 export default class Libros extends React.Component {
     constructor(props){
         super(props);
         this.state = {
+            registros: [],
             id_libro: "",
             titulo: "",
             isbn: "",
@@ -51,7 +53,7 @@ export default class Libros extends React.Component {
           .then((resultado) => {
             console.log("resultado: ", resultado);
             this.setState({
-              registros: resultado.response,
+              registros: resultado,
             });
         })
         .catch((error) => console.log("error: ", error));
@@ -108,8 +110,21 @@ export default class Libros extends React.Component {
                     alerta: true,
                     msgAlerta: resultado.response,
                     tipoAlerta: "success",
+                    open: false,
                 })
             })
+    }
+
+    editRegistro(){
+
+    }
+
+    updateInput(){
+
+    }
+
+    eliminarRegistro() {
+
     }
 
 /************************************************************************************************************************/
@@ -117,6 +132,67 @@ export default class Libros extends React.Component {
     render(){
         return(
             <div className="main">
+            <Container>
+            <h1 class="h1">Clientes</h1>
+              {
+                this.state.alerta === true ? (
+                  <Alert variant={this.state.tipoAlerta} onClose={() => {
+                    this.setState({
+                      alerta: false,
+                    })
+                  }} dismissible>
+                    <Alert.Heading>{this.state.msgAlerta}</Alert.Heading>
+                  </Alert>
+                ) : null}
+              <Row>
+                <Table striped bordered hover size="sm" >
+                  <thead>
+                    <tr>
+                      <th class="align-middle">Id</th>
+                      <th class="align-middle">ISBN</th>
+                      <th class="align-middle">Año Publicacion</th>
+                      <th class="align-middle">Descripcion</th>
+                      <th class="align-middle">Titulo</th>
+                      <th class="align-middle">Precio Fisico</th>
+                      <th class="align-middle">Precio Electronico</th>
+                      <th class="align-middle">Tamaño</th>
+                      <th class="align-middle">Fecha impresion</th>
+                      <th class="align-middle">Lugar Impresion</th>
+                      <th class="align-middle" colSpan="2">Acciones</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {this.state.registros.map((item) => {
+                      return (
+                        <tr onClickCapture={() => this.updateInput(item)}>
+                          <td class="align-middle">{item.id_libro}</td>
+                          <td class="align-middle">{item.isbn}</td>
+                          <td class="align-middle">{item.anio_publicacion}</td>
+                          <td class="align-middle">{item.titulo}</td>
+                          <td class="align-middle">{item.precio_fisico}</td>
+                          <td class="align-middle">{item.precio_electronico}</td>
+                          <td class="align-middle">{item.tamanio}</td>
+                          <td class="align-middle">{item.fecha_impresion}</td>
+                          <td class="align-middle">{item.lugar_impresion}</td>
+                          <td class="align-middle">
+                            <Button onMouseEnter={() => {this.setState({hoverBtn1: true})}} 
+                                    onMouseLeave={() => {this.setState({hoverBtn1: false})}}
+                                    onClick={() => {this.editRegistro(item.id_cliente); this.setState({open: true,});}} variant="info">Actualizar</Button>
+                          </td>
+                          <td class="align-middle">
+                            <Button onMouseEnter={() => {this.setState({hoverBtn1: true})}} 
+                                    onMouseLeave={() => {this.setState({hoverBtn1: false})}} 
+                                    onClick={() => {this.eliminarRegistro(item.id_cliente)}} variant="danger">Eliminar</Button>
+                          </td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </Table>
+              </Row>
+            </Container>
+            <Popup trigger={<Button variant="info">Añadir</Button>} open={this.state.open} onClose={() => {this.setState({open: false,});}} position="top center">
+                <div className="popup-root">
                 <h2>Registro de libro</h2><hr></hr>
                 <Container className="contenedor-1">
                     <div className="propietarios">
@@ -175,9 +251,11 @@ export default class Libros extends React.Component {
                         <FormControl type="date" name="fecha_impresion" onChange={this.handleChange} value={this.state.fecha_impresion}/>
                     </div>
                 </Container>
-                <Button type="submit" onClick={this.addRegistro} variant="primary" block>
+                <Button type="submit" className="submit" onClick={this.addRegistro} variant="primary" block>
                     Agregar libro
                 </Button><br></br>
+                </div>
+            </Popup>
             </div>
         );
     }
