@@ -354,6 +354,44 @@ libro para ayudarme a decidir si es una buena opción.
 
 @@@@@@@@@@@@@@@@@@@@@@@ SCRUM Diario 20 de enero del 2021 @@@@@@@@@@@@@@@@@@@@@@
 
+1) Katherine:
+
+¿Que hiciste ayer?
+	*> Hice un test, la prueba de aceptacion manual y sigo con la investigacion de
+	las pruebas, revision de la base de datos.
+¿Tuviste algun impedimento?
+	*> El desarrollo de pruebas.
+¿Que haras hoy?
+	*> Seguir con el testing y desarrollar las nuevas interfaces (formularios).
+
+2) Alexis:
+
+¿Que hiciste ayer?
+	*> Generar entidades - relaciones en mysql.
+¿Tuviste algun impedimento?
+	*> No, nada.
+¿Que haras hoy?
+	*> Me reunire con kate para desarrollar el front-end
+	
+3) Carlos:
+
+¿Que hiciste ayer?
+	*> Realizar las preubas de la base de datos .
+¿Tuviste algun impedimento?
+	*> NO ninguno.
+¿Que haras hoy?
+	*> Integracion del backend con el frontend.
+
+4) Sebastian:
+
+¿Que hiciste ayer?
+	*> Instale y realice la integracion de laravel con un modulo el frontend, asi como
+	generar las APIs o requests en el servidor.
+¿Tuviste algun impedimento?
+	*> Documentacion.
+¿Que haras hoy?
+	*> Actualizar los esquemas de los controladores del ORM del servidor.
+	   
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
 @@@@@@@@@@@@@@@@@@@@@@@ SCRUM Diario 21 de enero del 2021 @@@@@@@@@@@@@@@@@@@@@@

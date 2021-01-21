@@ -111,10 +111,27 @@ export default class Libros extends React.Component {
                     msgAlerta: resultado.response,
                     tipoAlerta: "success",
                     open: false,
+<<<<<<< HEAD
                 });
                 this.fetchRegistros();
             });
     };
+
+    editRegistro(){
+
+    }
+
+    updateInput(){
+
+    }
+
+    eliminarRegistro() {
+
+=======
+                })
+            })
+>>>>>>> cdbd2aa71b9e4186c4c01e0f2fd24c8e8117f77e
+    }
 
     editRegistro(){
 
@@ -134,7 +151,11 @@ export default class Libros extends React.Component {
         return(
             <div className="main">
             <Container>
+<<<<<<< HEAD
             <h1 class="h1">Libros</h1>
+=======
+            <h1 class="h1">Clientes</h1>
+>>>>>>> cdbd2aa71b9e4186c4c01e0f2fd24c8e8117f77e
               {
                 this.state.alerta === true ? (
                   <Alert variant={this.state.tipoAlerta} onClose={() => {
@@ -149,10 +170,18 @@ export default class Libros extends React.Component {
                 <Table striped bordered hover size="sm" >
                   <thead>
                     <tr>
+<<<<<<< HEAD
                       <th class="align-middle">Titulo</th>
                       <th class="align-middle">ISBN</th>
                       <th class="align-middle">Año Publicacion</th>
                       <th class="align-middle">Descripcion</th>
+=======
+                      <th class="align-middle">Id</th>
+                      <th class="align-middle">ISBN</th>
+                      <th class="align-middle">Año Publicacion</th>
+                      <th class="align-middle">Descripcion</th>
+                      <th class="align-middle">Titulo</th>
+>>>>>>> cdbd2aa71b9e4186c4c01e0f2fd24c8e8117f77e
                       <th class="align-middle">Precio Fisico</th>
                       <th class="align-middle">Precio Electronico</th>
                       <th class="align-middle">Tamaño</th>
@@ -165,9 +194,16 @@ export default class Libros extends React.Component {
                     {this.state.registros.map((item) => {
                       return (
                         <tr onClickCapture={() => this.updateInput(item)}>
+<<<<<<< HEAD
                           <td class="align-middle">{item.titulo}</td>
                           <td class="align-middle">{item.isbn}</td>
                           <td class="align-middle">{item.anio_publicacion}</td>
+=======
+                          <td class="align-middle">{item.id_libro}</td>
+                          <td class="align-middle">{item.isbn}</td>
+                          <td class="align-middle">{item.anio_publicacion}</td>
+                          <td class="align-middle">{item.titulo}</td>
+>>>>>>> cdbd2aa71b9e4186c4c01e0f2fd24c8e8117f77e
                           <td class="align-middle">{item.precio_fisico}</td>
                           <td class="align-middle">{item.precio_electronico}</td>
                           <td class="align-middle">{item.tamanio}</td>
@@ -176,12 +212,20 @@ export default class Libros extends React.Component {
                           <td class="align-middle">
                             <Button onMouseEnter={() => {this.setState({hoverBtn1: true})}} 
                                     onMouseLeave={() => {this.setState({hoverBtn1: false})}}
+<<<<<<< HEAD
                                     onClick={() => {this.editRegistro(item.id_libro); this.setState({open: true,});}} variant="info">Actualizar</Button>
+=======
+                                    onClick={() => {this.editRegistro(item.id_cliente); this.setState({open: true,});}} variant="info">Actualizar</Button>
+>>>>>>> cdbd2aa71b9e4186c4c01e0f2fd24c8e8117f77e
                           </td>
                           <td class="align-middle">
                             <Button onMouseEnter={() => {this.setState({hoverBtn1: true})}} 
                                     onMouseLeave={() => {this.setState({hoverBtn1: false})}} 
+<<<<<<< HEAD
                                     onClick={() => {this.eliminarRegistro(item.id_libro)}} variant="danger">Eliminar</Button>
+=======
+                                    onClick={() => {this.eliminarRegistro(item.id_cliente)}} variant="danger">Eliminar</Button>
+>>>>>>> cdbd2aa71b9e4186c4c01e0f2fd24c8e8117f77e
                           </td>
                         </tr>
                       );
@@ -190,7 +234,12 @@ export default class Libros extends React.Component {
                 </Table>
               </Row>
             </Container>
+<<<<<<< HEAD
             <Popup trigger={<Button variant="info">Añadir nuevo</Button>} open={this.state.open} onClose={() => {this.setState({open: false,});}} position="bottom center">
+=======
+            <Button variant="info" onClick={(e) => {this.setState({open: true,})}}>Añadir</Button>
+            <Popup open={this.state.open} onClose={() => {this.setState({open: false,});}} position="center center">
+>>>>>>> cdbd2aa71b9e4186c4c01e0f2fd24c8e8117f77e
                 <div className="popup-root">
                 <h2>Registro de libro</h2><hr></hr>
                 <Container className="contenedor-1">
