@@ -191,7 +191,8 @@ export default class Libros extends React.Component {
                 </Table>
               </Row>
             </Container>
-            <Popup trigger={<Button variant="info">Añadir</Button>} open={this.state.open} onClose={() => {this.setState({open: false,});}} position="top center">
+            <Button variant="info" onClick={(e) => {this.setState({open: true,})}}>Añadir</Button>
+            <Popup open={this.state.open} onClose={() => {this.setState({open: false,});}} position="center center">
                 <div className="popup-root">
                 <h2>Registro de libro</h2><hr></hr>
                 <Container className="contenedor-1">
