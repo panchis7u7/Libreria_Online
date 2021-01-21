@@ -27,15 +27,17 @@ CREATE TABLE IF NOT EXISTS almacenes (
 id_almacen INT UNIQUE NOT NULL AUTO_INCREMENT PRIMARY KEY, 
 direccion VARCHAR(200), 
 telefono INT(10), 
+stock INT(10),
 id_localidad INT NOT NULL,
+id_libro INT NOT NULL,
 FOREIGN KEY (id_localidad) REFERENCES localidades(id_localidad) ON UPDATE CASCADE ON DELETE CASCADE
+FOREIGN KEY (id_libro) REFERENCES libros(id_libro) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS clientes (
 id_cliente INT UNIQUE NOT NULL AUTO_INCREMENT PRIMARY KEY, 
 nombre VARCHAR(100), 
-apellido1 VARCHAR(100), 
-apellido2 VARCHAR(100), 
+apellidos VARCHAR(100),      
 direccion VARCHAR(200), 
 email VARCHAR(50), 
 telefono int(10), 
@@ -46,10 +48,8 @@ FOREIGN KEY (id_localidad) REFERENCES localidades(id_localidad) ON UPDATE CASCAD
 CREATE TABLE IF NOT EXISTS autores (
 id_autor INT UNIQUE NOT NULL AUTO_INCREMENT PRIMARY KEY, 
 nombre VARCHAR(100), 
-apellido1 VARCHAR(100), 
-apellido2 VARCHAR(100), 
+apellidos VARCHAR(100), 
 direccion VARCHAR(200), 
-email VARCHAR(50), 
 telefono INT(10), 
 url VARCHAR(200), 
 id_localidad INT NOT NULL, 
@@ -68,13 +68,11 @@ tamanio VARCHAR(10),
 fecha_impresion DATE, 
 lugar_impresion VARCHAR(200), 
 url VARCHAR(200), 
-stock INT, 
+portada VARCHAR(200),
 id_editorial INT NOT NULL, 
 id_autor INT NOT NULL, 
-id_almacen INT NOT NULL, 
 FOREIGN KEY (id_editorial) REFERENCES editoriales(id_editorial) ON UPDATE CASCADE ON DELETE CASCADE, 
 FOREIGN KEY (id_autor) REFERENCES autores(id_autor) ON UPDATE CASCADE ON DELETE CASCADE, 
-FOREIGN KEY (id_almacen) REFERENCES almacenes(id_almacen) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS cestas (
