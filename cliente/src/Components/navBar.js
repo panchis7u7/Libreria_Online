@@ -1,3 +1,4 @@
+import React from 'react';
 import * as ReactBootStrap from 'react-bootstrap';
 import {Link} from 'react-router-dom';
 import '../SCSS/navBar.scss'
@@ -24,23 +25,14 @@ export default function NavBar(){
                         <Link to="/editoriales">
                             <ReactBootStrap.Nav.Link href="/editorales"><span className="navItem">Editoriales</span></ReactBootStrap.Nav.Link>
                         </Link>
-                        <ReactBootStrap.NavDropdown title="Productos" id="collasible-nav-dropdown">
-                            <Link to="/bodega">
-                                <ReactBootStrap.NavDropdown.Item href="/bodega"><span className="navItem">Bodega</span></ReactBootStrap.NavDropdown.Item>
+                        <ReactBootStrap.NavDropdown title="Contenido?" id="collasible-nav-dropdown">
+                            <Link to="/libros">
+                                <ReactBootStrap.NavDropdown.Item href="/libros">Libros</ReactBootStrap.NavDropdown.Item>
                             </Link>
                             <Link to="/categoria">
                                 <ReactBootStrap.NavDropdown.Item href="/categoria"><span className="navItem">Categorias</span></ReactBootStrap.NavDropdown.Item>
                             </Link>
                         </ReactBootStrap.NavDropdown>
-                        <ReactBootStrap.NavDropdown title="Compras" id="collasible-nav-dropdown">
-                            <Link to="/det_factura">
-                                <ReactBootStrap.NavDropdown.Item href="/det_factura"><span className="navItem">Facturas</span></ReactBootStrap.NavDropdown.Item>
-                            </Link>
-                            <Link to="/det_pedido">
-                                <ReactBootStrap.NavDropdown.Item href="/det_pedido"><span className="navItem">Pedidos</span></ReactBootStrap.NavDropdown.Item>
-                            </Link>
-                        </ReactBootStrap.NavDropdown>
-                        
                     </ReactBootStrap.Nav>
                 </ReactBootStrap.Navbar.Collapse>
             </ReactBootStrap.Navbar>

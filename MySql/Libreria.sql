@@ -15,6 +15,7 @@ CREATE TABLE IF NOT EXISTS localidades (
 );
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 CREATE TABLE IF NOT EXISTS almacenes (
 id_almacen INT UNIQUE NOT NULL AUTO_INCREMENT PRIMARY KEY, 
 direccion VARCHAR(200), 
@@ -103,6 +104,45 @@ CREATE TABLE IF NOT EXISTS autores (
 	FOREIGN KEY (id_localidad) REFERENCES localidades(id_localidad) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
+=======
+CREATE TABLE IF NOT EXISTS libros (
+	id_libro INT UNIQUE NOT NULL AUTO_INCREMENT PRIMARY KEY, 
+	isbn VARCHAR(30) UNIQUE NOT NULL, 
+	anio_publicacion DATE, 
+	descripcion VARCHAR(120), 
+	titulo VARCHAR(60), 
+	precio_fisico DOUBLE, 
+	precio_electronico DOUBLE, 
+	tamanio VARCHAR(10), 
+	fecha_impresion DATE, 
+	lugar_impresion VARCHAR(60), 
+	url VARCHAR(200)
+);
+
+CREATE TABLE IF NOT EXISTS clientes (
+	id_cliente INT UNIQUE NOT NULL AUTO_INCREMENT PRIMARY KEY, 
+	nombre VARCHAR(40), 
+	apellidos VARCHAR(60), 
+	direccion VARCHAR(80), 
+	email VARCHAR(30), 
+	telefono VARCHAR(12), 
+	id_localidad INT NOT NULL, 
+	FOREIGN KEY (id_localidad) REFERENCES localidades(id_localidad) ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS autores (
+	id_autor INT UNIQUE NOT NULL AUTO_INCREMENT PRIMARY KEY, 
+	nombre VARCHAR(40), 
+	apellidos VARCHAR(60),
+	direccion VARCHAR(80), 
+	email VARCHAR(30), 
+	telefono VARCHAR(12), 
+	url VARCHAR(200), 
+	id_localidad INT NOT NULL, 
+	FOREIGN KEY (id_localidad) REFERENCES localidades(id_localidad) ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+>>>>>>> 60bb9f950091d865827903bb9618dad5c895fbff
 CREATE TABLE IF NOT EXISTS editoriales (
 	id_editorial INT UNIQUE NOT NULL AUTO_INCREMENT PRIMARY KEY, 
 	nombre VARCHAR(40), 
@@ -119,7 +159,10 @@ CREATE TABLE IF NOT EXISTS almacenes (
 	telefono VARCHAR(12), 
 	id_localidad INT NOT NULL,
 	FOREIGN KEY (id_localidad) REFERENCES localidades(id_localidad) ON UPDATE CASCADE ON DELETE CASCADE
+<<<<<<< HEAD
 >>>>>>> f32ff01ef97f087f8c831720d71970a331f411cc
+=======
+>>>>>>> 60bb9f950091d865827903bb9618dad5c895fbff
 );
 
 CREATE TABLE IF NOT EXISTS cestas (
