@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\librosController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,9 +13,6 @@ use App\Http\Controllers\librosController;
 |
 */
 
-/* Route::get('/', function () {
-    //return view('welcome');
-    return 'hola mundo';
-}); */
-
-Route::get('/', [librosController::class, 'index']);
+Route::get('/', function() {
+    return view('welcome');
+});
