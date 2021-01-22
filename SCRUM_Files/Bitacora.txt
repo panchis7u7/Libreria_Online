@@ -350,6 +350,47 @@ libro para ayudarme a decidir si es una buena opción.
 
 @@@@@@@@@@@@@@@@@@@@@@@ SCRUM Diario 19 de enero del 2021 @@@@@@@@@@@@@@@@@@@@@@
 
+1) Katherine:
+
+¿Que hiciste ayer?
+	*> Desarrollo de interfaces y testeo de los componentes.
+¿Tuviste algun impedimento?
+	*> Tiempo, en especial con el testeo de los componentes.
+¿Que haras hoy?
+	*> Generar el envio de solicitudes desde el frontend.
+###
+2) Alexis:
+
+¿Que hiciste ayer?
+	*> Investigue sobre el uso del programa POSTMAN para el desarollo de puebas
+	   y el desarrollo de las entidades en mysql.
+¿Tuviste algun impedimento?
+	*> Trabajo con el Postman.
+¿Que haras hoy?
+	*> Establecer llaves foraneas y crear registros para insertar a la bd, asi como
+	   corregir el archivo.
+
+3) Carlos:
+
+¿Que hiciste ayer?
+	*> Entendiendo la instalacion y uso de laravel.
+¿Tuviste algun impedimento?
+	*> NO ninguno.
+¿Que haras hoy?
+	*> Integracion del backend con el frontend.
+
+4) Sebastian:
+
+¿Que hiciste ayer?
+	*> Instale y realice la integracion de laravel con un modulo el frontend, asi como
+	generar las APIs o requests en el servidor.
+¿Tuviste algun impedimento?
+	*> Documentacion.
+¿Que haras hoy?
+	*> Actualizar las url de las peticiones del formularios en desarrollo asi
+	   como asociarlas en el backend.
+
+
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
 @@@@@@@@@@@@@@@@@@@@@@@ SCRUM Diario 20 de enero del 2021 @@@@@@@@@@@@@@@@@@@@@@
@@ -372,7 +413,7 @@ libro para ayudarme a decidir si es una buena opción.
 	*> No, nada.
 ¿Que haras hoy?
 	*> Me reunire con kate para desarrollar el front-end
-	
+
 3) Carlos:
 
 ¿Que hiciste ayer?
@@ -391,14 +432,89 @@ libro para ayudarme a decidir si es una buena opción.
 	*> Documentacion.
 ¿Que haras hoy?
 	*> Actualizar los esquemas de los controladores del ORM del servidor.
-	   
+
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
 @@@@@@@@@@@@@@@@@@@@@@@ SCRUM Diario 21 de enero del 2021 @@@@@@@@@@@@@@@@@@@@@@
 
+1) Katherine:
+
+¿Que hiciste ayer?
+	*> Generar interfaces PopUp y las tablas de editores y autores.
+¿Tuviste algun impedimento?
+	*> No, ninguno de parte del proyecto, pero si del sistema de versionado.
+¿Que haras hoy?
+	*> Diseñar las nuevas interfaces para almacen.
+
+2) Alexis:
+
+¿Que hiciste ayer?
+	*> Investigar como realizar las pruebas.
+¿Tuviste algun impedimento?
+	*> Dificultad en realizar las pruebas.
+¿Que haras hoy?
+	*> Investigar aun mas de las pruebas.
+
+3) Carlos:
+
+¿Que hiciste ayer?
+	*> Integracion de cesta y carrito en el backend.
+¿Tuviste algun impedimento?
+	*> No, ninguno.
+¿Que haras hoy?
+	*> Manejadores de solicitudes en el backend.
+
+4) Sebastian:
+
+¿Que hiciste ayer?
+	*> Generar
+¿Tuviste algun impedimento?
+	*> Ninguno.
+¿Que haras hoy?
+	*> Actualizar los esquemas de los controladores del ORM del servidor.
+
+
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
 @@@@@@@@@@@@@@@@@@@@@@@ SCRUM Diario 22 de enero del 2021 @@@@@@@@@@@@@@@@@@@@@@
+
+1) Katherine:
+
+¿Que hiciste ayer?
+	*> Terminar el dieño de las interfaces y enviarlas a revision.
+¿Tuviste algun impedimento?
+	*> Mal entendido en la etapa de diseño, sugestion de indagarlo en equipo.
+¿Que haras hoy?
+	*> Empezar a trabajar las interfaces y arreglar el diseño de las interfaces.
+
+2) Alexis:
+
+¿Que hiciste ayer?
+	*> Investigar aun mas de las pruebas.
+¿Tuviste algun impedimento?
+	*> Dificultad en las pruebas.
+¿Que haras hoy?
+	*> Me reunire con kate para desarrollar el front-end y seguir investigando sobre las pruebas.
+
+3) Carlos:
+
+¿Que hiciste ayer?
+	*> Pruebas de las base de datos.
+¿Tuviste algun impedimento?
+	*> No ninguno.
+¿Que haras hoy?
+	*> Acabar el backend.
+
+4) Sebastian:
+
+¿Que hiciste ayer?
+	*> Instale y realice la integracion de laravel con un modulo el frontend, asi como
+	generar las APIs o requests en el servidor.
+¿Tuviste algun impedimento?
+	*> Documentacion.
+¿Que haras hoy?
+	*> Actualizar los esquemas de los controladores del ORM del servidor.
+
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
