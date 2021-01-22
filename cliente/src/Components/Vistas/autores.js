@@ -1,11 +1,14 @@
 import React from 'react';
-import {Container, Image,Form, FormControl, FormLabel, Button, Alert, Col, DropdownButton, InputGroup,ListGroup} from 'react-bootstrap';
-import '../../SCSS/libro.scss'
+import {Container, Image,Form, FormControl, FormLabel, Button, Alert, Col, Row, Table} from 'react-bootstrap';
+import '../../SCSS/libro.scss';
+import Popup from 'reactjs-popup';
+
 
 export default class Autores extends React.Component {
     constructor(props){
         super(props);
         this.state = {
+            registros: [],
             id_autor: "",
             nombre: "",
             apellidos: "",
@@ -48,37 +51,146 @@ export default class Autores extends React.Component {
         .catch((error) => console.log("error: ", error));
     };
 
+    addRegistro = () => {
+        var headers = new Headers();
+        headers.append("Content-Type", "application/json");
+        var body = JSON.stringify({
+            id_autor: this.state.id_autor,
+            nombre: this.state.nombre,
+            apellidos: this.state.apellidos,
+            direccion: this.state.direccion,
+            localidad: this.state.localidad,
+            provincia: this.state.provincia,
+            url: this.state.url,
+            telefono: this.state.telefono,
+        })
+        fetch("http://localhost:3001/autores/insert", {        //revisar que efectivamente sea ../insert
+            method: "POST",
+            headers: headers,
+            body: body
+        }).then((respuesta) => respuesta.json())
+            .then((resultado) => {
+                console.log(resultado);    
+                this.setState({
+                    id_autor: "",
+                    nombre: "",
+                    apellidos: "",
+                    direccion: "",
+                    localidad: "",
+                    url: "",
+                    telefono: "",
+                    alerta: true,
+                    msgAlerta: resultado.response,
+                    tipoAlerta: "success",
+                    open: false,
+                });
+                this.fetchRegistros();
+            });
+    };
+    
+    editRegistro(){
+        
+    }
+
+    updateInput(){
+
+    }
+
+    eliminarRegistro() {
+
+    }
+
+/************************************************************************************************************************/
+
     render(){
         return(
-            <div className = "main">
-                <h2>Registro de autor</h2><hr></hr>
-                <Container className="contenedor-2">
-                    <div className="largos">
-                        <FormLabel>Nombre(s):</FormLabel>
-                        <FormControl type="text" name="nombre" placeholder="Ingrese el nombre." onChange={this.handleChange} value={this.state.nombre}  required={true}/>
-                        <FormLabel>Apellidos:</FormLabel>
-                        <FormControl type="text" name="apellidos" placeholder="Ingrese los apellidos." onChange={this.handleChange} value={this.state.apellidos} required={true}/>
-                        <FormLabel>Dirección:</FormLabel>
-                        <FormControl type="text" name="direccion" placeholder="Ingrese la dirección." onChange={this.handleChange} value={this.state.direccion} required={true}/>
-                        <FormLabel>URL:</FormLabel>
-                        <FormControl type="url" name="url" placeholder="Ingrese el url para contactar al autor." onChange={this.handleChange} value={this.state.url}/>    
-                    </div>
-                </Container>
-                <Container className="contenedor-1">
-                    <div className="propietarios">
-                        <FormLabel>Localidad:</FormLabel>
-                        <FormControl type="text" name="localidad" placeholder="Ingrese la localidad." onChange={this.handleChange} value={this.state.localidad}/>
-                        <FormLabel>Teléfono:</FormLabel>
-                        <FormControl type="tel" name="telefono" placeholder="Ingrese el telefono de 10 digitos." onChange={this.handleChange} value={this.state.telefono}/>
-                    </div>
-                    <div className="propietarios">
-                        <FormLabel>Provincia:</FormLabel>
-                        <FormControl type="text" name="provincia" placeholder="Ingrese la provincia" onChange={this.handleChange} value={this.state.provincia}/>
-                    </div>
-                </Container>
-                <Button type="submit" onClick={this.addRegistro} variant="primary" block>
-                    Agregar autor
-                </Button><br></br>
+            <div className="main">
+            <Container>
+            <h1 class="h1">Autores</h1>
+              {
+                this.state.alerta === true ? (
+                  <Alert variant={this.state.tipoAlerta} onClose={() => {
+                    this.setState({
+                      alerta: false,
+                    })
+                  }} dismissible>
+                    <Alert.Heading>{this.state.msgAlerta}</Alert.Heading>
+                  </Alert>
+                ) : null}
+              <Row>
+                <Table striped bordered hover size="sm" >
+                  <thead>
+                    <tr>
+                      <th class="align-middle">Nombre</th>
+                      <th class="align-middle">Apellidos</th>
+                      <th class="align-middle">Dirección</th>
+                      <th class="align-middle">Localidad</th>
+                      <th class="align-middle">Provincia</th>
+                      <th class="align-middle">URL</th>
+                      <th class="align-middle">Telefono</th>
+                      <th class="align-middle" colSpan="2">Acciones</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {this.state.registros.map((item) => {
+                      return (
+                        <tr onClickCapture={() => this.updateInput(item)}>
+                          <td class="align-middle">{item.nombre}</td>
+                          <td class="align-middle">{item.apellidos}</td>
+                          <td class="align-middle">{item.direccion}</td>
+                          <td class="align-middle">{item.localidad}</td>
+                          <td class="align-middle">{item.provincia}</td>
+                          <td class="align-middle">{item.url}</td>
+                          <td class="align-middle">{item.telefono}</td>
+                          <td class="align-middle">
+                            <Button onMouseEnter={() => {this.setState({hoverBtn1: true})}} 
+                                    onMouseLeave={() => {this.setState({hoverBtn1: false})}}
+                                    onClick={() => {this.editRegistro(item.id_autor); this.setState({open: true,});}} variant="info">Actualizar</Button>
+                          </td>
+                          <td class="align-middle">
+                            <Button onMouseEnter={() => {this.setState({hoverBtn1: true})}} 
+                                    onMouseLeave={() => {this.setState({hoverBtn1: false})}} 
+                                    onClick={() => {this.eliminarRegistro(item.id_autor)}} variant="danger">Eliminar</Button>
+                          </td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </Table>
+              </Row>
+            </Container>
+            <Popup trigger={<Button variant="info">Añadir nuevo</Button>} open={this.state.open} onClose={() => {this.setState({open: false,});}} position="bottom center">
+                <div className = "popup-root">
+                    <h2>Registro de autor</h2><hr></hr>
+                    <Container className="contenedor-2">
+                        <div className="largos">
+                            <FormLabel>Nombre(s):</FormLabel>
+                            <FormControl type="text" name="nombre" placeholder="Nombre." onChange={this.handleChange} value={this.state.nombre} required={true}/>
+                            <FormLabel>Apellidos:</FormLabel>
+                            <FormControl type="text" name="apellidos" placeholder="Apellidos." onChange={this.handleChange} value={this.state.apellidos} required={true}/>
+                            <FormLabel>Dirección:</FormLabel>
+                            <FormControl type="text" name="direccion" placeholder="Dirección." onChange={this.handleChange} value={this.state.direccion} required={true}/>
+                            <FormLabel>URL:</FormLabel>
+                            <FormControl type="url" name="url" placeholder="URL para contactar al autor." onChange={this.handleChange} value={this.state.url}/>    
+                        </div>
+                    </Container>
+                    <Container className="contenedor-1">
+                        <div className="propietarios">
+                            <FormLabel>Localidad:</FormLabel>
+                            <FormControl type="text" name="localidad" placeholder="Localidad." onChange={this.handleChange} value={this.state.localidad}/>
+                            <FormLabel>Teléfono:</FormLabel>
+                            <FormControl type="tel" name="telefono" placeholder="Telefono (10 digitos)." onChange={this.handleChange} value={this.state.telefono}/>
+                        </div>
+                        <div className="propietarios">
+                            <FormLabel>Provincia:</FormLabel>
+                            <FormControl type="text" name="provincia" placeholder="Provincia" onChange={this.handleChange} value={this.state.provincia}/>
+                        </div>
+                    </Container>
+                    <Button type="submit" onClick={this.addRegistro} variant="primary" block>
+                        Agregar autor
+                    </Button><br></br>
+                </div>
+                </Popup>
             </div>
         );
     }
