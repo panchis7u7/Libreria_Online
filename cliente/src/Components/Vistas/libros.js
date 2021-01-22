@@ -1,5 +1,5 @@
 import React from 'react';
-import {Container, FormControl, FormLabel, Button, Alert, Row, Table} from 'react-bootstrap';
+import {Container, Form, FormControl, FormLabel, Button, Alert, Row, Table} from 'react-bootstrap';
 import '../../SCSS/libro.scss';
 import Popup from 'reactjs-popup';
 
@@ -31,10 +31,6 @@ export default class Libros extends React.Component {
         };
         this.fetchRegistros();
     }
-
-    componentDidMount(){
-        this.fetchRegistros()
-    };
 
     handleChange = (evt) => {
         this.setState({
@@ -133,7 +129,7 @@ export default class Libros extends React.Component {
         return(
             <div className="main">
             <Container>
-            <h1 class="h1">Clientes</h1>
+            <h1 className="h1">Libros</h1>
               {
                 this.state.alerta === true ? (
                   <Alert variant={this.state.tipoAlerta} onClose={() => {
@@ -148,38 +144,39 @@ export default class Libros extends React.Component {
                 <Table striped bordered hover size="sm" >
                   <thead>
                     <tr>
-                      <th class="align-middle">Id</th>
-                      <th class="align-middle">ISBN</th>
-                      <th class="align-middle">Año Publicacion</th>
-                      <th class="align-middle">Descripcion</th>
-                      <th class="align-middle">Titulo</th>
-                      <th class="align-middle">Precio Fisico</th>
-                      <th class="align-middle">Precio Electronico</th>
-                      <th class="align-middle">Tamaño</th>
-                      <th class="align-middle">Fecha impresion</th>
-                      <th class="align-middle">Lugar Impresion</th>
-                      <th class="align-middle" colSpan="2">Acciones</th>
+                      <th className="align-middle">Id</th>
+                      <th className="align-middle">ISBN</th>
+                      <th className="align-middle">Año Publicacion</th>
+                      <th className="align-middle">Descripcion</th>
+                      <th className="align-middle">Titulo</th>
+                      <th className="align-middle">Precio Fisico</th>
+                      <th className="align-middle">Precio Electronico</th>
+                      <th className="align-middle">Tamaño</th>
+                      <th className="align-middle">Fecha impresion</th>
+                      <th className="align-middle">Lugar Impresion</th>
+                      <th className="align-middle" colSpan="2">Acciones</th>
                     </tr>
                   </thead>
                   <tbody>
                     {this.state.registros.map((item) => {
                       return (
                         <tr onClickCapture={() => this.updateInput(item)}>
-                          <td class="align-middle">{item.id_libro}</td>
-                          <td class="align-middle">{item.isbn}</td>
-                          <td class="align-middle">{item.anio_publicacion}</td>
-                          <td class="align-middle">{item.titulo}</td>
-                          <td class="align-middle">{item.precio_fisico}</td>
-                          <td class="align-middle">{item.precio_electronico}</td>
-                          <td class="align-middle">{item.tamanio}</td>
-                          <td class="align-middle">{item.fecha_impresion}</td>
-                          <td class="align-middle">{item.lugar_impresion}</td>
-                          <td class="align-middle">
+                          <td className="align-middle">{item.id_libro}</td>
+                          <td className="align-middle">{item.isbn}</td>
+                          <td className="align-middle">{item.anio_publicacion}</td>
+                          <td className="align-middle">{item.descripcion}</td>
+                          <td className="align-middle">{item.titulo}</td>
+                          <td className="align-middle">{item.precio_fisico}</td>
+                          <td className="align-middle">{item.precio_electronico}</td>
+                          <td className="align-middle">{item.tamanio}</td>
+                          <td className="align-middle">{item.fecha_impresion}</td>
+                          <td className="align-middle">{item.lugar_impresion}</td>
+                          <td className="align-middle">
                             <Button onMouseEnter={() => {this.setState({hoverBtn1: true})}} 
                                     onMouseLeave={() => {this.setState({hoverBtn1: false})}}
                                     onClick={() => {this.editRegistro(item.id_cliente); this.setState({open: true,});}} variant="info">Actualizar</Button>
                           </td>
-                          <td class="align-middle">
+                          <td className="align-middle">
                             <Button onMouseEnter={() => {this.setState({hoverBtn1: true})}} 
                                     onMouseLeave={() => {this.setState({hoverBtn1: false})}} 
                                     onClick={() => {this.eliminarRegistro(item.id_cliente)}} variant="danger">Eliminar</Button>
@@ -193,18 +190,18 @@ export default class Libros extends React.Component {
             </Container>
             <Button variant="info" onClick={(e) => {this.setState({open: true,})}}>Añadir</Button>
             <Popup open={this.state.open} onClose={() => {this.setState({open: false,});}} position="center center">
-                <div className="popup-root">
+                <Form onSubmit={this.addRegistro}>
                 <h2>Registro de libro</h2><hr></hr>
                 <Container className="contenedor-1">
-                    <div className="propietarios">
+                    <Container className="propietarios">
                         <FormLabel>Titulo:</FormLabel>
                         <FormControl type="text" name="titulo" placeholder="Título." onChange={this.handleChange} value={this.state.titulo} required={true}/>
                         <FormLabel>ISBN:</FormLabel>
                         <FormControl type="text" name="isbn" placeholder="ISBN." onChange={this.handleChange} value={this.state.isbn} required={true}/>
                         <FormLabel>Año de publicación:</FormLabel> 
                         <FormControl type="text" name="anio_publicacion" placeholder="Año de publicación." onChange={this.handleChange} value={this.state.anio_publicacion}/>
-                    </div>
-                    <div className="foraneos">
+                    </Container>
+                    <Container className="foraneos">
                         <FormLabel>Autor:</FormLabel>
                         <select name="autor">
                             <option value="">ejemplo1</option>
@@ -220,18 +217,18 @@ export default class Libros extends React.Component {
                             <option value="">ejemplo1</option>
                             <option value="">ejemplo2</option>
                         </select>
-                    </div>
+                    </Container>
                 </Container>
                 <Container className="contenedor-2">
-                    <div className="largos">
+                    <Container className="largos">
                         <FormLabel>Descripcion:</FormLabel>
                         <FormControl type="text" name="descripcion" placeholder="Descripción." onChange={this.handleChange} value={this.state.descripcion}/>
                         <FormLabel>Portada (URL):</FormLabel>
                         <FormControl type="url" name="url" placeholder="URL de la imagen de portada." onChange={this.handleChange} value={this.state.url}/>    
-                    </div>
+                    </Container>
                 </Container><br></br>
                 <Container className="contenedor-3">
-                    <div className="electronico">
+                    <Container className="electronico">
                         <h4>Electrónico:</h4>
                         <FormLabel>Precio:</FormLabel>
                         <FormControl type="number" name="precio_electronico" placeholder="Precio del ebook." onChange={this.handleChange} value={this.state.precio_electronico}/>
@@ -239,8 +236,8 @@ export default class Libros extends React.Component {
                         <FormControl type="number" name="tamanio" placeholder="PDF del libro." onChange={this.handleChange} value={this.state.pdf}/>
                         <FormLabel>Archivo:</FormLabel>
                         <FormControl type="file" name="pdf" placeholder="Tamaño del archivo en MB." onChange={this.handleChange} value={this.state.tamanio}/>
-                    </div>
-                    <div className="papel">
+                    </Container>
+                    <Container className="papel">
                         <h4>Físico:</h4>
                         <FormLabel>Precio:</FormLabel>
                         <FormControl type="number" name="precio_fisico" placeholder="Precio del libro impreso." onChange={this.handleChange} value={this.state.precio_fisico}/>
@@ -248,12 +245,10 @@ export default class Libros extends React.Component {
                         <FormControl type="text" name="lugar_impresion" placeholder="Lugar de impresión." onChange={this.handleChange} value={this.state.lugar_impresion}/>
                         <FormLabel>Fecha de impresión:</FormLabel>
                         <FormControl type="date" name="fecha_impresion" onChange={this.handleChange} value={this.state.fecha_impresion}/>
-                    </div>
+                    </Container>
                 </Container>
-                <Button type="submit" className="submit" onClick={this.addRegistro} variant="primary" block>
-                    Agregar libro
-                </Button><br></br>
-                </div>
+                <Button type="submit" className="submit" onClick={this.addRegistro} variant="primary" block>Agregar libro</Button><br></br>
+                </Form>
             </Popup>
             </div>
         );

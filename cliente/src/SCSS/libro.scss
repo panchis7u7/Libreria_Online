@@ -17,6 +17,7 @@
 .popup-content{
     font-family: sans-serif;
     h2{
+        text-align: center;
         font-size: 2em;
         font-weight: bold;
         padding: 1.5em 0 0.1em 0;
@@ -68,6 +69,7 @@
         .papel{
             label{
                 @include labels();
+                
             }
             input{
                 @include inputs();
@@ -117,7 +119,7 @@ h1{
     top: 0;
     margin: auto;
     background: rgb(255, 255, 255);
-    width: 50%;
+    width: 60%;
     padding: 5px;
     border: 1px solid #d7d7d7;
   }
@@ -151,11 +153,4 @@ h1{
     stroke: #9a9595;
     stroke-dasharray: 30px;
     stroke-dashoffset: -54px;
-  }
-
-  .popup-root{
-      width: 100%;
-      text-align: center;
-      position: relative;
-
   }
