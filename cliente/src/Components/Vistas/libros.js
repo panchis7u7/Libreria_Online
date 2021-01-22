@@ -56,7 +56,8 @@ export default class Libros extends React.Component {
     };
 
 
-    addRegistro = () => {
+    addRegistro = (e) => {
+        e.preventDefault();
         var headers = new Headers();
         headers.append("Content-Type", "application/json");
         var body = JSON.stringify({
@@ -77,14 +78,15 @@ export default class Libros extends React.Component {
             fecha_impresion: this.state.fecha_impresion,
             pdf: this.state.pdf,
             portada: this.state.portada,
-        })
+        });
+        console.log("Solicitut mandada");
         fetch("http://localhost:3001/libros", {
             method: "POST",
             headers: headers,
             body: body
         }).then((respuesta) => respuesta.json())
             .then((resultado) => {
-                console.log(resultado);     //para verificar que se haya recibido
+                //console.log(resultado);     //para verificar que se haya recibido
                 this.setState({
                     id_libro: "",
                     titulo: "",
@@ -106,7 +108,6 @@ export default class Libros extends React.Component {
                     alerta: true,
                     msgAlerta: resultado.response,
                     tipoAlerta: "success",
-                    open: false,
                 })
             })
     }
@@ -190,7 +191,7 @@ export default class Libros extends React.Component {
             </Container>
             <Button variant="info" onClick={(e) => {this.setState({open: true,})}}>Añadir</Button>
             <Popup open={this.state.open} onClose={() => {this.setState({open: false,});}} position="center center">
-                <Form onSubmit={this.addRegistro}>
+                <Form onSubmit={this.addRegistro} action="http://localhost:3001/libros">
                 <h2>Registro de libro</h2><hr></hr>
                 <Container className="contenedor-1">
                     <Container className="propietarios">
