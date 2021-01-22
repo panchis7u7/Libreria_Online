@@ -20,8 +20,8 @@ export default class Autores extends React.Component {
             alerta: false,
             msgAlerta: "",
             tipoAlerta: "success",
+            open: false,
         };
-        this.fetchRegistros();
     }
 
     componentDidMount(){
@@ -106,7 +106,7 @@ export default class Autores extends React.Component {
         return(
             <div className="main">
             <Container>
-            <h1 class="h1">Autores</h1>
+            <h1 className="h1">Autores</h1>
               {
                 this.state.alerta === true ? (
                   <Alert variant={this.state.tipoAlerta} onClose={() => {
@@ -121,33 +121,33 @@ export default class Autores extends React.Component {
                 <Table striped bordered hover size="sm" >
                   <thead>
                     <tr>
-                      <th class="align-middle">Nombre</th>
-                      <th class="align-middle">Apellidos</th>
-                      <th class="align-middle">Dirección</th>
-                      <th class="align-middle">Localidad</th>
-                      <th class="align-middle">Provincia</th>
-                      <th class="align-middle">URL</th>
-                      <th class="align-middle">Telefono</th>
-                      <th class="align-middle" colSpan="2">Acciones</th>
+                      <th className="align-middle">Nombre</th>
+                      <th className="align-middle">Apellidos</th>
+                      <th className="align-middle">Dirección</th>
+                      <th className="align-middle">Localidad</th>
+                      <th className="align-middle">Provincia</th>
+                      <th className="align-middle">URL</th>
+                      <th className="align-middle">Telefono</th>
+                      <th className="align-middle" colSpan="2">Acciones</th>
                     </tr>
                   </thead>
                   <tbody>
                     {this.state.registros.map((item) => {
                       return (
-                        <tr onClickCapture={() => this.updateInput(item)}>
-                          <td class="align-middle">{item.nombre}</td>
-                          <td class="align-middle">{item.apellidos}</td>
-                          <td class="align-middle">{item.direccion}</td>
-                          <td class="align-middle">{item.localidad}</td>
-                          <td class="align-middle">{item.provincia}</td>
-                          <td class="align-middle">{item.url}</td>
-                          <td class="align-middle">{item.telefono}</td>
-                          <td class="align-middle">
+                        <tr onClickCapture={() => this.updateInput(item)} key={item.id_autor}>
+                          <td className="align-middle">{item.nombre}</td>
+                          <td className="align-middle">{item.apellidos}</td>
+                          <td className="align-middle">{item.direccion}</td>
+                          <td className="align-middle">{item.localidad}</td>
+                          <td className="align-middle">{item.provincia}</td>
+                          <td className="align-middle">{item.url}</td>
+                          <td className="align-middle">{item.telefono}</td>
+                          <td className="align-middle">
                             <Button onMouseEnter={() => {this.setState({hoverBtn1: true})}} 
                                     onMouseLeave={() => {this.setState({hoverBtn1: false})}}
                                     onClick={() => {this.editRegistro(item.id_autor); this.setState({open: true,});}} variant="info">Actualizar</Button>
                           </td>
-                          <td class="align-middle">
+                          <td key="button2" className="align-middle">
                             <Button onMouseEnter={() => {this.setState({hoverBtn1: true})}} 
                                     onMouseLeave={() => {this.setState({hoverBtn1: false})}} 
                                     onClick={() => {this.eliminarRegistro(item.id_autor)}} variant="danger">Eliminar</Button>
@@ -159,7 +159,8 @@ export default class Autores extends React.Component {
                 </Table>
               </Row>
             </Container>
-            <Popup trigger={<Button variant="info">Añadir nuevo</Button>} open={this.state.open} onClose={() => {this.setState({open: false,});}} position="bottom center">
+            <Button variant="info" onClick={() => {this.setState({open: true,})}}>Añadir nuevo</Button>
+            <Popup open={this.state.open} onClose={() => {this.setState({open: false,});}} position="bottom center">
                 <div className = "popup-root">
                     <h2>Registro de autor</h2><hr></hr>
                     <Container className="contenedor-2">

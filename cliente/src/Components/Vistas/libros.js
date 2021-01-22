@@ -28,9 +28,13 @@ export default class Libros extends React.Component {
             alerta: false,
             msgAlerta: "",
             tipoAlerta: "success",
+            open: false,
         };
-        this.fetchRegistros();
     }
+
+  componentDidMount(){
+      this.fetchRegistros()
+  };
 
     handleChange = (evt) => {
         this.setState({
@@ -161,7 +165,7 @@ export default class Libros extends React.Component {
                   <tbody>
                     {this.state.registros.map((item) => {
                       return (
-                        <tr onClickCapture={() => this.updateInput(item)}>
+                        <tr onClickCapture={() => this.updateInput(item)} key={item.id_libro}>
                           <td className="align-middle">{item.id_libro}</td>
                           <td className="align-middle">{item.isbn}</td>
                           <td className="align-middle">{item.anio_publicacion}</td>
@@ -177,7 +181,7 @@ export default class Libros extends React.Component {
                                     onMouseLeave={() => {this.setState({hoverBtn1: false})}}
                                     onClick={() => {this.editRegistro(item.id_cliente); this.setState({open: true,});}} variant="info">Actualizar</Button>
                           </td>
-                          <td className="align-middle">
+                          <td key="button2" className="align-middle">
                             <Button onMouseEnter={() => {this.setState({hoverBtn1: true})}} 
                                     onMouseLeave={() => {this.setState({hoverBtn1: false})}} 
                                     onClick={() => {this.eliminarRegistro(item.id_cliente)}} variant="danger">Eliminar</Button>
@@ -234,7 +238,7 @@ export default class Libros extends React.Component {
                         <FormLabel>Precio:</FormLabel>
                         <FormControl type="number" name="precio_electronico" placeholder="Precio del ebook." onChange={this.handleChange} value={this.state.precio_electronico}/>
                         <FormLabel>Tamaño:</FormLabel>
-                        <FormControl type="number" name="tamanio" placeholder="Tamaño del archivo en MB." onChange={this.handleChange} value={this.state.tamanio}/>
+                        <FormControl type="number" name="tamanio"  placeholder="Tamaño del archivo en MB." onChange={this.handleChange} value={this.state.tamanio}/>
                         <FormLabel>Archivo:</FormLabel>
                         <FormControl type="file" name="pdf" placeholder="PDF del libro." onChange={this.handleChange} value={this.state.pdf}/>
                     </Container>
