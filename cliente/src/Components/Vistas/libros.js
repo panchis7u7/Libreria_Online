@@ -222,9 +222,9 @@ export default class Libros extends React.Component {
                 <Container className="contenedor-2">
                     <Container className="largos">
                         <FormLabel>Descripcion:</FormLabel>
-                        <FormControl type="text" name="descripcion" placeholder="Descripción." onChange={this.handleChange} value={this.state.descripcion}/>
+                        <FormControl type="text" name="descripcion" placeholder="Descripción." onChange={this.handleChange} value={this.state.descripcion || ''}/>
                         <FormLabel>Portada (URL):</FormLabel>
-                        <FormControl type="url" name="url" placeholder="URL de la imagen de portada." onChange={this.handleChange} value={this.state.url}/>    
+                        <FormControl type="url" name="url" placeholder="URL de la imagen de portada." onChange={this.handleChange} value={this.state.url || ''}/>    
                     </Container>
                 </Container><br></br>
                 <Container className="contenedor-3">
@@ -233,9 +233,9 @@ export default class Libros extends React.Component {
                         <FormLabel>Precio:</FormLabel>
                         <FormControl type="number" name="precio_electronico" placeholder="Precio del ebook." onChange={this.handleChange} value={this.state.precio_electronico}/>
                         <FormLabel>Tamaño:</FormLabel>
-                        <FormControl type="number" name="tamanio" placeholder="PDF del libro." onChange={this.handleChange} value={this.state.pdf}/>
+                        <FormControl type="number" name="tamanio" placeholder="Tamaño del archivo en MB." onChange={this.handleChange} value={this.state.tamanio}/>
                         <FormLabel>Archivo:</FormLabel>
-                        <FormControl type="file" name="pdf" placeholder="Tamaño del archivo en MB." onChange={this.handleChange} value={this.state.tamanio}/>
+                        <FormControl type="file" name="pdf" placeholder="PDF del libro." onChange={this.handleChange} value={this.state.pdf}/>
                     </Container>
                     <Container className="papel">
                         <h4>Físico:</h4>
@@ -247,10 +247,10 @@ export default class Libros extends React.Component {
                         <FormControl type="date" name="fecha_impresion" onChange={this.handleChange} value={this.state.fecha_impresion}/>
                     </Container>
                 </Container>
-                <Button type="submit" className="submit" onClick={this.addRegistro} variant="primary" block>Agregar libro</Button><br></br>
+                <Button type="submit" className="submit" variant="primary" block>Agregar libro</Button><br></br>
                 </Form>
             </Popup>
-            </div>
+          </div>
         );
     }
 }

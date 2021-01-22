@@ -1,5 +1,5 @@
 import React from 'react';
-import {Container, Image,Form, FormControl, FormLabel, Button, Alert, Col, Row, Table} from 'react-bootstrap';
+import {Container, FormControl, FormLabel, Button, Alert, Row, Table} from 'react-bootstrap';
 import '../../SCSS/libro.scss';
 import Popup from 'reactjs-popup';
 
