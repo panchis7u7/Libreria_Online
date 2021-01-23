@@ -43,6 +43,9 @@
             input{
                 @include inputs();
             }
+            select {
+                @include inputs();
+            }
         }
         .foraneos{
             label{

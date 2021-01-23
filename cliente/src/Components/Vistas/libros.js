@@ -191,20 +191,20 @@ export default class Libros extends React.Component {
                     </Container>
                     <Container className="foraneos">
                         <FormLabel>Autor:</FormLabel>
-                        <select name="autor">
+                        <FormControl as="select" name="autor">
                             <option value="">ejemplo1</option>
                             <option value="">ejemplo2</option>
-                        </select>
+                        </FormControl>
                         <FormLabel>Editorial:</FormLabel>
-                        <select name="editorial">
+                        <FormControl as="select" name="editorial">
                             <option value="">ejemplo1</option>
                             <option value="">ejemplo2</option>
-                        </select>
+                        </FormControl>
                         <FormLabel>Categoria:</FormLabel>
-                        <select name="categoria">
+                        <FormControl as="select" name="categoria">
                             <option value="">ejemplo1</option>
                             <option value="">ejemplo2</option>
-                        </select>
+                        </FormControl>
                     </Container>
                 </Container>
                 <Container className="contenedor-2">

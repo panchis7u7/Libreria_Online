@@ -2,6 +2,7 @@ import React from 'react';
 import {Container, FormControl, FormLabel, Button, Alert, Row, Table} from 'react-bootstrap';
 import '../../SCSS/Base.scss';
 import Popup from 'reactjs-popup';
+import mexico from '../../Data/México.min.json';
 
 
 export default class Autores extends React.Component {
@@ -21,11 +22,12 @@ export default class Autores extends React.Component {
             msgAlerta: "",
             tipoAlerta: "success",
             open: false,
+            estado: '',
         };
     }
 
     componentDidMount(){
-        this.fetchRegistros()
+        this.fetchRegistros();
     };
 
     handleChange = (evt) => {
@@ -177,14 +179,26 @@ export default class Autores extends React.Component {
                     </Container>
                     <Container className="contenedor-1">
                         <div className="propietarios">
-                            <FormLabel>Localidad:</FormLabel>
-                            <FormControl type="text" name="localidad" placeholder="Localidad." onChange={this.handleChange} value={this.state.localidad}/>
+                            <FormLabel>Provincia:</FormLabel>
+                            <FormControl as="select" name="provincia" placeholder="Provincias" onChange={this.handleChange} value={this.state.localidad}>
+                              {mexico.map((estado) => {
+                                return (
+                                  <option>{estado.nombre}</option>
+                                );
+                              })}
+                            </FormControl>
                             <FormLabel>Teléfono:</FormLabel>
                             <FormControl type="tel" name="telefono" placeholder="Telefono (10 digitos)." onChange={this.handleChange} value={this.state.telefono}/>
                         </div>
                         <div className="propietarios">
-                            <FormLabel>Provincia:</FormLabel>
-                            <FormControl type="text" name="provincia" placeholder="Provincia" onChange={this.handleChange} value={this.state.provincia}/>
+                            <FormLabel>Localidad:</FormLabel>
+                            <FormControl as="select" name="localidad" placeholder="Localidades" onChange={this.handleChange} value={this.state.provincia}>
+                            {mexico.map((estado) => estado.municipios.map((municipio) => {
+                              return (
+                                <option>{municipio.nombre}</option>
+                              );
+                            }))}
+                            </FormControl>
                         </div>
                     </Container>
                     <Button type="submit" onClick={this.addRegistro} variant="primary" block>
