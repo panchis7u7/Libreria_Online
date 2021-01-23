@@ -1,6 +1,6 @@
 import React from 'react';
 import {Container, Form, FormControl, FormLabel, Button, Alert, Row, Table} from 'react-bootstrap';
-import '../../SCSS/libro.scss';
+import '../../SCSS/Base.scss';
 import Popup from 'reactjs-popup';
 
 export default class Libros extends React.Component {
@@ -28,9 +28,13 @@ export default class Libros extends React.Component {
             alerta: false,
             msgAlerta: "",
             tipoAlerta: "success",
+            open: false,
         };
-        this.fetchRegistros();
     }
+
+  componentDidMount(){
+      this.fetchRegistros()
+  };
 
     handleChange = (evt) => {
         this.setState({
@@ -61,7 +65,6 @@ export default class Libros extends React.Component {
         var headers = new Headers();
         headers.append("Content-Type", "application/json");
         var body = JSON.stringify({
-            id_libro: this.state.id_libro,
             titulo: this.state.titulo,
             isbn: this.state.isbn,
             anio_publicacion: this.state.anio_publicacion,
@@ -80,33 +83,17 @@ export default class Libros extends React.Component {
             portada: this.state.portada,
         });
         console.log("Solicitut mandada");
-        fetch("http://localhost:3001/libros", {
+        fetch("http://localhost:8000/libros", {
             method: "POST",
             headers: headers,
             body: body
         }).then((respuesta) => respuesta.json())
             .then((resultado) => {
-                //console.log(resultado);     //para verificar que se haya recibido
+                console.log(resultado);     //para verificar que se haya recibido
                 this.setState({
-                    id_libro: "",
-                    titulo: "",
-                    isbn: "",
-                    anio_publicacion: "",
-                    descripcion: "",
-                    //autor: "",
-                    //editorial: "",
-                    //categoria: "",
-                    ebook: "",
-                    precio_electronico: "",
-                    tamanio: "",
-                    papel: "",
-                    precio_fisico: "",
-                    fecha_impresion: "",
-                    lugar_impresion: "",
-                    pdf: "",
-                    portada: "",
+                    id_libro: resultado.id_libro,
                     alerta: true,
-                    msgAlerta: resultado.response,
+                    msgAlerta: resultado.status,
                     tipoAlerta: "success",
                 })
             })
@@ -161,7 +148,7 @@ export default class Libros extends React.Component {
                   <tbody>
                     {this.state.registros.map((item) => {
                       return (
-                        <tr onClickCapture={() => this.updateInput(item)}>
+                        <tr onClickCapture={() => this.updateInput(item)} key={item.id_libro}>
                           <td className="align-middle">{item.id_libro}</td>
                           <td className="align-middle">{item.isbn}</td>
                           <td className="align-middle">{item.anio_publicacion}</td>
@@ -177,7 +164,7 @@ export default class Libros extends React.Component {
                                     onMouseLeave={() => {this.setState({hoverBtn1: false})}}
                                     onClick={() => {this.editRegistro(item.id_cliente); this.setState({open: true,});}} variant="info">Actualizar</Button>
                           </td>
-                          <td className="align-middle">
+                          <td key="button2" className="align-middle">
                             <Button onMouseEnter={() => {this.setState({hoverBtn1: true})}} 
                                     onMouseLeave={() => {this.setState({hoverBtn1: false})}} 
                                     onClick={() => {this.eliminarRegistro(item.id_cliente)}} variant="danger">Eliminar</Button>
@@ -189,7 +176,7 @@ export default class Libros extends React.Component {
                 </Table>
               </Row>
             </Container>
-            <Button variant="info" onClick={(e) => {this.setState({open: true,})}}>Añadir</Button>
+            <Button variant="info" onClick={(e) => {this.setState({open: true,})}}>Añadir nuevo</Button>
             <Popup open={this.state.open} onClose={() => {this.setState({open: false,});}} position="center center">
                 <Form onSubmit={this.addRegistro} action="http://localhost:3001/libros">
                 <h2>Registro de libro</h2><hr></hr>
@@ -204,20 +191,20 @@ export default class Libros extends React.Component {
                     </Container>
                     <Container className="foraneos">
                         <FormLabel>Autor:</FormLabel>
-                        <select name="autor">
+                        <FormControl as="select" name="autor">
                             <option value="">ejemplo1</option>
                             <option value="">ejemplo2</option>
-                        </select>
+                        </FormControl>
                         <FormLabel>Editorial:</FormLabel>
-                        <select name="editorial">
+                        <FormControl as="select" name="editorial">
                             <option value="">ejemplo1</option>
                             <option value="">ejemplo2</option>
-                        </select>
+                        </FormControl>
                         <FormLabel>Categoria:</FormLabel>
-                        <select name="categoria">
+                        <FormControl as="select" name="categoria">
                             <option value="">ejemplo1</option>
                             <option value="">ejemplo2</option>
-                        </select>
+                        </FormControl>
                     </Container>
                 </Container>
                 <Container className="contenedor-2">
@@ -234,7 +221,7 @@ export default class Libros extends React.Component {
                         <FormLabel>Precio:</FormLabel>
                         <FormControl type="number" name="precio_electronico" placeholder="Precio del ebook." onChange={this.handleChange} value={this.state.precio_electronico}/>
                         <FormLabel>Tamaño:</FormLabel>
-                        <FormControl type="number" name="tamanio" placeholder="Tamaño del archivo en MB." onChange={this.handleChange} value={this.state.tamanio}/>
+                        <FormControl type="number" name="tamanio"  placeholder="Tamaño del archivo en MB." onChange={this.handleChange} value={this.state.tamanio}/>
                         <FormLabel>Archivo:</FormLabel>
                         <FormControl type="file" name="pdf" placeholder="PDF del libro." onChange={this.handleChange} value={this.state.pdf}/>
                     </Container>

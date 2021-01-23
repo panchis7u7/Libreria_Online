@@ -1,6 +1,6 @@
 import React from 'react';
-import {Container, FormControl, FormLabel, Button, Alert, Row, Table} from 'react-bootstrap';
-import '../../SCSS/libro.scss'
+import {Container,Form, FormControl, FormLabel, Button, Alert, Row, Table} from 'react-bootstrap';
+import '../../SCSS/Base.scss'
 import Popup from 'reactjs-popup';
 
 export default class Editoriales extends React.Component {
@@ -18,8 +18,8 @@ export default class Editoriales extends React.Component {
             alerta: false,
             msgAlerta: "",
             tipoAlerta: "success",
+            open: false,
         };
-        this.fetchRegistros();
     }
 
     componentDidMount(){
@@ -78,7 +78,6 @@ export default class Editoriales extends React.Component {
                     alerta: true,
                     msgAlerta: resultado.response,
                     tipoAlerta: "success",
-                    open: false,
                 });
                 this.fetchRegistros();
             });
@@ -99,10 +98,10 @@ export default class Editoriales extends React.Component {
 /************************************************************************************************************************/
 
     render(){
-            return(
-                <div className="main">
+      return(
+          <div className="main">
             <Container>
-            <h1 class="h1">Editoriales</h1>
+            <h1 className="h1">Editoriales</h1>
               {
                 this.state.alerta === true ? (
                   <Alert variant={this.state.tipoAlerta} onClose={() => {
@@ -117,31 +116,31 @@ export default class Editoriales extends React.Component {
                 <Table striped bordered hover size="sm" >
                   <thead>
                     <tr>
-                      <th class="align-middle">Nombre</th>
-                      <th class="align-middle">Dirección</th>
-                      <th class="align-middle">Localidad</th>
-                      <th class="align-middle">Provincia</th>
-                      <th class="align-middle">URL</th>
-                      <th class="align-middle">Telefono</th>
-                      <th class="align-middle" colSpan="2">Acciones</th>
+                      <th className="align-middle">Nombre</th>
+                      <th className="align-middle">Dirección</th>
+                      <th className="align-middle">Localidad</th>
+                      <th className="align-middle">Provincia</th>
+                      <th className="align-middle">URL</th>
+                      <th className="align-middle">Telefono</th>
+                      <th className="align-middle" colSpan="2">Acciones</th>
                     </tr>
                   </thead>
                   <tbody>
                     {this.state.registros.map((item) => {
                       return (
-                        <tr onClickCapture={() => this.updateInput(item)}>
-                          <td class="align-middle">{item.nombre}</td>
-                          <td class="align-middle">{item.direccion}</td>
-                          <td class="align-middle">{item.localidad}</td>
-                          <td class="align-middle">{item.provincia}</td>
-                          <td class="align-middle">{item.url}</td>
-                          <td class="align-middle">{item.telefono}</td>
-                          <td class="align-middle">
+                        <tr onClickCapture={() => this.updateInput(item)} key={item.id_editorial}>
+                          <td className="align-middle">{item.nombre}</td>
+                          <td className="align-middle">{item.direccion}</td>
+                          <td className="align-middle">{item.localidad}</td>
+                          <td className="align-middle">{item.provincia}</td>
+                          <td className="align-middle">{item.url}</td>
+                          <td className="align-middle">{item.telefono}</td>
+                          <td className="align-middle">
                             <Button onMouseEnter={() => {this.setState({hoverBtn1: true})}} 
                                     onMouseLeave={() => {this.setState({hoverBtn1: false})}}
                                     onClick={() => {this.editRegistro(item.id_editorial); this.setState({open: true,});}} variant="info">Actualizar</Button>
                           </td>
-                          <td class="align-middle">
+                          <td className="align-middle">
                             <Button onMouseEnter={() => {this.setState({hoverBtn1: true})}} 
                                     onMouseLeave={() => {this.setState({hoverBtn1: false})}} 
                                     onClick={() => {this.eliminarRegistro(item.id_editorial)}} variant="danger">Eliminar</Button>
@@ -153,8 +152,9 @@ export default class Editoriales extends React.Component {
                 </Table>
               </Row>
             </Container>
-            <Popup trigger={<Button variant="info">Añadir nuevo</Button>} open={this.state.open} onClose={() => {this.setState({open: false,});}} position="bottom center">
-                    <div className = "popup-root">
+            <Button variant="info" onClick={() => {this.setState({open: true,})}}>Añadir nuevo</Button>
+            <Popup open={this.state.open} onClose={() => {this.setState({open: false,});}} position="center center">
+                    <Form onSubmit={this.addRegistro} action="http://localhost:3001/editoriales">
                         <h2>Registro de editorial</h2><hr></hr>
                         <Container className="contenedor-2">
                             <div className="largos">
@@ -178,10 +178,10 @@ export default class Editoriales extends React.Component {
                                 <FormControl type="text" name="provincia" placeholder="Provincia" onChange={this.handleChange} value={this.state.provincia}/>
                             </div>
                         </Container>
-                        <Button type="submit" onClick={this.addRegistro} variant="primary" block>
+                        <Button type="submit" variant="primary" block>
                             Agregar editorial
                         </Button><br></br>
-                    </div>
+                    </Form>
                 </Popup>
             </div>
         );
