@@ -78,16 +78,24 @@ class AutoresController extends Controller
      */
     public function update(Request $request, $id)
     {
-        DB::table('autores')
-        ->where(id, $id)
-        ->update(array(
-            'nombre' => $request->input('nombre'),
-            'apellidos' => $request->input('apellidos'),
-            'direccion' => $request->input('direccion'),
-            'email' => $request->input('email'),
-            'telefono' => $request->input('telefono'),
-            'url' => $request->input('url'),
-        ));
+        DB::beginTransaction();
+        try {
+            DB::table('autores')
+            ->where('id_autor',$id)
+            ->update(array(
+                'nombre' => $request->input('nombre'),
+                'apellidos' => $request->input('apellidos'),
+                'direccion' => $request->input('direccion'),
+                'email' => $request->input('email'),
+                'telefono' => $request->input('telefono'),
+                'url' => $request->input('url')
+            ));
+            DB::commit();
+            return response()->json(['id_autor' => $id, 'status' => 'Actualizacion Exitosa!', 'status_code' => '1']);
+        } catch (\Exception $e){
+            DB::rollback();
+            return response()->json(['id_autor' => '-1', 'status' => 'Actualizacion Fallida!', 'status_code' => '-1', 'error' => $e, 'id' => $id]);
+        }
     }
 
     /**

@@ -25,6 +25,8 @@ export default class Autores extends React.Component {
             tipoAlerta: "success",
             disable_localidades: true,
             open: false,
+            update: false,
+            update_message: 'Agregar autor',
         };
     }
 
@@ -52,6 +54,8 @@ export default class Autores extends React.Component {
         localidades: [],
         disable_localidades: true,
         open: false,
+        update: false,
+        update_message: "Agregar Autor",
       });
     }
 
@@ -70,7 +74,6 @@ export default class Autores extends React.Component {
     }
 
     editControl = (item) => {
-      console.log(item);
       this.setState({
         id_autor: item.id_autor,
         nombre: item.nombre,
@@ -82,6 +85,8 @@ export default class Autores extends React.Component {
         localidad: item.localidad,
         telefono: item.telefono,
         disable_localidades: false,
+        update: true,
+        update_message: "Actualizar autor",
         open: true,
       });
       const e = {
@@ -89,7 +94,7 @@ export default class Autores extends React.Component {
           value: item.provincia,
         }
       }
-
+      console.log("id: ", item.id_autor);
       this.estadoChange(e);
     }
     
@@ -150,7 +155,7 @@ export default class Autores extends React.Component {
           });
   };
 
-    editRegistro(id){
+    editRegistro(){
       var headers = new Headers();
       headers.append("Content-Type", "application/json");
       var body = JSON.stringify({
@@ -163,8 +168,8 @@ export default class Autores extends React.Component {
           localidad: this.state.localidad,
           provincia: this.state.provincia,
       })
-      console.log("A enviar: ", body);
-      fetch(`http://localhost:8000/autores?id=${id}`, {        //revisar que efectivamente sea ../insert
+      console.log("A enviar actualizacion: ", body);
+      fetch(`http://localhost:8000/autores/${this.state.id_autor}`, {        //revisar que efectivamente sea ../insert
           method: "PUT",
           headers: headers,
           body: body
@@ -185,6 +190,8 @@ export default class Autores extends React.Component {
                   tipoAlerta: "success",
                   disable_localidades: true,
                   open: false,
+                  update: false,
+                  update_message: 'Agregar autor',
               });
               this.fetchRegistros();
           });
@@ -293,8 +300,8 @@ export default class Autores extends React.Component {
                             </FormControl>
                         </div>
                     </Container>
-                    <Button type="submit" onClick={this.addRegistro} variant="primary" block>
-                        Agregar autor
+                    <Button id="btnSend" type="submit" onClick={() => {this.state.update ?  this.editRegistro() : this.addRegistro()}} variant="primary" block>
+                      {this.state.update_message}
                     </Button><br></br>
                 </div>
                 </Popup>
