@@ -91,25 +91,9 @@ export default class Libros extends React.Component {
             .then((resultado) => {
                 console.log(resultado);     //para verificar que se haya recibido
                 this.setState({
-                    id_libro: "",
-                    titulo: "",
-                    isbn: "",
-                    anio_publicacion: "",
-                    descripcion: "",
-                    //autor: "",
-                    //editorial: "",
-                    //categoria: "",
-                    ebook: "",
-                    precio_electronico: "",
-                    tamanio: "",
-                    papel: "",
-                    precio_fisico: "",
-                    fecha_impresion: "",
-                    lugar_impresion: "",
-                    pdf: "",
-                    portada: "",
+                    id_libro: resultado.id_libro,
                     alerta: true,
-                    msgAlerta: resultado.response,
+                    msgAlerta: resultado.status,
                     tipoAlerta: "success",
                 })
             })

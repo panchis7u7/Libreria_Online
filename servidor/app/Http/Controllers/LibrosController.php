@@ -42,7 +42,7 @@ class LibrosController extends Controller
             return response()->json(['id_libro' => $id, 'status' => 'Insercion Exitosa!', 'status_code' => '1']);
         } catch (\Exception $e){
             DB::rollback();
-            return response()->json(['id_libro' => '-1', 'status' => 'Insercion Fallida!', 'status_code' => '1']);
+            return response()->json(['id_libro' => '-1', 'status' => 'Insercion Fallida!', 'status_code' => '-1']);
         }
     }
 
