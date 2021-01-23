@@ -10,6 +10,7 @@ export default class Autores extends React.Component {
         super(props);
         this.state = {
             registros: [],
+            localidades: [],
             id_autor: "",
             nombre: "",
             apellidos: "",
@@ -89,6 +90,16 @@ export default class Autores extends React.Component {
                 this.fetchRegistros();
             });
     };
+
+    estadoChange = (e) => {
+      this.handleChange(e);
+      var municipios = mexico.find(item => item.nombre === e.target.value).municipios;
+      var nombres = [];
+      municipios.forEach(element => {
+        nombres.push(element.nombre);
+      });
+      this.setState({localidades: nombres});
+    }
     
     editRegistro(){
         
@@ -180,10 +191,10 @@ export default class Autores extends React.Component {
                     <Container className="contenedor-1">
                         <div className="propietarios">
                             <FormLabel>Provincia:</FormLabel>
-                            <FormControl as="select" name="provincia" placeholder="Provincias" onChange={this.handleChange} value={this.state.provincia}>
+                            <FormControl as="select" name="provincia" placeholder="Provincias" onChange={this.estadoChange} value={this.state.provincia}>
                               {mexico.map((estado, index) => {
                                 return (
-                                  <option key={index} onClick={() => {this.setState({provincia_index: estado.clave})}}>{estado.nombre}</option>
+                                  <option key={index}>{estado.nombre}</option>
                                 );
                               })}
                             </FormControl>
@@ -194,18 +205,11 @@ export default class Autores extends React.Component {
                             <FormLabel>Localidad:</FormLabel>
                             <FormControl as="select" name="localidad" placeholder="Localidades" onChange={this.handleChange} value={this.state.localidad}>
                             {
-                              mexico[this.state.provincia_index].municipios.map((localidad, index) => {
+                              this.state.localidades.map((localidad, index) => {
                                 return(
-                                  <option key={index}>{localidad.nombre}</option>
+                                  <option key={index}>{localidad}</option>
                                 );
-                              })
-
-                            }
-                            {/* {mexico.map((estado) => estado.municipios.map((municipio) => {
-                              return (
-                                <option>{municipio.nombre}</option>
-                              );
-                            }))} */}
+                              })}
                             </FormControl>
                         </div>
                     </Container>
