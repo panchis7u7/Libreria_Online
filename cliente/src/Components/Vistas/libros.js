@@ -16,15 +16,12 @@ export default class Libros extends React.Component {
             //autor: "",
             //editorial: "",
             //categoria: "",
-            ebook: "",
             precio_electronico: "",
-            tamanio: "",
-            papel: "",
             precio_fisico: "",
             fecha_impresion: "",
             lugar_impresion: "",
             pdf: "",
-            portada: "",
+            portada_url: "",
             alerta: false,
             msgAlerta: "",
             tipoAlerta: "success",
@@ -41,6 +38,23 @@ export default class Libros extends React.Component {
           [evt.target.name]: evt.target.value,
         });
     };
+
+    handlePopupClose = () => {
+      this.setState({
+        id_libro: "",
+        isbn: "",
+        anio_publicacion: "",
+        descripcion: "",
+        titulo: "",
+        precio_electronico: "",
+        precio_fisico: "",
+        lugar_impresion: "",
+        fecha_impresion: "",
+        tamanio: "",
+        portada_url: "",
+        open: false,
+      });
+    }
     
     fetchRegistros = () => {
         let headers = new Headers();
@@ -99,7 +113,26 @@ export default class Libros extends React.Component {
             })
     }
 
-    editRegistro(){
+    editControl = (item) => {
+      console.log(item);
+      this.setState({
+        id_libro: item.id_libro,
+        isbn: item.isbn,
+        anio_publicacion: item.anio_publicacion,
+        descripcion: item.descripcion,
+        titulo: item.titulo,
+        precio_electronico: item.precio_electronico,
+        precio_fisico: item.precio_fisico,
+        lugar_impresion: item.lugar_impresion,
+        fecha_impresion: item.fecha_impresion,
+        tamanio: item.tamanio,
+        portada_url: item.url,
+        open: true,
+      });
+
+    }
+
+    editRegistro(id){
 
     }
 
@@ -148,7 +181,7 @@ export default class Libros extends React.Component {
                   <tbody>
                     {this.state.registros.map((item) => {
                       return (
-                        <tr onClickCapture={() => this.updateInput(item)} key={item.id_libro}>
+                        <tr key={item.id_libro}>
                           <td className="align-middle">{item.id_libro}</td>
                           <td className="align-middle">{item.isbn}</td>
                           <td className="align-middle">{item.anio_publicacion}</td>
@@ -160,14 +193,10 @@ export default class Libros extends React.Component {
                           <td className="align-middle">{item.fecha_impresion}</td>
                           <td className="align-middle">{item.lugar_impresion}</td>
                           <td className="align-middle">
-                            <Button onMouseEnter={() => {this.setState({hoverBtn1: true})}} 
-                                    onMouseLeave={() => {this.setState({hoverBtn1: false})}}
-                                    onClick={() => {this.editRegistro(item.id_cliente); this.setState({open: true,});}} variant="info">Actualizar</Button>
+                            <Button onClick={() => {this.editControl(item)}} variant="info">Actualizar</Button>
                           </td>
                           <td key="button2" className="align-middle">
-                            <Button onMouseEnter={() => {this.setState({hoverBtn1: true})}} 
-                                    onMouseLeave={() => {this.setState({hoverBtn1: false})}} 
-                                    onClick={() => {this.eliminarRegistro(item.id_cliente)}} variant="danger">Eliminar</Button>
+                            <Button onClick={() => {this.eliminarRegistro(item.id_libro)}} variant="danger">Eliminar</Button>
                           </td>
                         </tr>
                       );
@@ -177,7 +206,7 @@ export default class Libros extends React.Component {
               </Row>
             </Container>
             <Button variant="info" onClick={(e) => {this.setState({open: true,})}}>Añadir nuevo</Button>
-            <Popup open={this.state.open} onClose={() => {this.setState({open: false,});}} position="center center">
+            <Popup open={this.state.open} onClose={this.handlePopupClose} position="center center">
                 <Form onSubmit={this.addRegistro} action="http://localhost:3001/libros">
                 <h2>Registro de libro</h2><hr></hr>
                 <Container className="contenedor-1">
@@ -212,7 +241,7 @@ export default class Libros extends React.Component {
                         <FormLabel>Descripcion:</FormLabel>
                         <FormControl type="text" name="descripcion" placeholder="Descripción." onChange={this.handleChange} value={this.state.descripcion || ''}/>
                         <FormLabel>Portada (URL):</FormLabel>
-                        <FormControl type="url" name="url" placeholder="URL de la imagen de portada." onChange={this.handleChange} value={this.state.url || ''}/>    
+                        <FormControl type="url" name="portada_url" placeholder="URL de la imagen de portada." onChange={this.handleChange} value={this.state.portada_url || ''}/>    
                     </Container>
                 </Container><br></br>
                 <Container className="contenedor-3">
