@@ -22,7 +22,7 @@ export default class Autores extends React.Component {
             msgAlerta: "",
             tipoAlerta: "success",
             open: false,
-            estado: '',
+            provincia_index: 1,
         };
     }
 
@@ -180,10 +180,10 @@ export default class Autores extends React.Component {
                     <Container className="contenedor-1">
                         <div className="propietarios">
                             <FormLabel>Provincia:</FormLabel>
-                            <FormControl as="select" name="provincia" placeholder="Provincias" onChange={this.handleChange} value={this.state.localidad}>
+                            <FormControl as="select" name="provincia" placeholder="Provincias" onChange={this.handleChange} value={this.state.provincia}>
                               {mexico.map((estado) => {
                                 return (
-                                  <option>{estado.nombre}</option>
+                                  <option onSelect={() => {this.setState({provincia_index: estado.clave})}}>{estado.nombre}</option>
                                 );
                               })}
                             </FormControl>
@@ -192,12 +192,20 @@ export default class Autores extends React.Component {
                         </div>
                         <div className="propietarios">
                             <FormLabel>Localidad:</FormLabel>
-                            <FormControl as="select" name="localidad" placeholder="Localidades" onChange={this.handleChange} value={this.state.provincia}>
-                            {mexico.map((estado) => estado.municipios.map((municipio) => {
+                            <FormControl as="select" name="localidad" placeholder="Localidades" onChange={this.handleChange} value={this.state.localidad}>
+                            {
+                              mexico[this.state.provincia_index].municipios.map((localidad) => {
+                                return(
+                                  <option>{localidad.nombre}</option>
+                                );
+                              })
+
+                            }
+                            {/* {mexico.map((estado) => estado.municipios.map((municipio) => {
                               return (
                                 <option>{municipio.nombre}</option>
                               );
-                            }))}
+                            }))} */}
                             </FormControl>
                         </div>
                     </Container>
