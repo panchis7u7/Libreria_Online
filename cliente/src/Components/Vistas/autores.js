@@ -43,10 +43,11 @@ export default class Autores extends React.Component {
         nombre: "",
         apellidos: "",
         direccion: "",
+        enail: "",
+        telefono: "",
         url: "",
         provincia: "",
         localidad: "",
-        telefono: "",
         localidades: [],
         disable_localidades: false,
         open: false,
@@ -56,7 +57,7 @@ export default class Autores extends React.Component {
     fetchRegistros = () => {
         let headers = new Headers();
         headers.append("Content-Type", "application/json");
-        fetch("http://localhost:3001/autores", {
+        fetch("http://localhost:8000/autores", {
           method: "GET",
           headers: headers,
         })
@@ -64,7 +65,7 @@ export default class Autores extends React.Component {
           .then((resultado) => {
             console.log("resultado: ", resultado);
             this.setState({
-              registros: resultado.response,
+              registros: resultado,
             });
         })
         .catch((error) => console.log("error: ", error));
@@ -74,16 +75,16 @@ export default class Autores extends React.Component {
         var headers = new Headers();
         headers.append("Content-Type", "application/json");
         var body = JSON.stringify({
-            id_autor: this.state.id_autor,
             nombre: this.state.nombre,
             apellidos: this.state.apellidos,
             direccion: this.state.direccion,
+            email: this.state.email,
+            telefono: this.state.telefono,
+            url: this.state.url,
             localidad: this.state.localidad,
             provincia: this.state.provincia,
-            url: this.state.url,
-            telefono: this.state.telefono,
         })
-        fetch("http://localhost:3001/autores/insert", {        //revisar que efectivamente sea ../insert
+        fetch("http://localhost:8000/autores", {        //revisar que efectivamente sea ../insert
             method: "POST",
             headers: headers,
             body: body
@@ -95,8 +96,9 @@ export default class Autores extends React.Component {
                     nombre: "",
                     apellidos: "",
                     direccion: "",
-                    localidad: "",
                     url: "",
+                    provincia: "",
+                    localidad: "",
                     telefono: "",
                     alerta: true,
                     msgAlerta: resultado.response,
@@ -218,8 +220,10 @@ export default class Autores extends React.Component {
                             <FormControl type="text" name="apellidos" placeholder="Apellidos." onChange={this.handleChange} value={this.state.apellidos} required={true}/>
                             <FormLabel>Dirección:</FormLabel>
                             <FormControl type="text" name="direccion" placeholder="Dirección." onChange={this.handleChange} value={this.state.direccion} required={true}/>
+                            <FormLabel>Email:</FormLabel>
+                            <FormControl type="email" name="email" placeholder="Email para contactar al autor." onChange={this.handleChange} value={this.state.email || ''}/> 
                             <FormLabel>URL:</FormLabel>
-                            <FormControl type="url" name="url" placeholder="URL para contactar al autor." onChange={this.handleChange} value={this.state.url}/>    
+                            <FormControl type="url" name="url" placeholder="URL para contacto." onChange={this.handleChange} value={this.state.url || ''}/>    
                         </div>
                     </Container>
                     <Container className="contenedor-1">

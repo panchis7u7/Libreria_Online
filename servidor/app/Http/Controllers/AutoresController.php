@@ -15,7 +15,7 @@ class AutoresController extends Controller
      */
     public function index()
     {
-        //
+        return DB::table('autores')->get();
     }
 
     /**
