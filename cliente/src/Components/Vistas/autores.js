@@ -23,7 +23,6 @@ export default class Autores extends React.Component {
             msgAlerta: "",
             tipoAlerta: "success",
             open: false,
-            provincia_index: 1,
         };
     }
 
@@ -93,12 +92,16 @@ export default class Autores extends React.Component {
 
     estadoChange = (e) => {
       this.handleChange(e);
-      var municipios = mexico.find(item => item.nombre === e.target.value).municipios;
-      var nombres = [];
-      municipios.forEach(element => {
-        nombres.push(element.nombre);
-      });
-      this.setState({localidades: nombres});
+      if (e.target.value !== ''){
+        var municipios = mexico.find(item => item.nombre === e.target.value).municipios;
+        var nombres = [];
+        municipios.forEach(element => {
+          nombres.push(element.nombre);
+        });
+        this.setState({localidades: nombres});
+        } else {
+          this.setState({localidades: []});
+        }
     }
     
     editRegistro(){
@@ -192,6 +195,7 @@ export default class Autores extends React.Component {
                         <div className="propietarios">
                             <FormLabel>Provincia:</FormLabel>
                             <FormControl as="select" name="provincia" placeholder="Provincias" onChange={this.estadoChange} value={this.state.provincia}>
+                              <option></option>
                               {mexico.map((estado, index) => {
                                 return (
                                   <option key={index}>{estado.nombre}</option>
