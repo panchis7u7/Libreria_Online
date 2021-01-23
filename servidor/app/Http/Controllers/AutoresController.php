@@ -15,7 +15,11 @@ class AutoresController extends Controller
      */
     public function index()
     {
-        return DB::table('autores')->get();
+        //return DB::table('autores')->get();
+        return DB::table('autores')->select('id_autor', 'nombre', 'apellidos', 'direccion', 'email', 'telefono', 'url', 'localidades.nombre', 'provincias.nombre')
+        ->join('localidades', 'autores.id_localidad', '=', 'localidades.id_localidad')
+        ->join('provincias', 'localidades.id_provincia', '=', 'provincias.id_provincia')
+        ->get();
     }
 
     /**
@@ -29,12 +33,12 @@ class AutoresController extends Controller
         DB::beginTransaction();
         try {
             $id_provincia = DB::table('provincias')->insertGetId(array(
-                'nombre' => $request->input('localidad')
+                'nombre' => $request->input('provincia')
             ));
 
             $id_localidad = DB::table('localidades')->insertGetId(array(
-                'nombre' => $request->input('provincia'),
-                'id_provincia' => $request->input($id_provincia)
+                'nombre' => $request->input('localidad'),
+                'id_provincia' => $id_provincia
             ));
 
             $id_autor = DB::table('autores')->insertGetId(array('nombre' => $request->input('nombre'),
@@ -43,14 +47,14 @@ class AutoresController extends Controller
             'email' => $request->input('email'),
             'telefono' => $request->input('telefono'),
             'url' => $request->input('url'),
-            'id_localidad' => $request->input($id_localidad)
+            'id_localidad' => $id_localidad
             ));
 
             DB::commit();
             return response()->json(['id_autor' => $id_autor, 'status' => 'Insercion Exitosa!', 'status_code' => '1']);
         } catch (\Exception $e){
             DB::rollback();
-            return response()->json(['id_autor' => '-1', 'status' => 'Insercion Fallida!', 'status_code' => '-1']);
+            return response()->json(['id_autor' => '-1', 'status' => 'Insercion Fallida!', 'status_code' => '-1', 'error' => $e, 'id_provincia' => $id_provincia]);
         }
     }
 

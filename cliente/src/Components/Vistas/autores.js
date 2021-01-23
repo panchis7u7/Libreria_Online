@@ -15,10 +15,11 @@ export default class Autores extends React.Component {
             nombre: "",
             apellidos: "",
             direccion: "",
+            email: "",
+            telefono: "",
+            url: "",
             localidad: "",
             provincia: "",
-            url: "",
-            telefono: "",
             alerta: false,
             msgAlerta: "",
             tipoAlerta: "success",
@@ -84,6 +85,7 @@ export default class Autores extends React.Component {
             localidad: this.state.localidad,
             provincia: this.state.provincia,
         })
+        console.log("A enviar: ", body);
         fetch("http://localhost:8000/autores", {        //revisar que efectivamente sea ../insert
             method: "POST",
             headers: headers,
@@ -101,7 +103,7 @@ export default class Autores extends React.Component {
                     localidad: "",
                     telefono: "",
                     alerta: true,
-                    msgAlerta: resultado.response,
+                    msgAlerta: resultado.status,
                     tipoAlerta: "success",
                     disable_localidades: true,
                     open: false,
