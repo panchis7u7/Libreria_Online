@@ -65,7 +65,6 @@ export default class Libros extends React.Component {
         var headers = new Headers();
         headers.append("Content-Type", "application/json");
         var body = JSON.stringify({
-            id_libro: this.state.id_libro,
             titulo: this.state.titulo,
             isbn: this.state.isbn,
             anio_publicacion: this.state.anio_publicacion,
@@ -84,13 +83,13 @@ export default class Libros extends React.Component {
             portada: this.state.portada,
         });
         console.log("Solicitut mandada");
-        fetch("http://localhost:3001/libros", {
+        fetch("http://localhost:8000/libros", {
             method: "POST",
             headers: headers,
             body: body
         }).then((respuesta) => respuesta.json())
             .then((resultado) => {
-                //console.log(resultado);     //para verificar que se haya recibido
+                console.log(resultado);     //para verificar que se haya recibido
                 this.setState({
                     id_libro: "",
                     titulo: "",
@@ -193,7 +192,7 @@ export default class Libros extends React.Component {
                 </Table>
               </Row>
             </Container>
-            <Button variant="info" onClick={(e) => {this.setState({open: true,})}}>Añadir</Button>
+            <Button variant="info" onClick={(e) => {this.setState({open: true,})}}>Añadir nuevo</Button>
             <Popup open={this.state.open} onClose={() => {this.setState({open: false,});}} position="center center">
                 <Form onSubmit={this.addRegistro} action="http://localhost:3001/libros">
                 <h2>Registro de libro</h2><hr></hr>
