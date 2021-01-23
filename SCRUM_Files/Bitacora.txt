@@ -304,6 +304,24 @@ libro para ayudarme a decidir si es una buena opción.
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
+----------------------------- Sprint Review Meeting ----------------------------
+
+->
+
+--------------------------------------------------------------------------------
+
+-------------------------- Sprint Retrospective Meeting ------------------------
+
+->
+
+--------------------------------------------------------------------------------
+
+---------------------------- Sprint Planning Meeting ---------------------------
+
+->
+
+--------------------------------------------------------------------------------
+
 @@@@@@@@@@@@@@@@@@@@@@@ SCRUM Diario 18 de enero del 2021 @@@@@@@@@@@@@@@@@@@@@@
 
 1) Katherine:
@@ -393,6 +411,24 @@ libro para ayudarme a decidir si es una buena opción.
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
+----------------------------- Sprint Review Meeting ----------------------------
+
+->
+
+--------------------------------------------------------------------------------
+
+-------------------------- Sprint Retrospective Meeting ------------------------
+
+->
+
+--------------------------------------------------------------------------------
+
+---------------------------- Sprint Planning Meeting ---------------------------
+
+->
+
+--------------------------------------------------------------------------------
+
 @@@@@@@@@@@@@@@@@@@@@@@ SCRUM Diario 20 de enero del 2021 @@@@@@@@@@@@@@@@@@@@@@
 
 1) Katherine:
@@ -476,6 +512,24 @@ libro para ayudarme a decidir si es una buena opción.
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
+----------------------------- Sprint Review Meeting ----------------------------
+
+->
+
+--------------------------------------------------------------------------------
+
+-------------------------- Sprint Retrospective Meeting ------------------------
+
+->
+
+--------------------------------------------------------------------------------
+
+---------------------------- Sprint Planning Meeting ---------------------------
+
+->
+
+--------------------------------------------------------------------------------
+
 @@@@@@@@@@@@@@@@@@@@@@@ SCRUM Diario 22 de enero del 2021 @@@@@@@@@@@@@@@@@@@@@@
 
 1) Katherine:
@@ -520,7 +574,62 @@ libro para ayudarme a decidir si es una buena opción.
 
 @@@@@@@@@@@@@@@@@@@@@@@ SCRUM Diario 23 de enero del 2021 @@@@@@@@@@@@@@@@@@@@@@
 
+1) Katherine:
+
+¿Que hiciste ayer?
+	*> Arregle interfaces y cree las interfaces correspondientes al sprint .
+¿Tuviste algun impedimento?
+	*> Hojas de estilo presentaban comportamientos anormales.
+¿Que haras hoy?
+	*> Terminar de detallar las interfaces.
+
+2) Alexis:
+
+¿Que hiciste ayer?
+	*> Investigar aun mas de las pruebas.
+¿Tuviste algun impedimento?
+	*> Dificultad en las pruebas.
+¿Que haras hoy?
+	*> Me reunire con kate para desarrollar el front-end y seguir investigando sobre las pruebas.
+
+3) Carlos:
+
+¿Que hiciste ayer?
+	*> Segui con las pruebas.
+¿Tuviste algun impedimento?
+	*> Dificultad en el desarrollo de las pruebas, en especial automatizarlas.
+¿Que haras hoy?
+	*> Hacer las pruebas con las nuevas tablas.
+
+4) Sebastian:
+
+¿Que hiciste ayer?
+	*> Instale y realice la integracion de laravel con un modulo el frontend, asi como
+	generar las APIs o requests en el servidor.
+¿Tuviste algun impedimento?
+	*> Documentacion.
+¿Que haras hoy?
+	*> Actualizar los esquemas de los controladores del ORM del servidor.
+
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+----------------------------- Sprint Review Meeting ----------------------------
+
+->
+
+--------------------------------------------------------------------------------
+
+-------------------------- Sprint Retrospective Meeting ------------------------
+
+->
+
+--------------------------------------------------------------------------------
+
+---------------------------- Sprint Planning Meeting ---------------------------
+
+->
+
+--------------------------------------------------------------------------------
 
 @@@@@@@@@@@@@@@@@@@@@@@ SCRUM Diario 24 de enero del 2021 @@@@@@@@@@@@@@@@@@@@@@
 
@@ -529,3 +638,15 @@ libro para ayudarme a decidir si es una buena opción.
 @@@@@@@@@@@@@@@@@@@@@@@ SCRUM Diario 25 de enero del 2021 @@@@@@@@@@@@@@@@@@@@@@
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+----------------------------- Sprint Review Meeting ----------------------------
+
+->
+
+--------------------------------------------------------------------------------
+
+-------------------------- Sprint Retrospective Meeting ------------------------
+
+->
+
+--------------------------------------------------------------------------------
