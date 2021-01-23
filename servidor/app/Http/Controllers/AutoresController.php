@@ -16,9 +16,9 @@ class AutoresController extends Controller
     public function index()
     {
         //return DB::table('autores')->get();
-        return DB::table('autores')->select('id_autor', 'nombre', 'apellidos', 'direccion', 'email', 'telefono', 'url', 'localidades.nombre', 'provincias.nombre')
-        ->join('localidades', 'autores.id_localidad', '=', 'localidades.id_localidad')
-        ->join('provincias', 'localidades.id_provincia', '=', 'provincias.id_provincia')
+        return DB::table('autores')->select('autores.*', 'localidades.nombre as localidad', 'provincias.nombre as provincia')
+        ->join('localidades', 'localidades.id_localidad', '=', 'autores.id_localidad')
+        ->join('provincias', 'provincias.id_provincia', '=', 'localidades.id_provincia')
         ->get();
     }
 
@@ -78,7 +78,16 @@ class AutoresController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        DB::table('autores')
+        ->where(id, $id)
+        ->update(array(
+            'nombre' => $request->input('nombre'),
+            'apellidos' => $request->input('apellidos'),
+            'direccion' => $request->input('direccion'),
+            'email' => $request->input('email'),
+            'telefono' => $request->input('telefono'),
+            'url' => $request->input('url'),
+        ));
     }
 
     /**

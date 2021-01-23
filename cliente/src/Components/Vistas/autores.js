@@ -50,67 +50,10 @@ export default class Autores extends React.Component {
         provincia: "",
         localidad: "",
         localidades: [],
-        disable_localidades: false,
+        disable_localidades: true,
         open: false,
       });
     }
-
-    fetchRegistros = () => {
-        let headers = new Headers();
-        headers.append("Content-Type", "application/json");
-        fetch("http://localhost:8000/autores", {
-          method: "GET",
-          headers: headers,
-        })
-          .then((respuesta) => respuesta.json())
-          .then((resultado) => {
-            console.log("resultado: ", resultado);
-            this.setState({
-              registros: resultado,
-            });
-        })
-        .catch((error) => console.log("error: ", error));
-    };
-
-    addRegistro = () => {
-        var headers = new Headers();
-        headers.append("Content-Type", "application/json");
-        var body = JSON.stringify({
-            nombre: this.state.nombre,
-            apellidos: this.state.apellidos,
-            direccion: this.state.direccion,
-            email: this.state.email,
-            telefono: this.state.telefono,
-            url: this.state.url,
-            localidad: this.state.localidad,
-            provincia: this.state.provincia,
-        })
-        console.log("A enviar: ", body);
-        fetch("http://localhost:8000/autores", {        //revisar que efectivamente sea ../insert
-            method: "POST",
-            headers: headers,
-            body: body
-        }).then((respuesta) => respuesta.json())
-            .then((resultado) => {
-                console.log(resultado);    
-                this.setState({
-                    id_autor: "",
-                    nombre: "",
-                    apellidos: "",
-                    direccion: "",
-                    url: "",
-                    provincia: "",
-                    localidad: "",
-                    telefono: "",
-                    alerta: true,
-                    msgAlerta: resultado.status,
-                    tipoAlerta: "success",
-                    disable_localidades: true,
-                    open: false,
-                });
-                this.fetchRegistros();
-            });
-    };
 
     estadoChange = (e) => {
       this.handleChange(e);
@@ -133,6 +76,7 @@ export default class Autores extends React.Component {
         nombre: item.nombre,
         apellidos: item.apellidos,
         direccion: item.direccion,
+        email: item.email,
         url: item.url,
         provincia: item.provincia,
         localidad: item.localidad,
@@ -140,15 +84,110 @@ export default class Autores extends React.Component {
         disable_localidades: false,
         open: true,
       });
+      const e = {
+        target: {
+          value: item.provincia,
+        }
+      }
 
+      this.estadoChange(e);
     }
     
-    editRegistro(){
-        
-    }
+    fetchRegistros = () => {
+      let headers = new Headers();
+      headers.append("Content-Type", "application/json");
+      fetch("http://localhost:8000/autores", {
+        method: "GET",
+        headers: headers,
+      })
+        .then((respuesta) => respuesta.json())
+        .then((resultado) => {
+          console.log("resultado: ", resultado);
+          this.setState({
+            registros: resultado,
+          });
+      })
+      .catch((error) => console.log("error: ", error));
+  };
 
-    updateInput(){
+  addRegistro = () => {
+      var headers = new Headers();
+      headers.append("Content-Type", "application/json");
+      var body = JSON.stringify({
+          nombre: this.state.nombre,
+          apellidos: this.state.apellidos,
+          direccion: this.state.direccion,
+          email: this.state.email,
+          telefono: this.state.telefono,
+          url: this.state.url,
+          localidad: this.state.localidad,
+          provincia: this.state.provincia,
+      })
+      console.log("A enviar: ", body);
+      fetch("http://localhost:8000/autores", {        //revisar que efectivamente sea ../insert
+          method: "POST",
+          headers: headers,
+          body: body
+      }).then((respuesta) => respuesta.json())
+          .then((resultado) => {
+              console.log(resultado);    
+              this.setState({
+                  id_autor: "",
+                  nombre: "",
+                  apellidos: "",
+                  direccion: "",
+                  url: "",
+                  provincia: "",
+                  localidad: "",
+                  telefono: "",
+                  alerta: true,
+                  msgAlerta: resultado.status,
+                  tipoAlerta: "success",
+                  disable_localidades: true,
+                  open: false,
+              });
+              this.fetchRegistros();
+          });
+  };
 
+    editRegistro(id){
+      var headers = new Headers();
+      headers.append("Content-Type", "application/json");
+      var body = JSON.stringify({
+          nombre: this.state.nombre,
+          apellidos: this.state.apellidos,
+          direccion: this.state.direccion,
+          email: this.state.email,
+          telefono: this.state.telefono,
+          url: this.state.url,
+          localidad: this.state.localidad,
+          provincia: this.state.provincia,
+      })
+      console.log("A enviar: ", body);
+      fetch(`http://localhost:8000/autores?id=${id}`, {        //revisar que efectivamente sea ../insert
+          method: "PUT",
+          headers: headers,
+          body: body
+      }).then((respuesta) => respuesta.json())
+          .then((resultado) => {
+              console.log(resultado);    
+              this.setState({
+                  id_autor: "",
+                  nombre: "",
+                  apellidos: "",
+                  direccion: "",
+                  url: "",
+                  provincia: "",
+                  localidad: "",
+                  telefono: "",
+                  alerta: true,
+                  msgAlerta: resultado.status,
+                  tipoAlerta: "success",
+                  disable_localidades: true,
+                  open: false,
+              });
+              this.fetchRegistros();
+          });
     }
 
     eliminarRegistro(id) {
@@ -189,7 +228,7 @@ export default class Autores extends React.Component {
                   <tbody>
                     {this.state.registros.map((item) => {
                       return (
-                        <tr onClickCapture={() => this.updateInput(item)} key={item.id_autor}>
+                        <tr key={item.id_autor}>
                           <td className="align-middle">{item.nombre}</td>
                           <td className="align-middle">{item.apellidos}</td>
                           <td className="align-middle">{item.direccion}</td>
@@ -231,7 +270,7 @@ export default class Autores extends React.Component {
                     <Container className="contenedor-1">
                         <div className="propietarios">
                             <FormLabel>Provincia:</FormLabel>
-                            <FormControl as="select" name="provincia" placeholder="Provincias" onChange={this.estadoChange} value={this.state.provincia}>
+                            <FormControl as="select" name="provincia" placeholder="Provincias" onChangeCapture={this.estadoChange} value={this.state.provincia}>
                               <option></option>
                               {mexico.map((estado, index) => {
                                 return (
