@@ -1,6 +1,6 @@
 import React from 'react';
 import {Container, FormControl, FormLabel, Button, Alert, Row, Table} from 'react-bootstrap';
-import '../../SCSS/libro.scss';
+import '../../SCSS/Base.scss';
 import Popup from 'reactjs-popup';
 
 
