@@ -22,6 +22,7 @@ export default class Autores extends React.Component {
             alerta: false,
             msgAlerta: "",
             tipoAlerta: "success",
+            disable_localidades: true,
             open: false,
         };
     }
@@ -35,6 +36,22 @@ export default class Autores extends React.Component {
           [evt.target.name]: evt.target.value,
         });
     };
+
+    handlePopupClose = () => {
+      this.setState({
+        id_autor: "",
+        nombre: "",
+        apellidos: "",
+        direccion: "",
+        url: "",
+        provincia: "",
+        localidad: "",
+        telefono: "",
+        localidades: [],
+        disable_localidades: false,
+        open: false,
+      });
+    }
 
     fetchRegistros = () => {
         let headers = new Headers();
@@ -84,6 +101,7 @@ export default class Autores extends React.Component {
                     alerta: true,
                     msgAlerta: resultado.response,
                     tipoAlerta: "success",
+                    disable_localidades: true,
                     open: false,
                 });
                 this.fetchRegistros();
@@ -98,10 +116,27 @@ export default class Autores extends React.Component {
         municipios.forEach(element => {
           nombres.push(element.nombre);
         });
-        this.setState({localidades: nombres});
+        this.setState({localidades: nombres, disable_localidades: false});
         } else {
-          this.setState({localidades: []});
+          this.setState({localidades: [], disable_localidades: true});
         }
+    }
+
+    editControl = (item) => {
+      console.log(item);
+      this.setState({
+        id_autor: item.id_autor,
+        nombre: item.nombre,
+        apellidos: item.apellidos,
+        direccion: item.direccion,
+        url: item.url,
+        provincia: item.provincia,
+        localidad: item.localidad,
+        telefono: item.telefono,
+        disable_localidades: false,
+        open: true,
+      });
+
     }
     
     editRegistro(){
@@ -112,7 +147,7 @@ export default class Autores extends React.Component {
 
     }
 
-    eliminarRegistro() {
+    eliminarRegistro(id) {
 
     }
 
@@ -159,14 +194,10 @@ export default class Autores extends React.Component {
                           <td className="align-middle">{item.url}</td>
                           <td className="align-middle">{item.telefono}</td>
                           <td className="align-middle">
-                            <Button onMouseEnter={() => {this.setState({hoverBtn1: true})}} 
-                                    onMouseLeave={() => {this.setState({hoverBtn1: false})}}
-                                    onClick={() => {this.editRegistro(item.id_autor); this.setState({open: true,});}} variant="info">Actualizar</Button>
+                            <Button onClick={() => {this.editControl(item)}} variant="info">Actualizar</Button>
                           </td>
                           <td key="button2" className="align-middle">
-                            <Button onMouseEnter={() => {this.setState({hoverBtn1: true})}} 
-                                    onMouseLeave={() => {this.setState({hoverBtn1: false})}} 
-                                    onClick={() => {this.eliminarRegistro(item.id_autor)}} variant="danger">Eliminar</Button>
+                            <Button onClick={() => {this.eliminarRegistro(item.id_libro)}} variant="danger">Eliminar</Button>
                           </td>
                         </tr>
                       );
@@ -176,7 +207,7 @@ export default class Autores extends React.Component {
               </Row>
             </Container>
             <Button variant="info" onClick={() => {this.setState({open: true,})}}>Añadir nuevo</Button>
-            <Popup open={this.state.open} onClose={() => {this.setState({open: false,});}} position="bottom center">
+            <Popup open={this.state.open} onClose={() => {this.handlePopupClose()}} position="bottom center">
                 <div className = "popup-root">
                     <h2>Registro de autor</h2><hr></hr>
                     <Container className="contenedor-2">
@@ -207,7 +238,7 @@ export default class Autores extends React.Component {
                         </div>
                         <div className="propietarios">
                             <FormLabel>Localidad:</FormLabel>
-                            <FormControl as="select" name="localidad" placeholder="Localidades" onChange={this.handleChange} value={this.state.localidad}>
+                            <FormControl as="select" disabled={this.state.disable_localidades} name="localidad" placeholder="Localidades" onChange={this.handleChange} value={this.state.localidad}>
                             {
                               this.state.localidades.map((localidad, index) => {
                                 return(
