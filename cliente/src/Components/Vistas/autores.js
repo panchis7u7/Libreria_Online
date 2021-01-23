@@ -181,9 +181,9 @@ export default class Autores extends React.Component {
                         <div className="propietarios">
                             <FormLabel>Provincia:</FormLabel>
                             <FormControl as="select" name="provincia" placeholder="Provincias" onChange={this.handleChange} value={this.state.provincia}>
-                              {mexico.map((estado) => {
+                              {mexico.map((estado, index) => {
                                 return (
-                                  <option onSelect={() => {this.setState({provincia_index: estado.clave})}}>{estado.nombre}</option>
+                                  <option key={index} onClick={() => {this.setState({provincia_index: estado.clave})}}>{estado.nombre}</option>
                                 );
                               })}
                             </FormControl>
@@ -194,9 +194,9 @@ export default class Autores extends React.Component {
                             <FormLabel>Localidad:</FormLabel>
                             <FormControl as="select" name="localidad" placeholder="Localidades" onChange={this.handleChange} value={this.state.localidad}>
                             {
-                              mexico[this.state.provincia_index].municipios.map((localidad) => {
+                              mexico[this.state.provincia_index].municipios.map((localidad, index) => {
                                 return(
-                                  <option>{localidad.nombre}</option>
+                                  <option key={index}>{localidad.nombre}</option>
                                 );
                               })
 
