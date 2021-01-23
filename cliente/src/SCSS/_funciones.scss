@@ -1,0 +1,11 @@
+@mixin labels {
+    float: left;
+    width: 7em;
+    padding-left: 5px;
+}
+
+@mixin inputs {
+    margin-bottom: 0.5em;
+    width: 60%;
+    height: 2.2em;
+}
