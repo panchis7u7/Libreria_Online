@@ -40,7 +40,7 @@
         .foraneos{
             label{
                 @include labelsLibro();
-                padding-left: 4em;
+                
             }
             select{
                 @include inputs();
