@@ -86,3 +86,48 @@ main {
     padding: 1em 0px 1em 0px;
     margin: 0px 25px;
 }
+
+//-------------------- Popup ---------------------
+
+ .popup-content {
+    position: absolute;
+    top: 0;
+    margin: auto;
+    background: rgb(255, 255, 255);
+    width: 60%;
+    padding: 5px;
+    border: 1px solid #d7d7d7;
+  }
+
+  .popup-arrow {
+    color: rgb(255, 255, 255);
+  }
+
+  [role='tooltip'].popup-content {
+    width: 60%;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 0px 3px;
+    border-radius: 5px;
+  }
+  
+  .popup-overlay {
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+  
+  .popup-arrow {
+    filter: drop-shadow(0 -3px 3px rgba(0, 0, 0, 0.16));
+    color: #fff;
+    stroke-width: 2px;
+    stroke: #d7d7d7;
+    stroke-dasharray: 30px;
+    stroke-dashoffset: -54px;
+  }
+
+  html[data-theme='dark'] .popup-arrow > svg {
+    color: rgb(41, 45, 62);
+    stroke-width: 2px;
+    stroke: #9a9595;
+    stroke-dasharray: 30px;
+    stroke-dashoffset: -54px;
+  }
+
+//------------------- /Popup ---------------------

@@ -3,17 +3,25 @@ import Carousel from 'react-multi-carousel';
 import { Container } from 'react-bootstrap'; 
 import "react-multi-carousel/lib/styles.css";
 import '../../SCSS/libreria.scss';
+import Popup from 'reactjs-popup';
 
 export default class Main extends React.Component {
     constructor(props){
         super(props);
         this.state = {
             libros: [],
+            open: false,
         }
     }
 
     componentDidMount(){
         this.fetchLibros();
+    }
+
+    onCloseHandler = (e) => {
+        this.setState({
+            open: false,
+        });
     }
 
     fetchLibros = () => {
@@ -56,17 +64,54 @@ export default class Main extends React.Component {
                 <div className="banner">
                     <p className="bottom"><strong>Conoce un mundo<br></br>lleno de imaginacion</strong></p>
                 </div>
-                <Container className="titulos">Nuestra mejor seleccion de libros</Container>
-                <Carousel ssr containerClass="first-carousel-container" className="popular" responsive={responsive} infinite={true} swipeable={true} removeArrowOnDeviceType={["tablet", "mobile"]}>
-                    {this.state.libros.map((item, index) => {
-                        return (
-                            <div key={index} className="shadow-lg p-3 mb-5 bg-white rounded">
-                                <Book titulo={item.titulo} author="prueba" precio={item.precio_fisico} portada={item.url} ></Book>
-                                <button className="btn-agregar-carro">+</button>
-                            </div>
-                        );
-                    })}
-                </Carousel>
+                <section>
+                    <Container className="titulos">Nuestra mejor seleccion de libros</Container>
+                    <Carousel ssr containerClass="first-carousel-container" className="popular" responsive={responsive} infinite={true} swipeable={true} removeArrowOnDeviceType={["tablet", "mobile"]}>
+                        {this.state.libros.map((item, index) => {
+                            return (
+                                <div key={index} className="shadow-lg p-3 mb-5 bg-white rounded">
+                                    <Book titulo={item.titulo} author="prueba" precio={item.precio_fisico} portada={item.url} ></Book>
+                                    <button className="btn-agregar-carro" onClick={() => {this.setState({open: true})}}>+</button>
+                                    <Popup position="center center" open={this.state.open} onClose={this.onCloseHandler}>
+                                        <div>Producto anadido!</div>
+                                    </Popup>
+                                </div>
+                            );
+                        })}
+                    </Carousel>
+                </section>
+                <section>
+                    <Container className="titulos">Ciencia Ficcion</Container>
+                    <Carousel ssr containerClass="first-carousel-container" className="popular" responsive={responsive} infinite={true} swipeable={true} removeArrowOnDeviceType={["tablet", "mobile"]}>
+                        {this.state.libros.map((item, index) => {
+                            return (
+                                <div key={index} className="shadow-lg p-3 mb-5 bg-white rounded">
+                                    <Book titulo={item.titulo} author="prueba" precio={item.precio_fisico} portada={item.url} ></Book>
+                                    <button className="btn-agregar-carro" onClick={() => {this.setState({open: true})}}>+</button>
+                                    <Popup position="center center" open={this.state.open} onClose={this.onCloseHandler}>
+                                        <div>Producto anadido!</div>
+                                    </Popup>
+                                </div>
+                            );
+                        })}
+                    </Carousel>
+                </section>
+                <section>
+                    <Container className="titulos">Terror!</Container>
+                    <Carousel ssr containerClass="first-carousel-container" className="popular" responsive={responsive} infinite={true} swipeable={true} removeArrowOnDeviceType={["tablet", "mobile"]}>
+                        {this.state.libros.map((item, index) => {
+                            return (
+                                <div key={index} className="shadow-lg p-3 mb-5 bg-white rounded">
+                                    <Book titulo={item.titulo} author="prueba" precio={item.precio_fisico} portada={item.url} ></Book>
+                                    <button className="btn-agregar-carro" onClick={() => {this.setState({open: true})}}>+</button>
+                                    <Popup position="center center" open={this.state.open} onClose={this.onCloseHandler}>
+                                        <div>Producto anadido!</div>
+                                    </Popup>
+                                </div>
+                            );
+                        })}
+                    </Carousel>
+                </section>
             </main>
         );
     }
