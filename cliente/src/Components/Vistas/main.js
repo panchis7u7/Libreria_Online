@@ -64,7 +64,7 @@ export default class Main extends React.Component {
                 <div className="banner">
                     <p className="bottom"><strong>Conoce un mundo<br></br>lleno de imaginacion</strong></p>
                 </div>
-                <section>
+                <section className="secciones">
                     <Container className="titulos">Nuestra mejor seleccion de libros</Container>
                     <Carousel ssr containerClass="first-carousel-container" className="popular" responsive={responsive} infinite={true} swipeable={true} removeArrowOnDeviceType={["tablet", "mobile"]}>
                         {this.state.libros.map((item, index) => {
@@ -80,7 +80,7 @@ export default class Main extends React.Component {
                         })}
                     </Carousel>
                 </section>
-                <section>
+                <section className="secciones">
                     <Container className="titulos">Ciencia Ficcion</Container>
                     <Carousel ssr containerClass="first-carousel-container" className="popular" responsive={responsive} infinite={true} swipeable={true} removeArrowOnDeviceType={["tablet", "mobile"]}>
                         {this.state.libros.map((item, index) => {
@@ -96,7 +96,7 @@ export default class Main extends React.Component {
                         })}
                     </Carousel>
                 </section>
-                <section>
+                <section className="secciones">
                     <Container className="titulos">Terror!</Container>
                     <Carousel ssr containerClass="first-carousel-container" className="popular" responsive={responsive} infinite={true} swipeable={true} removeArrowOnDeviceType={["tablet", "mobile"]}>
                         {this.state.libros.map((item, index) => {
