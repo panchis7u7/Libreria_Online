@@ -53,64 +53,9 @@ export default class Libros extends React.Component {
         tamanio: "",
         portada_url: "",
         open: false,
+        update: false,
+        update_message: 'Agregar libro',
       });
-    }
-    
-    fetchRegistros = () => {
-        let headers = new Headers();
-        headers.append("Content-Type", "application/json");
-        fetch("http://localhost:8000/libros", {
-          method: "GET",
-          headers: headers,
-        })
-          .then((respuesta) => respuesta.json())
-          .then((resultado) => {
-            console.log("resultado: ", resultado);
-            this.setState({
-              registros: resultado,
-            });
-        })
-        .catch((error) => console.log("error: ", error));
-    };
-
-
-    addRegistro = (e) => {
-        e.preventDefault();
-        var headers = new Headers();
-        headers.append("Content-Type", "application/json");
-        var body = JSON.stringify({
-            titulo: this.state.titulo,
-            isbn: this.state.isbn,
-            anio_publicacion: this.state.anio_publicacion,
-            descripcion: this.state.descripcion,
-            //autor: this.state.autor,
-            //editorial: this.state.editorial,
-            //categoria: this.state.categoria,
-            ebook: this.state.ebook,
-            precio_electronico: this.state.precio_electronico,
-            tamanio: this.state.tamanio,
-            papel: this.state.papel,
-            precio_fisico: this.state.precio_fisico,
-            lugar_impresion: this.state.lugar_impresion,
-            fecha_impresion: this.state.fecha_impresion,
-            pdf: this.state.pdf,
-            portada: this.state.portada,
-        });
-        console.log("Solicitut mandada");
-        fetch("http://localhost:8000/libros", {
-            method: "POST",
-            headers: headers,
-            body: body
-        }).then((respuesta) => respuesta.json())
-            .then((resultado) => {
-                console.log(resultado);     //para verificar que se haya recibido
-                this.setState({
-                    id_libro: resultado.id_libro,
-                    alerta: true,
-                    msgAlerta: resultado.status,
-                    tipoAlerta: "success",
-                })
-            })
     }
 
     editControl = (item) => {
@@ -127,10 +72,69 @@ export default class Libros extends React.Component {
         fecha_impresion: item.fecha_impresion,
         tamanio: item.tamanio,
         portada_url: item.url,
+        update: true,
+        update_message: "Actualizar libro",
         open: true,
       });
-
+      console.log("id: ", item.id_autor);
     }
+
+    fetchRegistros = () => {
+      let headers = new Headers();
+      headers.append("Content-Type", "application/json");
+      fetch("http://localhost:8000/libros", {
+        method: "GET",
+        headers: headers,
+      })
+        .then((respuesta) => respuesta.json())
+        .then((resultado) => {
+          console.log("resultado: ", resultado);
+          this.setState({
+            registros: resultado,
+          });
+      })
+      .catch((error) => console.log("error: ", error));
+  };
+
+
+  addRegistro = (e) => {
+      e.preventDefault();
+      var headers = new Headers();
+      headers.append("Content-Type", "application/json");
+      var body = JSON.stringify({
+          titulo: this.state.titulo,
+          isbn: this.state.isbn,
+          anio_publicacion: this.state.anio_publicacion,
+          descripcion: this.state.descripcion,
+          //autor: this.state.autor,
+          //editorial: this.state.editorial,
+          //categoria: this.state.categoria,
+          ebook: this.state.ebook,
+          precio_electronico: this.state.precio_electronico,
+          tamanio: this.state.tamanio,
+          papel: this.state.papel,
+          precio_fisico: this.state.precio_fisico,
+          lugar_impresion: this.state.lugar_impresion,
+          fecha_impresion: this.state.fecha_impresion,
+          pdf: this.state.pdf,
+          portada: this.state.portada,
+      });
+      console.log("Solicitut mandada");
+      fetch("http://localhost:8000/libros", {
+          method: "POST",
+          headers: headers,
+          body: body
+      }).then((respuesta) => respuesta.json())
+          .then((resultado) => {
+              console.log(resultado);     //para verificar que se haya recibido
+              this.setState({
+                  id_libro: resultado.id_libro,
+                  alerta: true,
+                  msgAlerta: resultado.status,
+                  tipoAlerta: "success",
+              })
+          })
+  }
 
     editRegistro(id){
 
@@ -207,7 +211,7 @@ export default class Libros extends React.Component {
             </Container>
             <Button variant="info" onClick={(e) => {this.setState({open: true,})}}>Añadir nuevo</Button>
             <Popup open={this.state.open} onClose={this.handlePopupClose} position="center center">
-                <Form onSubmit={this.addRegistro} action="http://localhost:3001/libros">
+                <Form action="http://localhost:3001/libros" onSubmit={(e) => {this.state.update ?  this.editRegistro(e) : this.addRegistro(e)}}>
                 <h2>Registro de libro</h2><hr></hr>
                 <Container className="contenedor-1">
                     <Container className="propietarios">
@@ -264,7 +268,7 @@ export default class Libros extends React.Component {
                         <FormControl type="date" name="fecha_impresion" onChange={this.handleChange} value={this.state.fecha_impresion}/>
                     </Container>
                 </Container>
-                <Button type="submit" className="submit" variant="primary" block>Agregar libro</Button><br></br>
+                <Button type="submit" className="submit" variant="primary" block>{this.state.update_message}</Button><br></br>
                 </Form>
             </Popup>
           </div>

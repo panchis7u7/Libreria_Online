@@ -1,5 +1,5 @@
 import React from 'react';
-import {Container, FormControl, FormLabel, Button, Alert, Row, Table} from 'react-bootstrap';
+import {Container, Form, FormControl, FormLabel, Button, Alert, Row, Table} from 'react-bootstrap';
 import '../../SCSS/otros.scss';
 import Popup from 'reactjs-popup';
 import mexico from '../../Data/México.min.json';
@@ -18,6 +18,7 @@ export default class Autores extends React.Component {
             email: "",
             telefono: "",
             url: "",
+            id_localidad: "",
             localidad: "",
             provincia: "",
             alerta: false,
@@ -49,6 +50,7 @@ export default class Autores extends React.Component {
         enail: "",
         telefono: "",
         url: "",
+        id_localidad: "",
         provincia: "",
         localidad: "",
         localidades: [],
@@ -81,6 +83,7 @@ export default class Autores extends React.Component {
         direccion: item.direccion,
         email: item.email,
         url: item.url,
+        id_localidad: item.id_localidad,
         provincia: item.provincia,
         localidad: item.localidad,
         telefono: item.telefono,
@@ -115,7 +118,8 @@ export default class Autores extends React.Component {
       .catch((error) => console.log("error: ", error));
   };
 
-  addRegistro = () => {
+  addRegistro = (e) => {
+    e.preventDefault();
       var headers = new Headers();
       headers.append("Content-Type", "application/json");
       var body = JSON.stringify({
@@ -125,6 +129,7 @@ export default class Autores extends React.Component {
           email: this.state.email,
           telefono: this.state.telefono,
           url: this.state.url,
+          id_localidad: this.state.id_localidad,
           localidad: this.state.localidad,
           provincia: this.state.provincia,
       })
@@ -155,7 +160,8 @@ export default class Autores extends React.Component {
           });
   };
 
-    editRegistro(){
+    editRegistro(e){
+      e.preventDefault();
       var headers = new Headers();
       headers.append("Content-Type", "application/json");
       var body = JSON.stringify({
@@ -165,6 +171,7 @@ export default class Autores extends React.Component {
           email: this.state.email,
           telefono: this.state.telefono,
           url: this.state.url,
+          id_localidad: this.state.id_localidad,
           localidad: this.state.localidad,
           provincia: this.state.provincia,
       })
@@ -258,7 +265,7 @@ export default class Autores extends React.Component {
             </Container>
             <Button variant="info" onClick={() => {this.setState({open: true,})}}>Añadir nuevo</Button>
             <Popup open={this.state.open} onClose={() => {this.handlePopupClose()}} position="bottom center">
-                <div className = "popup-root">
+                <Form className = "popup-root" action="http://localhost:3001/actores" onSubmit={(e) => {this.state.update ?  this.editRegistro(e) : this.addRegistro(e)}}>
                     <h2>Registro de autor</h2><hr></hr>
                     <Container className="contenedor-2">
                         <div className="largos">
@@ -300,10 +307,10 @@ export default class Autores extends React.Component {
                             </FormControl>
                         </div>
                     </Container>
-                    <Button id="btnSend" type="submit" onClick={() => {this.state.update ?  this.editRegistro() : this.addRegistro()}} variant="primary" block>
+                    <Button id="btnSend" type="submit" variant="primary" block>
                       {this.state.update_message}
                     </Button><br></br>
-                </div>
+                </Form>
                 </Popup>
             </div>
         );

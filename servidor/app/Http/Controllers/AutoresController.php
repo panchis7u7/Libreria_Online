@@ -90,6 +90,13 @@ class AutoresController extends Controller
                 'telefono' => $request->input('telefono'),
                 'url' => $request->input('url')
             ));
+
+            DB::table('localidades')
+            ->where('id_localidad',$request->input('id_localidad'))
+            ->update(array(
+                'nombre' => $request->input('localidad')
+            ));
+
             DB::commit();
             return response()->json(['id_autor' => $id, 'status' => 'Actualizacion Exitosa!', 'status_code' => '1']);
         } catch (\Exception $e){
