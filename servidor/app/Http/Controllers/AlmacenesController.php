@@ -73,7 +73,28 @@ class AlmacenesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        DB::beginTransaction();
+        try {
+            DB::table('almacenes')
+            ->where('id_almacen',$id)
+            ->update(array(
+                'nombre' => $request->input('nombre'),
+                'direccion' => $request->input('direccion'),
+                'telefono' => $request->input('telefono'),
+            ));
+
+            DB::table('localidades')
+            ->where('id_localidad',$request->input('id_localidad'))
+            ->update(array(
+                'nombre' => $request->input('localidad')
+            ));
+
+            DB::commit();
+            return response()->json(['id_autor' => $id, 'status' => 'Actualizacion Exitosa!', 'status_code' => '1']);
+        } catch (\Exception $e){
+            DB::rollback();
+            return response()->json(['id_autor' => '-1', 'status' => 'Actualizacion Fallida!', 'status_code' => '-1', 'error' => $e, 'id' => $id]);
+        }
     }
 
     /**
@@ -84,6 +105,17 @@ class AlmacenesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        DB::beginTransaction();
+        try {
+            DB::table('almacenes')
+            ->where('id_almacen',$id)
+            ->delete();
+
+            DB::commit();
+            return response()->json(['id_almacen' => $id, 'status' => 'Eliminacion Exitosa!', 'status_code' => '1']);
+        } catch (\Exception $e){
+            DB::rollback();
+            return response()->json(['id_almacen' => '-1', 'status' => 'Eliminacion Fallida!', 'status_code' => '-1', 'error' => $e, 'id' => $id]);
+        }
     }
 }

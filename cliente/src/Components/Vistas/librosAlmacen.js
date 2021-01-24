@@ -167,8 +167,32 @@ export default class Almacenes extends React.Component {
           });
     }
 
-    eliminarRegistro() {
-
+    eliminarRegistro(id_almacen) {
+      var headers = new Headers();
+      headers.append("Content-Type", "application/json");
+      fetch(`http://localhost:8000/almacenes/${id_almacen}`, {        //revisar que efectivamente sea ../insert
+          method: "DELETE",
+          headers: headers,
+          body: JSON.stringify({})
+      }).then((respuesta) => respuesta.json())
+        .then((resultado) => {
+            console.log(resultado);    
+            this.setState({
+                id_almacen: "",
+                nombre: "",
+                direccion: "",
+                provincia: "",
+                localidad: "",
+                telefono: "",
+                alerta: true,
+                msgAlerta: resultado.status,
+                tipoAlerta: "success",
+                disable_localidades: true,
+                open: false,
+                update: false,
+            });
+            this.fetchRegistros();
+        });
     }
 
 /************************************************************************************************************************/

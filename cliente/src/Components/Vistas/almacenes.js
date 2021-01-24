@@ -183,42 +183,35 @@ export default class Almacenes extends React.Component {
           });
     }
 
+  //---------------------------- BAJAS ----------------------------
+
     eliminarRegistro(id_almacen) {
       var headers = new Headers();
       headers.append("Content-Type", "application/json");
-      var body = JSON.stringify({
-          nombre: this.state.nombre,
-          direccion: this.state.direccion,
-          telefono: this.state.telefono,
-          id_localidad: this.state.id_localidad,
-          localidad: this.state.localidad,
-          provincia: this.state.provincia,
-      })
-      console.log("A enviar actualizacion: ", body);
       fetch(`http://localhost:8000/almacenes/${id_almacen}`, {        //revisar que efectivamente sea ../insert
           method: "DELETE",
           headers: headers,
-          body: body
-      }).then((respuesta) => respuesta.json())
-          .then((resultado) => {
-              console.log(resultado);    
-              this.setState({
-                  id_almacen: "",
-                  nombre: "",
-                  direccion: "",
-                  provincia: "",
-                  localidad: "",
-                  telefono: "",
-                  alerta: true,
-                  msgAlerta: resultado.status,
-                  tipoAlerta: "success",
-                  disable_localidades: true,
-                  open: false,
-                  update: false,
-                  update_message: 'Agregar almacen',
-              });
-              this.fetchRegistros();
+          body: JSON.stringify({}),
+      })
+      .then((respuesta) => respuesta.json())
+      .then((resultado) => {
+          console.log(resultado);    
+          this.setState({
+              id_almacen: "",
+              nombre: "",
+              direccion: "",
+              provincia: "",
+              localidad: "",
+              telefono: "",
+              alerta: true,
+              msgAlerta: resultado.status,
+              tipoAlerta: "success",
+              disable_localidades: true,
+              open: false,
+              update: false,
           });
+          this.fetchRegistros();
+      });
     }
 
 /************************************************************************************************************************/

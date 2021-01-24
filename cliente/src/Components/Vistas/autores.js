@@ -203,8 +203,33 @@ export default class Autores extends React.Component {
           });
     }
 
-    eliminarRegistro(id) {
-
+    eliminarRegistro(id_autor) {
+      var headers = new Headers();
+      headers.append("Content-Type", "application/json");
+      fetch(`http://localhost:8000/autores/${id_autor}`, {        //revisar que efectivamente sea ../insert
+          method: "DELETE",
+          headers: headers,
+          body: JSON.stringify({})
+      })
+      .then((respuesta) => respuesta.json())
+      .then((resultado) => {
+          console.log(resultado);    
+          this.setState({
+              id_almacen: "",
+              nombre: "",
+              direccion: "",
+              provincia: "",
+              localidad: "",
+              telefono: "",
+              alerta: true,
+              msgAlerta: resultado.status,
+              tipoAlerta: "success",
+              disable_localidades: true,
+              open: false,
+              update: false,
+          });
+          this.fetchRegistros();
+      });
     }
 
 /************************************************************************************************************************/
@@ -253,7 +278,7 @@ export default class Autores extends React.Component {
                             <Button onClick={() => {this.editControl(item)}} variant="info">Actualizar</Button>
                           </td>
                           <td key="button2" className="align-middle">
-                            <Button onClick={() => {this.eliminarRegistro(item.id_libro)}} variant="danger">Eliminar</Button>
+                            <Button onClick={() => {this.eliminarRegistro(item.id_autor)}} variant="danger">Eliminar</Button>
                           </td>
                         </tr>
                       );

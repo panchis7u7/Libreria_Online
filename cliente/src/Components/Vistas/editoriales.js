@@ -128,24 +128,25 @@ export default class Editoriales extends React.Component {
             method: "POST",
             headers: headers,
             body: body
-        }).then((respuesta) => respuesta.json())
-            .then((resultado) => {
-                console.log(resultado);     //para verificar que se haya recibido
-                this.setState({
-                    id_editorial: "",
-                    nombre: "",
-                    direccion: "",
-                    localidad: "",
-                    url: "",
-                    telefono: "",
-                    alerta: true,
-                    msgAlerta: resultado.status,
-                    tipoAlerta: "success",
-                    disable_localidades: true,
-                    open: false,
-                });
-                this.fetchRegistros();
+        })
+        .then((respuesta) => respuesta.json())
+        .then((resultado) => {
+            console.log(resultado);     //para verificar que se haya recibido
+            this.setState({
+                id_editorial: "",
+                nombre: "",
+                direccion: "",
+                localidad: "",
+                url: "",
+                telefono: "",
+                alerta: true,
+                msgAlerta: resultado.status,
+                tipoAlerta: "success",
+                disable_localidades: true,
+                open: false,
             });
+          this.fetchRegistros();
+        });
     };
     
     editRegistro(e){
@@ -166,31 +167,59 @@ export default class Editoriales extends React.Component {
           method: "PUT",
           headers: headers,
           body: body
-      }).then((respuesta) => respuesta.json())
-          .then((resultado) => {
-              console.log(resultado);    
-              this.setState({
-                  id_editorial: "",
-                  nombre: "",
-                  direccion: "",
-                  url: "",
-                  provincia: "",
-                  localidad: "",
-                  telefono: "",
-                  alerta: true,
-                  msgAlerta: resultado.status,
-                  tipoAlerta: "success",
-                  disable_localidades: true,
-                  open: false,
-                  update: false,
-                  update_message: 'Agregar editorial',
-              });
-              this.fetchRegistros();
+      })
+      .then((respuesta) => respuesta.json())
+      .then((resultado) => {
+          console.log(resultado);    
+          this.setState({
+              id_editorial: "",
+              nombre: "",
+              direccion: "",
+              url: "",
+              provincia: "",
+              localidad: "",
+              telefono: "",
+              alerta: true,
+              msgAlerta: resultado.status,
+              tipoAlerta: "success",
+              disable_localidades: true,
+              open: false,
+              update: false,
+              update_message: 'Agregar editorial',
           });
+          this.fetchRegistros();
+      });
     }
 
-    eliminarRegistro() {
-
+  //---------------------------- BAJAS ----------------------------
+  
+    eliminarRegistro(id_editorial) {
+      var headers = new Headers();
+      headers.append("Content-Type", "application/json");
+      fetch(`http://localhost:8000/editoriales/${id_editorial}`, {        //revisar que efectivamente sea ../insert
+          method: "DELETE",
+          headers: headers,
+          body: JSON.stringify({}),
+      })
+      .then((respuesta) => respuesta.json())
+      .then((resultado) => {
+          console.log(resultado);    
+          this.setState({
+              id_almacen: "",
+              nombre: "",
+              direccion: "",
+              provincia: "",
+              localidad: "",
+              telefono: "",
+              alerta: true,
+              msgAlerta: resultado.status,
+              tipoAlerta: "success",
+              disable_localidades: true,
+              open: false,
+              update: false,
+          });
+          this.fetchRegistros();
+      });
     }
 
 /************************************************************************************************************************/
@@ -237,7 +266,7 @@ export default class Editoriales extends React.Component {
                             <Button onClick={() => {this.editControl(item)}} variant="info">Actualizar</Button>
                           </td>
                           <td key="button2" className="align-middle">
-                            <Button onClick={() => {this.eliminarRegistro(item.id_libro)}} variant="danger">Eliminar</Button>
+                            <Button onClick={() => {this.eliminarRegistro(item.id_editorial)}} variant="danger">Eliminar</Button>
                           </td>
                         </tr>
                       );
