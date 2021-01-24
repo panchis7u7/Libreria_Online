@@ -2,27 +2,26 @@ import React from 'react';
 import {Container,Form, FormControl, FormLabel, Button, Alert, Row, Table} from 'react-bootstrap';
 import '../../SCSS/otros.scss'
 import Popup from 'reactjs-popup';
-import mexico from '../../Data/México.min.json';
 
 export default class Almacenes extends React.Component {
     constructor(props){
         super(props);
         this.state = {
             registros: [],
-            localidades: [],
+            id_libro: "",
             id_almacen: "",
-            nombre: "",
-            direccion: "",
-            localidad: "",
-            provincia: "",
-            telefono: "",
+            nombre_lib: "",
+            nombre_alm: "",
+            autor: "",
+            editorial: "",
+            isbn: "",
+            stock: "",
             alerta: false,
             msgAlerta: "",
             tipoAlerta: "success",
-            disable_localidades: true,
             open: false,
             update: false,
-            update_message: 'Agregar almacen',
+            update_message: 'Agregar libro en almacen',
         };
     }
 
@@ -38,49 +37,35 @@ export default class Almacenes extends React.Component {
 
     handlePopupClose = () => {
       this.setState({
+        id_libro: "",
         id_almacen: "",
-        nombre: "",
-        direccion: "",
-        telefono: "",
-        id_localidad: "",
-        provincia: "",
-        localidad: "",
-        localidades: [],
+        nombre_lib: "",
+        nombre_alm: "",
+        autor: "",
+        editorial: "",
+        isbn: "",
+        stock: "",
         disable_localidades: true,
         open: false,
         update: false,
-        update_message: "Agregar almacen",
+        update_message: "Agregar libro en almacen",
       });
-    }
-
-    estadoChange = (e) => {
-      this.handleChange(e);
-      if (e.target.value !== ''){
-        var municipios = mexico.find(item => item.nombre === e.target.value).municipios;
-        var nombres = [];
-        municipios.forEach(element => {
-          nombres.push(element.nombre);
-        });
-        this.setState({localidades: nombres, disable_localidades: false});
-        } else {
-          this.setState({localidades: [], disable_localidades: true});
-        }
     }
 
     editControl = (item) => {
       this.setState({
+        id_libro: item.id_libro,
         id_almacen: item.id_almacen,
-        nombre: item.nombre,
-        direccion: item.direccion,
-        telefono: item.telefono,
-        id_localidad: item.id_localidad,
-        provincia: item.provincia,
-        localidad: item.localidad,
-        disable_localidades: false,
+        nombre_lib: item.nombre_lib,
+        nombre_alm: item.nombre_alm,
+        autor: item.autor,
+        editorial: item.editorial,
+        isbn: item.isbn,
+        stock: item.stock,
         update: true,
-        update_message: "Actualizar almacen",
+        update_message: "Actualizar libro en almacen",
         open: true,
-      });
+      });           //revisar a partir de aqui hasta el render
       const e = {
         target: {
           value: item.provincia,
@@ -192,7 +177,7 @@ export default class Almacenes extends React.Component {
       return(
           <div className="main">
             <Container>
-            <h1 className="h1">Almacenes</h1>
+            <h1 className="h1">Libros almacenados</h1>
               {
                 this.state.alerta === true ? (
                   <Alert variant={this.state.tipoAlerta} onClose={() => {
@@ -203,15 +188,20 @@ export default class Almacenes extends React.Component {
                     <Alert.Heading>{this.state.msgAlerta}</Alert.Heading>
                   </Alert>
                 ) : null}
+              <FormLabel>Almacen:</FormLabel>
+                    <FormControl as="select" name="autor">
+                        <option value="">ejemplo1</option>
+                        <option value="">ejemplo2</option>
+                    </FormControl>
               <Row>
                 <Table striped bordered hover size="sm" >
                   <thead>
                     <tr>
-                      <th className="align-middle">Nombre</th>
-                      <th className="align-middle">Dirección</th>
-                      <th className="align-middle">Localidad</th>
-                      <th className="align-middle">Provincia</th>
-                      <th className="align-middle">Telefono</th>
+                      <th className="align-middle">Titulo</th>
+                      <th className="align-middle">ISBN</th>
+                      <th className="align-middle">Autor</th>
+                      <th className="align-middle">Editorial</th>
+                      <th className="align-middle">Libros en stock</th>
                       <th className="align-middle" colSpan="2">Acciones</th>
                     </tr>
                   </thead>
@@ -237,46 +227,23 @@ export default class Almacenes extends React.Component {
                 </Table>
               </Row>
             </Container>
-            <Button variant="info" onClick={() => {this.setState({open: true,})}}>Añadir almacen</Button>
+            <Button variant="info" onClick={() => {this.setState({open: true,})}}>Añadir libro en almacen</Button>
             <Popup open={this.state.open} onClose={() => {this.handlePopupClose()}} position="bottom center">
-                    <Form className = "popup-root" action="http://localhost:3001/almacenes" onSubmit={(e) => {this.state.update ?  this.editRegistro(e) : this.addRegistro(e)}}>
+                    <Form className = "popup-root" action="http://localhost:3001/libroAlmacen" onSubmit={(e) => {this.state.update ?  this.editRegistro(e) : this.addRegistro(e)}}>
                         <h2>Registro de almacén</h2><hr></hr>
                         <Container className="contenedor-2">
                             <div className="largos">
-                                <FormLabel>Nombre:</FormLabel>
-                                <FormControl type="text" name="nombre" placeholder="Nombre." onChange={this.handleChange} value={this.state.nombre}  required={true}/>
-                                <FormLabel>Dirección:</FormLabel>
-                                <FormControl type="text" name="direccion" placeholder="Dirección." onChange={this.handleChange} value={this.state.direccion} />
-                                <FormLabel>Teléfono:</FormLabel>
-                                <FormControl type="tel" name="telefono" placeholder="Telefono (10 digitos)." onChange={this.handleChange} value={this.state.telefono}/>
+                                <FormLabel>Almacen:</FormLabel>
+                                <FormControl as="select" name="nombre_alm" placeholder="Nombre de almacen" onChangeCapture={this.estadoChange} value={this.state.nombre_alm}>
+                                </FormControl>
+                                <FormLabel>Titulo:</FormLabel>
+                                <FormControl type="text" name="titulo" placeholder="Título." onChange={this.handleChange} value={this.state.titulo} required={true}/>
+                                <FormLabel>ISBN:</FormLabel>
+                                <FormControl type="text" name="isbn" placeholder="ISBN." onChange={this.handleChange} value={this.state.isbn} required={true}/>
                             </div>
                         </Container>
-                        <Container className="contenedor-1">
-                          <div className="propietarios">
-                              <FormLabel>Provincia:</FormLabel>
-                              <FormControl as="select" name="provincia" placeholder="Provincias" onChangeCapture={this.estadoChange} value={this.state.provincia}>
-                                <option></option>
-                                {mexico.map((estado, index) => {
-                                  return (
-                                    <option key={index}>{estado.nombre}</option>
-                                  );
-                                })}
-                              </FormControl>
-                          </div>
-                          <div className="propietarios">
-                              <FormLabel>Localidad:</FormLabel>
-                              <FormControl as="select" disabled={this.state.disable_localidades} name="localidad" placeholder="Localidades" onChange={this.handleChange} value={this.state.localidad}>
-                                {
-                                  this.state.localidades.map((localidad, index) => {
-                                    return(
-                                      <option key={index}>{localidad}</option>
-                                    );
-                                  })}
-                              </FormControl>
-                          </div>
-                        </Container>
                         <Button id="btnSend" type="submit" variant="primary" block>
-                          {this.state.update_message}
+                            {this.state.update_message}
                         </Button><br></br>
                     </Form>
                 </Popup>
