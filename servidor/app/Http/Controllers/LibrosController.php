@@ -113,7 +113,7 @@ class LibrosController extends Controller
     }
 
     ////////////////////////////////////////////////
-    //                 Consultas
+    //                 Consultas                  //
     ////////////////////////////////////////////////
 
     public function getBasic(){

@@ -37,7 +37,7 @@ CREATE TABLE IF NOT EXISTS clientes (
 	direccion VARCHAR(80), 
 	email VARCHAR(30), 
 	telefono VARCHAR(12), 
-	contrasena VARBINARY(255) NOT NULL,
+	contrasena VARCHAR(255) NOT NULL,
 	id_localidad INT NOT NULL, 
 	FOREIGN KEY (id_localidad) REFERENCES localidades(id_localidad) ON UPDATE CASCADE ON DELETE CASCADE
 );
