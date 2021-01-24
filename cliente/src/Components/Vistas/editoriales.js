@@ -96,7 +96,7 @@ export default class Editoriales extends React.Component {
     fetchRegistros = () => {
         let headers = new Headers();
         headers.append("Content-Type", "application/json");
-        fetch("http://localhost:3001/editoriales", {
+        fetch("http://localhost:8000/editoriales", {
           method: "GET",
           headers: headers,
         })
@@ -124,7 +124,7 @@ export default class Editoriales extends React.Component {
             id_localidad: this.state.id_localidad,
         })
         console.log("A enviar: ", body);
-        fetch("http://localhost:3001/editoriales", {        //revisar que efectivamente sea ../insert
+        fetch("http://localhost:8000/editoriales", {        //revisar que efectivamente sea ../insert
             method: "POST",
             headers: headers,
             body: body
@@ -248,7 +248,7 @@ export default class Editoriales extends React.Component {
             </Container>
             <Button variant="info" onClick={() => {this.setState({open: true,})}}>Añadir nuevo</Button>
             <Popup open={this.state.open} onClose={() => {this.handlePopupClose()}} position="bottom center">
-                <Form className = "popup-root" action="http://localhost:3001/editorial" onSubmit={(e) => {this.state.update ?  this.editRegistro(e) : this.addRegistro(e)}}>
+                <Form className = "popup-root" action="http://localhost:8000/editoriales" onSubmit={(e) => {this.state.update ?  this.editRegistro(e) : this.addRegistro(e)}}>
                     <h2>Registro de editorial</h2><hr></hr>
                         <Container className="contenedor-2">
                             <div className="largos">

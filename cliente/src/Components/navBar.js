@@ -17,7 +17,7 @@ export default function NavBar(){
                             <ReactBootStrap.Nav.Link href="/editoriales"><span className="navItem">Editoriales</span></ReactBootStrap.Nav.Link>
                         <ReactBootStrap.NavDropdown title="Contenido" id="collasible-nav-dropdown">
                                 <ReactBootStrap.NavDropdown.Item href="/almacenes">Almacenes</ReactBootStrap.NavDropdown.Item>
-                                <ReactBootStrap.NavDropdown.Item href="/categoria"><span className="navItem">Categorias</span></ReactBootStrap.NavDropdown.Item>
+                                <ReactBootStrap.NavDropdown.Item href="/librosAlmacen">Libros almacenados</ReactBootStrap.NavDropdown.Item>
                         </ReactBootStrap.NavDropdown>
                     </ReactBootStrap.Nav>
                 </ReactBootStrap.Navbar.Collapse>

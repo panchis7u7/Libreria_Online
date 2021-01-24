@@ -63,6 +63,7 @@ CREATE TABLE IF NOT EXISTS editoriales (
 
 CREATE TABLE IF NOT EXISTS almacenes (
 	id_almacen INT UNIQUE NOT NULL AUTO_INCREMENT PRIMARY KEY, 
+	nombre VARCHAR(20),
 	direccion VARCHAR(80), 
 	telefono VARCHAR(12), 
 	id_localidad INT NOT NULL,

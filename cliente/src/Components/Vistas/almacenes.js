@@ -101,17 +101,18 @@ export default class Almacenes extends React.Component {
           .then((resultado) => {
             console.log("resultado: ", resultado);
             this.setState({
-              registros: resultado.response,
+              registros: resultado,
             });
         })
         .catch((error) => console.log("error: ", error));
     };
 
-    addRegistro = () => {
+    addRegistro = (e) => {
+        e.preventDefault();
         var headers = new Headers();
         headers.append("Content-Type", "application/json");
         var body = JSON.stringify({
-            id_editorial: this.state.id_editorial,
+            id_almacen: this.state.id_almacen,
             nombre: this.state.nombre,
             direccion: this.state.direccion,
             localidad: this.state.localidad,
@@ -134,7 +135,7 @@ export default class Almacenes extends React.Component {
                     localidad: "",
                     telefono: "",
                     alerta: true,
-                    sgAlerta: resultado.status,
+                    msgAlerta: resultado.status,
                     tipoAlerta: "success",
                     disable_localidades: true,
                     open: false,
@@ -182,8 +183,42 @@ export default class Almacenes extends React.Component {
           });
     }
 
-    eliminarRegistro() {
-
+    eliminarRegistro(id_almacen) {
+      var headers = new Headers();
+      headers.append("Content-Type", "application/json");
+      var body = JSON.stringify({
+          nombre: this.state.nombre,
+          direccion: this.state.direccion,
+          telefono: this.state.telefono,
+          id_localidad: this.state.id_localidad,
+          localidad: this.state.localidad,
+          provincia: this.state.provincia,
+      })
+      console.log("A enviar actualizacion: ", body);
+      fetch(`http://localhost:8000/almacenes/${id_almacen}`, {        //revisar que efectivamente sea ../insert
+          method: "DELETE",
+          headers: headers,
+          body: body
+      }).then((respuesta) => respuesta.json())
+          .then((resultado) => {
+              console.log(resultado);    
+              this.setState({
+                  id_almacen: "",
+                  nombre: "",
+                  direccion: "",
+                  provincia: "",
+                  localidad: "",
+                  telefono: "",
+                  alerta: true,
+                  msgAlerta: resultado.status,
+                  tipoAlerta: "success",
+                  disable_localidades: true,
+                  open: false,
+                  update: false,
+                  update_message: 'Agregar almacen',
+              });
+              this.fetchRegistros();
+          });
     }
 
 /************************************************************************************************************************/
@@ -228,7 +263,7 @@ export default class Almacenes extends React.Component {
                             <Button onClick={() => {this.editControl(item)}} variant="info">Actualizar</Button>
                           </td>
                           <td key="button2" className="align-middle">
-                            <Button onClick={() => {this.eliminarRegistro(item.id_libro)}} variant="danger">Eliminar</Button>
+                            <Button onClick={() => {this.eliminarRegistro(item.id_almacen)}} variant="danger">Eliminar</Button>
                           </td>
                         </tr>
                       );
@@ -239,7 +274,7 @@ export default class Almacenes extends React.Component {
             </Container>
             <Button variant="info" onClick={() => {this.setState({open: true,})}}>Añadir almacen</Button>
             <Popup open={this.state.open} onClose={() => {this.handlePopupClose()}} position="bottom center">
-                    <Form className = "popup-root" action="http://localhost:3001/almacenes" onSubmit={(e) => {this.state.update ?  this.editRegistro(e) : this.addRegistro(e)}}>
+                    <Form className = "popup-root" action="http://localhost:8000/almacenes" onSubmit={(e) => {this.state.update ?  this.editRegistro(e) : this.addRegistro(e)}}>
                         <h2>Registro de almacén</h2><hr></hr>
                         <Container className="contenedor-2">
                             <div className="largos">

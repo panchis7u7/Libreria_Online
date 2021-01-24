@@ -4,6 +4,7 @@ import Libros from './Vistas/libros';
 import Autores from './Vistas/autores';
 import Editoriales from './Vistas/editoriales';
 import Almacenes from './Vistas/almacenes';
+import LibrosAlmacen from './Vistas/librosAlmacen';
 import NavBar from './navBar';
 
 export default function Rutas() {
@@ -17,6 +18,7 @@ export default function Rutas() {
           <Route path="/autores" key="" component={Autores}></Route>
           <Route path="/editoriales" key="" component={Editoriales}></Route>
           <Route path="/almacenes" key="" component={Almacenes}></Route>
+          <Route path="/librosAlmacen" key="" component={LibrosAlmacen}></Route>
         </Switch>
       </Router>
     </div>

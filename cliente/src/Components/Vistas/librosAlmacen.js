@@ -202,21 +202,18 @@ export default class Almacenes extends React.Component {
                       <th className="align-middle">Autor</th>
                       <th className="align-middle">Editorial</th>
                       <th className="align-middle">Libros en stock</th>
-                      <th className="align-middle" colSpan="2">Acciones</th>
+                      <th className="align-middle">Eliminar</th>
                     </tr>
                   </thead>
                   <tbody>
                     {this.state.registros.map((item) => {
                       return (
-                        <tr key={item.id_almacen}>
-                          <td className="align-middle">{item.nombre}</td>
-                          <td className="align-middle">{item.direccion}</td>
-                          <td className="align-middle">{item.localidad}</td>
-                          <td className="align-middle">{item.provincia}</td>
-                          <td className="align-middle">{item.telefono}</td>
-                          <td className="align-middle">
-                            <Button onClick={() => {this.editControl(item)}} variant="info">Actualizar</Button>
-                          </td>
+                        <tr key={item.id_libro}>
+                          <td className="align-middle">{item.titulo}</td>
+                          <td className="align-middle">{item.isbn}</td>
+                          <td className="align-middle">{item.autor}</td>
+                          <td className="align-middle">{item.editorial}</td>
+                          <td className="align-middle">{item.stock}</td>
                           <td key="button2" className="align-middle">
                             <Button onClick={() => {this.eliminarRegistro(item.id_libro)}} variant="danger">Eliminar</Button>
                           </td>
