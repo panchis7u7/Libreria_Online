@@ -2,12 +2,14 @@ import React from 'react';
 import {Container,Form, FormControl, FormLabel, Button, Alert, Row, Table} from 'react-bootstrap';
 import '../../SCSS/otros.scss'
 import Popup from 'reactjs-popup';
+import mexico from '../../Data/México.min.json';
 
 export default class Editoriales extends React.Component {
     constructor(props){
         super(props);
         this.state = {
             registros: [],
+            localidades: [],
             id_editorial: "",
             nombre: "",
             direccion: "",
@@ -18,7 +20,10 @@ export default class Editoriales extends React.Component {
             alerta: false,
             msgAlerta: "",
             tipoAlerta: "success",
+            disable_localidades: true,
             open: false,
+            update: false,
+            update_message: 'Agregar editorial',
         };
     }
 
@@ -32,10 +37,66 @@ export default class Editoriales extends React.Component {
         });
     };
 
+    handlePopupClose = () => {
+      this.setState({
+        id_editorial: "",
+        nombre: "",
+        direccion: "",
+        telefono: "",
+        url: "",
+        id_localidad: "",
+        provincia: "",
+        localidad: "",
+        localidades: [],
+        disable_localidades: true,
+        open: false,
+        update: false,
+        update_message: "Agregar editorial",
+      });
+    }
+
+    estadoChange = (e) => {
+      this.handleChange(e);
+      if (e.target.value !== ''){
+        var municipios = mexico.find(item => item.nombre === e.target.value).municipios;
+        var nombres = [];
+        municipios.forEach(element => {
+          nombres.push(element.nombre);
+        });
+        this.setState({localidades: nombres, disable_localidades: false});
+        } else {
+          this.setState({localidades: [], disable_localidades: true});
+        }
+    }
+
+    editControl = (item) => {
+      this.setState({
+        id_editorial: item.id_editorial,
+        nombre: item.nombre,
+        direccion: item.direccion,
+        url: item.url,
+        id_localidad: item.id_localidad,
+        provincia: item.provincia,
+        localidad: item.localidad,
+        telefono: item.telefono,
+        disable_localidades: false,
+        update: true,
+        update_message: "Actualizar editorial",
+        open: true,
+      });
+      const e = {
+        target: {
+          value: item.provincia,
+        }
+      }
+      console.log("id: ", item.id_editorial);
+      this.estadoChange(e);
+    }
+
     fetchRegistros = () => {
         let headers = new Headers();
         headers.append("Content-Type", "application/json");
-        fetch("http://localhost:3001/editoriales", {
+        fetch("http://localhost:8000/editoriales", {
           method: "GET",
           headers: headers,
         })
@@ -60,39 +121,105 @@ export default class Editoriales extends React.Component {
             provincia: this.state.provincia,
             url: this.state.url,
             telefono: this.state.telefono,
+            id_localidad: this.state.id_localidad,
         })
-        fetch("http://localhost:3001/editoriales/insert", {        //revisar que efectivamente sea ../insert
+        console.log("A enviar: ", body);
+        fetch("http://localhost:8000/editoriales", {        //revisar que efectivamente sea ../insert
             method: "POST",
             headers: headers,
             body: body
-        }).then((respuesta) => respuesta.json())
-            .then((resultado) => {
-                console.log(resultado);     //para verificar que se haya recibido
-                this.setState({
-                    id_editorial: "",
-                    nombre: "",
-                    direccion: "",
-                    localidad: "",
-                    url: "",
-                    telefono: "",
-                    alerta: true,
-                    msgAlerta: resultado.response,
-                    tipoAlerta: "success",
-                });
-                this.fetchRegistros();
+        })
+        .then((respuesta) => respuesta.json())
+        .then((resultado) => {
+            console.log(resultado);     //para verificar que se haya recibido
+            this.setState({
+                id_editorial: "",
+                nombre: "",
+                direccion: "",
+                localidad: "",
+                url: "",
+                telefono: "",
+                alerta: true,
+                msgAlerta: resultado.status,
+                tipoAlerta: "success",
+                disable_localidades: true,
+                open: false,
             });
+          this.fetchRegistros();
+        });
     };
     
-    editRegistro(){
-
+    editRegistro(e){
+      e.preventDefault();
+      var headers = new Headers();
+      headers.append("Content-Type", "application/json");
+      var body = JSON.stringify({
+          nombre: this.state.nombre,
+          direccion: this.state.direccion,
+          telefono: this.state.telefono,
+          url: this.state.url,
+          id_localidad: this.state.id_localidad,
+          localidad: this.state.localidad,
+          provincia: this.state.provincia,
+      })
+      console.log("A enviar actualizacion: ", body);
+      fetch(`http://localhost:8000/editorial/${this.state.id_editorial}`, {        //revisar que efectivamente sea ../insert
+          method: "PUT",
+          headers: headers,
+          body: body
+      })
+      .then((respuesta) => respuesta.json())
+      .then((resultado) => {
+          console.log(resultado);    
+          this.setState({
+              id_editorial: "",
+              nombre: "",
+              direccion: "",
+              url: "",
+              provincia: "",
+              localidad: "",
+              telefono: "",
+              alerta: true,
+              msgAlerta: resultado.status,
+              tipoAlerta: "success",
+              disable_localidades: true,
+              open: false,
+              update: false,
+              update_message: 'Agregar editorial',
+          });
+          this.fetchRegistros();
+      });
     }
 
-    updateInput(){
-
-    }
-
-    eliminarRegistro() {
-
+  //---------------------------- BAJAS ----------------------------
+  
+    eliminarRegistro(id_editorial) {
+      var headers = new Headers();
+      headers.append("Content-Type", "application/json");
+      fetch(`http://localhost:8000/editoriales/${id_editorial}`, {        //revisar que efectivamente sea ../insert
+          method: "DELETE",
+          headers: headers,
+          body: JSON.stringify({}),
+      })
+      .then((respuesta) => respuesta.json())
+      .then((resultado) => {
+          console.log(resultado);    
+          this.setState({
+              id_almacen: "",
+              nombre: "",
+              direccion: "",
+              provincia: "",
+              localidad: "",
+              telefono: "",
+              alerta: true,
+              msgAlerta: resultado.status,
+              tipoAlerta: "success",
+              disable_localidades: true,
+              open: false,
+              update: false,
+          });
+          this.fetchRegistros();
+      });
     }
 
 /************************************************************************************************************************/
@@ -136,14 +263,10 @@ export default class Editoriales extends React.Component {
                           <td className="align-middle">{item.url}</td>
                           <td className="align-middle">{item.telefono}</td>
                           <td className="align-middle">
-                            <Button onMouseEnter={() => {this.setState({hoverBtn1: true})}} 
-                                    onMouseLeave={() => {this.setState({hoverBtn1: false})}}
-                                    onClick={() => {this.editRegistro(item.id_editorial); this.setState({open: true,});}} variant="info">Actualizar</Button>
+                            <Button onClick={() => {this.editControl(item)}} variant="info">Actualizar</Button>
                           </td>
-                          <td className="align-middle">
-                            <Button onMouseEnter={() => {this.setState({hoverBtn1: true})}} 
-                                    onMouseLeave={() => {this.setState({hoverBtn1: false})}} 
-                                    onClick={() => {this.eliminarRegistro(item.id_editorial)}} variant="danger">Eliminar</Button>
+                          <td key="button2" className="align-middle">
+                            <Button onClick={() => {this.eliminarRegistro(item.id_editorial)}} variant="danger">Eliminar</Button>
                           </td>
                         </tr>
                       );
@@ -153,9 +276,9 @@ export default class Editoriales extends React.Component {
               </Row>
             </Container>
             <Button variant="info" onClick={() => {this.setState({open: true,})}}>Añadir nuevo</Button>
-            <Popup open={this.state.open} onClose={() => {this.setState({open: false,});}} position="center center">
-                    <Form onSubmit={this.addRegistro} action="http://localhost:3001/editoriales">
-                        <h2>Registro de editorial</h2><hr></hr>
+            <Popup open={this.state.open} onClose={() => {this.handlePopupClose()}} position="bottom center">
+                <Form className = "popup-root" action="http://localhost:8000/editoriales" onSubmit={(e) => {this.state.update ?  this.editRegistro(e) : this.addRegistro(e)}}>
+                    <h2>Registro de editorial</h2><hr></hr>
                         <Container className="contenedor-2">
                             <div className="largos">
                                 <FormLabel>Nombre:</FormLabel>
@@ -169,17 +292,31 @@ export default class Editoriales extends React.Component {
                         <Container className="contenedor-1">
                             <div className="propietarios">
                                 <FormLabel>Localidad:</FormLabel>
-                                <FormControl type="text" name="localidad" placeholder="Localidad." onChange={this.handleChange} value={this.state.localidad}/>
+                                <FormControl as="select" name="provincia" placeholder="Provincias" onChangeCapture={this.estadoChange} value={this.state.provincia}>
+                                  <option></option>
+                                  {mexico.map((estado, index) => {
+                                    return (
+                                      <option key={index}>{estado.nombre}</option>
+                                    );
+                                  })}
+                                </FormControl>
                                 <FormLabel>Teléfono:</FormLabel>
                                 <FormControl type="tel" name="telefono" placeholder="Telefono (10 digitos)." onChange={this.handleChange} value={this.state.telefono}/>
                             </div>
                             <div className="propietarios">
                                 <FormLabel>Provincia:</FormLabel>
-                                <FormControl type="text" name="provincia" placeholder="Provincia" onChange={this.handleChange} value={this.state.provincia}/>
+                                <FormControl as="select" disabled={this.state.disable_localidades} name="localidad" placeholder="Localidades" onChange={this.handleChange} value={this.state.localidad}>
+                                {
+                                  this.state.localidades.map((localidad, index) => {
+                                    return(
+                                      <option key={index}>{localidad}</option>
+                                    );
+                                  })}
+                                </FormControl>
                             </div>
                         </Container>
-                        <Button type="submit" variant="primary" block>
-                            Agregar editorial
+                        <Button id="btnSend" type="submit" variant="primary" block>
+                          {this.state.update_message}
                         </Button><br></br>
                     </Form>
                 </Popup>

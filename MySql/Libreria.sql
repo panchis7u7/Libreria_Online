@@ -25,7 +25,9 @@ CREATE TABLE IF NOT EXISTS libros (
 	tamanio VARCHAR(10), 
 	fecha_impresion DATE, 
 	lugar_impresion VARCHAR(60), 
-	url VARCHAR(200)
+	url VARCHAR(200),
+	id_genero INT NOT NULL,
+	FOREIGN KEY (id_genero) REFERENCES generos (id_genero) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS clientes (
@@ -35,6 +37,7 @@ CREATE TABLE IF NOT EXISTS clientes (
 	direccion VARCHAR(80), 
 	email VARCHAR(30), 
 	telefono VARCHAR(12), 
+	contrasena VARCHAR(255) NOT NULL,
 	id_localidad INT NOT NULL, 
 	FOREIGN KEY (id_localidad) REFERENCES localidades(id_localidad) ON UPDATE CASCADE ON DELETE CASCADE
 );
@@ -63,6 +66,7 @@ CREATE TABLE IF NOT EXISTS editoriales (
 
 CREATE TABLE IF NOT EXISTS almacenes (
 	id_almacen INT UNIQUE NOT NULL AUTO_INCREMENT PRIMARY KEY, 
+	nombre VARCHAR(20),
 	direccion VARCHAR(80), 
 	telefono VARCHAR(12), 
 	id_localidad INT NOT NULL,
@@ -74,6 +78,11 @@ CREATE TABLE IF NOT EXISTS cestas (
 	fecha_compra DATETIME, 
 	id_cliente INT NOT NULL, 
 	FOREIGN KEY (id_cliente) REFERENCES clientes(id_cliente) ON UPDATE CASCADE ON DELETE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS generos (
+	id_genero INT UNIQUE NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	genero VARCHAR(20)
 );
 
 CREATE TABLE IF NOT EXISTS cesta_contiene_libro (

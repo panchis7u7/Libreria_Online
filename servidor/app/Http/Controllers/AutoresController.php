@@ -113,6 +113,17 @@ class AutoresController extends Controller
      */
     public function destroy($id)
     {
-        //
+        DB::beginTransaction();
+        try {
+            DB::table('autores')
+            ->where('id_autor',$id)
+            ->delete();
+
+            DB::commit();
+            return response()->json(['id_autores' => $id, 'status' => 'Eliminacion Exitosa!', 'status_code' => '1']);
+        } catch (\Exception $e){
+            DB::rollback();
+            return response()->json(['id_autores' => '-1', 'status' => 'Eliminacion Fallida!', 'status_code' => '-1', 'error' => $e, 'id' => $id]);
+        }
     }
 }

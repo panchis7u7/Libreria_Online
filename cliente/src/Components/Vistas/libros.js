@@ -117,7 +117,7 @@ export default class Libros extends React.Component {
           lugar_impresion: this.state.lugar_impresion,
           fecha_impresion: this.state.fecha_impresion,
           pdf: this.state.pdf,
-          portada: this.state.portada,
+          portada_url: this.state.portada_url,
       });
       console.log("Solicitut mandada");
       fetch("http://localhost:8000/libros", {
@@ -129,6 +129,17 @@ export default class Libros extends React.Component {
               console.log(resultado);     //para verificar que se haya recibido
               this.setState({
                   id_libro: resultado.id_libro,
+                  titulo: '',
+                  isbn: '',
+                  anio_publicacion: '',
+                  descripcion: '',
+                  precio_electronico: '',
+                  tamanio: '',
+                  precio_fisico: '',
+                  lugar_impresion: '',
+                  fecha_impresion: '',
+                  pdf: '',
+                  portada_url: '',
                   alerta: true,
                   msgAlerta: resultado.status,
                   tipoAlerta: "success",
@@ -136,16 +147,78 @@ export default class Libros extends React.Component {
           })
   }
 
-    editRegistro(id){
-
+    editRegistro(e){
+      e.preventDefault();
+      var headers = new Headers();
+      headers.append("Content-Type", "application/json");
+      var body = JSON.stringify({
+        titulo: this.state.titulo,
+        isbn: this.state.isbn,
+        anio_publicacion: this.state.anio_publicacion,
+        descripcion: this.state.descripcion,
+        //autor: this.state.autor,
+        //editorial: this.state.editorial,
+        //categoria: this.state.categoria,
+        precio_electronico: this.state.precio_electronico,
+        tamanio: this.state.tamanio,
+        precio_fisico: this.state.precio_fisico,
+        lugar_impresion: this.state.lugar_impresion,
+        fecha_impresion: this.state.fecha_impresion,
+        pdf: this.state.pdf,
+        portada: this.state.portada_url,
+      })
+      console.log("A enviar actualizacion: ", body);
+      fetch(`http://localhost:8000/libros/${this.state.id_libro}`, {        //revisar que efectivamente sea ../insert
+          method: "PUT",
+          headers: headers,
+          body: body
+      })
+      .then((respuesta) => respuesta.json())
+      .then((resultado) => {
+          console.log(resultado);    
+          this.setState({
+            id_libro: resultado.id_libro,
+            titulo: '',
+            isbn: '',
+            anio_publicacion: '',
+            descripcion: '',
+            precio_electronico: '',
+            tamanio: '',
+            precio_fisico: '',
+            lugar_impresion: '',
+            fecha_impresion: '',
+            pdf: '',
+            portada: '',
+            alerta: true,
+            msgAlerta: resultado.status,
+            tipoAlerta: "success",
+            disable_localidades: true,
+            open: false,
+            update: false,
+            update_message: 'Agregar editorial',
+          });
+          this.fetchRegistros();
+      });
     }
 
-    updateInput(){
-
-    }
-
-    eliminarRegistro() {
-
+    eliminarRegistro(id_libro) {
+      var headers = new Headers();
+      headers.append("Content-Type", "application/json");
+      fetch(`http://localhost:8000/libros/${id_libro}`, {        //revisar que efectivamente sea ../insert
+          method: "DELETE",
+          headers: headers,
+          body: JSON.stringify({}),
+      })
+      .then((respuesta) => respuesta.json())
+      .then((resultado) => {
+          console.log(resultado);    
+          this.setState({
+              alerta: true,
+              msgAlerta: resultado.status,
+              tipoAlerta: "success",
+          });
+          this.fetchRegistros();
+      });
     }
 
 /************************************************************************************************************************/

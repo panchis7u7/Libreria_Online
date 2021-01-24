@@ -4,7 +4,6 @@ import '../../SCSS/otros.scss';
 import Popup from 'reactjs-popup';
 import mexico from '../../Data/México.min.json';
 
-
 export default class Autores extends React.Component {
     constructor(props){
         super(props);
@@ -47,7 +46,7 @@ export default class Autores extends React.Component {
         nombre: "",
         apellidos: "",
         direccion: "",
-        enail: "",
+        email: "",
         telefono: "",
         url: "",
         id_localidad: "",
@@ -204,8 +203,33 @@ export default class Autores extends React.Component {
           });
     }
 
-    eliminarRegistro(id) {
-
+    eliminarRegistro(id_autor) {
+      var headers = new Headers();
+      headers.append("Content-Type", "application/json");
+      fetch(`http://localhost:8000/autores/${id_autor}`, {        //revisar que efectivamente sea ../insert
+          method: "DELETE",
+          headers: headers,
+          body: JSON.stringify({})
+      })
+      .then((respuesta) => respuesta.json())
+      .then((resultado) => {
+          console.log(resultado);    
+          this.setState({
+              id_almacen: "",
+              nombre: "",
+              direccion: "",
+              provincia: "",
+              localidad: "",
+              telefono: "",
+              alerta: true,
+              msgAlerta: resultado.status,
+              tipoAlerta: "success",
+              disable_localidades: true,
+              open: false,
+              update: false,
+          });
+          this.fetchRegistros();
+      });
     }
 
 /************************************************************************************************************************/
@@ -254,7 +278,7 @@ export default class Autores extends React.Component {
                             <Button onClick={() => {this.editControl(item)}} variant="info">Actualizar</Button>
                           </td>
                           <td key="button2" className="align-middle">
-                            <Button onClick={() => {this.eliminarRegistro(item.id_libro)}} variant="danger">Eliminar</Button>
+                            <Button onClick={() => {this.eliminarRegistro(item.id_autor)}} variant="danger">Eliminar</Button>
                           </td>
                         </tr>
                       );
@@ -265,7 +289,7 @@ export default class Autores extends React.Component {
             </Container>
             <Button variant="info" onClick={() => {this.setState({open: true,})}}>Añadir nuevo</Button>
             <Popup open={this.state.open} onClose={() => {this.handlePopupClose()}} position="bottom center">
-                <Form className = "popup-root" action="http://localhost:3001/actores" onSubmit={(e) => {this.state.update ?  this.editRegistro(e) : this.addRegistro(e)}}>
+                <Form className = "popup-root" action="http://localhost:3001/autores" onSubmit={(e) => {this.state.update ?  this.editRegistro(e) : this.addRegistro(e)}}>
                     <h2>Registro de autor</h2><hr></hr>
                     <Container className="contenedor-2">
                         <div className="largos">

@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Models\Libro;
 use App\Models\Autor;
+use App\Models\Almacen;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,6 +27,9 @@ Route::resource('libros', 'App\Http\Controllers\LibrosController');
 
 //API para Autores GET, POST, UPDATE
 Route::resource('autores', 'App\Http\Controllers\AutoresController');
+
+//API para Almacenes GET, POST, UPDATE
+Route::resource('almacenes', 'App\Http\Controllers\AlmacenesController');
 
 Route::get('/basic', 'App\Http\Controllers\LibrosController@getBasic');
 
