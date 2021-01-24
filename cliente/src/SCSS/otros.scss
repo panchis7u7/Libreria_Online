@@ -57,6 +57,10 @@
                 @include inputs();
                 width: 80%;
             }
+            select{
+                @include inputs();
+                width: 80%;
+            }
         }
     }
     .contenedor-3{

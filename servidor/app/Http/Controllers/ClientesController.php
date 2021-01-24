@@ -28,22 +28,31 @@ class ClientesController extends Controller
     {
         DB::beginTransaction();
         try {
-            $id_autor = DB::table('clientes')->insertGetId(array(
+
+            $id_provincia = DB::table('provincias')->insertGetId(array(
+                'nombre' => $request->input('provincia')
+            ));
+
+            $id_localidad = DB::table('localidades')->insertGetId(array(
+                'nombre' => $request->input('localidad'),
+                'id_provincia' => $id_provincia
+            ));
+
+            $id_cliente = DB::table('clientes')->insertGetId(array(
             'nombre' => $request->input('nombre'),
             'apellidos' => $request->input('apellidos'),
             'direccion' => $request->input('direccion'),
             'email' => $request->input('email'),
             'telefono' => $request->input('telefono'),
             'contrasena' => Crypt::encrypt($request->input('contrasena')),
-            'url' => $request->input('url'),
             'id_localidad' => $id_localidad
             ));
 
             DB::commit();
-            return response()->json(['id_autor' => $id_autor, 'status' => 'Insercion Exitosa!', 'status_code' => '1']);
+            return response()->json(['id_cliente' => $id_cliente, 'status' => 'Insercion Exitosa!', 'status_code' => '1']);
         } catch (\Exception $e){
             DB::rollback();
-            return response()->json(['id_autor' => '-1', 'status' => 'Insercion Fallida!', 'status_code' => '-1', 'error' => $e, 'id_provincia' => $id_provincia]);
+            return response()->json(['id_cliente' => '-1', 'status' => 'Insercion Fallida!', 'status_code' => '-1', 'error' => $e, 'id_provincia' => $id_provincia]);
         }
     }
 

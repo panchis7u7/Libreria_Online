@@ -1,7 +1,7 @@
 import React from 'react';
 //Importar el archivo que maneja la encriptacion de datos que se enviaran al lado del servidor!.
 import { encrypt } from '../EncryptionHandler';
-import '../../SCSS/Login.css';
+import '../../SCSS/Login.scss';
 
 
 class Login extends React.Component{
@@ -19,13 +19,13 @@ class Login extends React.Component{
       <div className="login-box">
         <h2>Login</h2>
         <form onSubmit={this.handleSubmit} action="http://localhost:8000/login">
-          <label for="user">Usuario</label>
-          <input value={this.state.user} onChange={this.handleChange} name="user" type="text" placeholder="Enter Username"></input>
+          <label for="email">Correo Electronico</label>
+          <input value={this.state.email} onChange={this.handleChange} name="email" type="text" placeholder="Ingrese correo electronico"></input>
           <label for="password">Contraseña</label>
           <input value={this.state.password} onChange={this.handleChange} name="password" type="password" placeholder="Enter Password"></input>
           <input type="submit" value="Log In"></input>
           <a href="#">Olvidaste tu contraseña?</a><br></br>
-          <a href="#">No tienes una cuenta?</a>
+          <a href="/register">No tienes una cuenta?</a>
         </form>
       </div>
     );

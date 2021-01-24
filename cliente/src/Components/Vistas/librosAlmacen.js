@@ -8,9 +8,11 @@ export default class Almacenes extends React.Component {
         super(props);
         this.state = {
             registros: [],
+            libros: [],
+            autores: [],
             id_libro: "",
             id_almacen: "",
-            nombre_lib: "",
+            titulo: "",
             nombre_alm: "",
             autor: "",
             editorial: "",
@@ -39,11 +41,9 @@ export default class Almacenes extends React.Component {
       this.setState({
         id_libro: "",
         id_almacen: "",
-        nombre_lib: "",
+        titulo: "",
         nombre_alm: "",
         autor: "",
-        editorial: "",
-        isbn: "",
         stock: "",
         disable_localidades: true,
         open: false,
@@ -52,33 +52,10 @@ export default class Almacenes extends React.Component {
       });
     }
 
-    editControl = (item) => {
-      this.setState({
-        id_libro: item.id_libro,
-        id_almacen: item.id_almacen,
-        nombre_lib: item.nombre_lib,
-        nombre_alm: item.nombre_alm,
-        autor: item.autor,
-        editorial: item.editorial,
-        isbn: item.isbn,
-        stock: item.stock,
-        update: true,
-        update_message: "Actualizar libro en almacen",
-        open: true,
-      });           //revisar a partir de aqui hasta el render
-      const e = {
-        target: {
-          value: item.provincia,
-        }
-      }
-      console.log("id: ", item.id_almacen);
-      this.estadoChange(e);
-    }
-
     fetchRegistros = () => {
         let headers = new Headers();
         headers.append("Content-Type", "application/json");
-        fetch("http://localhost:8000/almacenes", {
+        fetch("http://localhost:8000/librosAlmacen", {
           method: "GET",
           headers: headers,
         })
@@ -96,16 +73,12 @@ export default class Almacenes extends React.Component {
         var headers = new Headers();
         headers.append("Content-Type", "application/json");
         var body = JSON.stringify({
-            id_editorial: this.state.id_editorial,
-            nombre: this.state.nombre,
-            direccion: this.state.direccion,
-            localidad: this.state.localidad,
-            provincia: this.state.provincia,
-            telefono: this.state.telefono,
-            id_localidad: this.state.id_localidad,
+            id_libro: this.state.id_libro,
+            id_almacen: this.state.id_almacen,
+            stock: this.state.stock,
         })
         console.log("A enviar: ",body);
-        fetch("http://localhost:8000/almacenes", {        //revisar que efectivamente sea ../insert
+        fetch("http://localhost:8000/librosAlmacen", {        //revisar que efectivamente sea ../insert
             method: "POST",
             headers: headers,
             body: body
@@ -113,11 +86,9 @@ export default class Almacenes extends React.Component {
             .then((resultado) => {
                 console.log(resultado);     //para verificar que se haya recibido
                 this.setState({
+                    id_libro: "",
                     id_almacen: "",
-                    nombre: "",
-                    direccion: "",
-                    localidad: "",
-                    telefono: "",
+                    stock: "",
                     alerta: true,
                     sgAlerta: resultado.status,
                     tipoAlerta: "success",
@@ -128,49 +99,10 @@ export default class Almacenes extends React.Component {
             });
     };
     
-    editRegistro(e){
-      e.preventDefault();
-      var headers = new Headers();
-      headers.append("Content-Type", "application/json");
-      var body = JSON.stringify({
-          nombre: this.state.nombre,
-          direccion: this.state.direccion,
-          telefono: this.state.telefono,
-          id_localidad: this.state.id_localidad,
-          localidad: this.state.localidad,
-          provincia: this.state.provincia,
-      })
-      console.log("A enviar actualizacion: ", body);
-      fetch(`http://localhost:8000/almacenes/${this.state.id_almacen}`, {        //revisar que efectivamente sea ../insert
-          method: "PUT",
-          headers: headers,
-          body: body
-      }).then((respuesta) => respuesta.json())
-          .then((resultado) => {
-              console.log(resultado);    
-              this.setState({
-                  id_almacen: "",
-                  nombre: "",
-                  direccion: "",
-                  provincia: "",
-                  localidad: "",
-                  telefono: "",
-                  alerta: true,
-                  msgAlerta: resultado.status,
-                  tipoAlerta: "success",
-                  disable_localidades: true,
-                  open: false,
-                  update: false,
-                  update_message: 'Agregar almacen',
-              });
-              this.fetchRegistros();
-          });
-    }
-
     eliminarRegistro(id_almacen) {
       var headers = new Headers();
       headers.append("Content-Type", "application/json");
-      fetch(`http://localhost:8000/almacenes/${id_almacen}`, {        //revisar que efectivamente sea ../insert
+      fetch(`http://localhost:8000/almacen/${id_almacen}`, {        //revisar que efectivamente sea ../insert
           method: "DELETE",
           headers: headers,
           body: JSON.stringify({})
@@ -251,16 +183,16 @@ export default class Almacenes extends React.Component {
             <Button variant="info" onClick={() => {this.setState({open: true,})}}>Añadir libro en almacen</Button>
             <Popup open={this.state.open} onClose={() => {this.handlePopupClose()}} position="bottom center">
                     <Form className = "popup-root" action="http://localhost:3001/libroAlmacen" onSubmit={(e) => {this.state.update ?  this.editRegistro(e) : this.addRegistro(e)}}>
-                        <h2>Registro de almacén</h2><hr></hr>
+                        <h2>Registro de libro en almacén</h2><hr></hr>
                         <Container className="contenedor-2">
                             <div className="largos">
-                                <FormLabel>Almacen:</FormLabel>
-                                <FormControl as="select" name="nombre_alm" placeholder="Nombre de almacen" onChangeCapture={this.estadoChange} value={this.state.nombre_alm}>
+                                <FormLabel>Autor:</FormLabel>
+                                <FormControl as="select" name="autor" placeholder="Nombre de autor" onChangeCapture={this.handleChange} value={this.state.autor}>
                                 </FormControl>
                                 <FormLabel>Titulo:</FormLabel>
-                                <FormControl type="text" name="titulo" placeholder="Título." onChange={this.handleChange} value={this.state.titulo} required={true}/>
-                                <FormLabel>ISBN:</FormLabel>
-                                <FormControl type="text" name="isbn" placeholder="ISBN." onChange={this.handleChange} value={this.state.isbn} required={true}/>
+                                <FormControl as="select" name="titulo" placeholder="Título." onChangeCapture={this.handleChange} value={this.state.titulo} required={true}/>
+                                <FormLabel>Libros en stock:</FormLabel>
+                                <FormControl type="number" name="stock" placeholder="Cantidad de libros en stock" onChange={this.handleChange} value={this.state.stock} required={true}/>
                             </div>
                         </Container>
                         <Button id="btnSend" type="submit" variant="primary" block>
