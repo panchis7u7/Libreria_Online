@@ -6,7 +6,7 @@ export default function NavBar(){
     return(
         <div className="main-nav">
             <ReactBootStrap.Navbar className="nav" collapseOnSelect expand="lg" variant="dark">
-                    <ReactBootStrap.Navbar.Brand href="/"><span className="navItem">Libreria Panchitos</span></ReactBootStrap.Navbar.Brand>
+                    <ReactBootStrap.Navbar.Brand href="/main"><span className="navItem">Libreria Panchitos</span></ReactBootStrap.Navbar.Brand>
                 <ReactBootStrap.Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <ReactBootStrap.Navbar.Collapse id="responsive-navbar-nav">
                     <ReactBootStrap.Nav className="mr-auto"> 
