@@ -7,6 +7,11 @@ CREATE TABLE IF NOT EXISTS provincias (
 	nombre VARCHAR(60)
 );
 
+CREATE TABLE IF NOT EXISTS generos (
+	id_genero INT UNIQUE NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	genero VARCHAR(20)
+);
+
 CREATE TABLE IF NOT EXISTS localidades (
 	id_localidad INT UNIQUE NOT NULL AUTO_INCREMENT PRIMARY KEY, 
 	nombre VARCHAR(60),
@@ -80,11 +85,6 @@ CREATE TABLE IF NOT EXISTS cestas (
 	FOREIGN KEY (id_cliente) REFERENCES clientes(id_cliente) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
-CREATE TABLE IF NOT EXISTS generos (
-	id_genero INT UNIQUE NOT NULL AUTO_INCREMENT PRIMARY KEY,
-	genero VARCHAR(20)
-);
-
 CREATE TABLE IF NOT EXISTS cesta_contiene_libro (
 	id_cesta INT NOT NULL,
 	id_libro INT NOT NULL,
@@ -118,3 +118,9 @@ CREATE TABLE IF NOT EXISTS almacen_almacena_libro (
     FOREIGN KEY (id_almacen) REFERENCES almacenes(id_almacen) ON DELETE CASCADE ON UPDATE CASCADE,
     FOREIGN KEY (id_libro) REFERENCES libros(id_libro) ON DELETE CASCADE ON UPDATE CASCADE
 );
+
+INSERT INTO generos VALUES (1,'Terror');
+INSERT INTO generos VALUES (2,'Ciencia Ficcion');
+INSERT INTO generos VALUES (3,'Drama');
+INSERT INTO generos VALUES (4,'Suspenso');
+

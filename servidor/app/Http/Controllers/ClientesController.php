@@ -49,10 +49,10 @@ class ClientesController extends Controller
             ));
 
             DB::commit();
-            return response()->json(['id_cliente' => $id_cliente, 'status' => 'Insercion Exitosa!', 'status_code' => '1']);
+            return response()->json(['id_cliente' => $id_cliente, 'status' => 'Insercion Exitosa!', 'redirect' => 'http://localhost:3000/main', 'status_code' => '1']);
         } catch (\Exception $e){
             DB::rollback();
-            return response()->json(['id_cliente' => '-1', 'status' => 'Insercion Fallida!', 'status_code' => '-1', 'error' => $e, 'id_provincia' => $id_provincia]);
+            return response()->json(['id_cliente' => '-1', 'status' => 'Insercion Fallida!', 'redirect' => 'http://localhost:3000/error', 'status_code' => '-1', 'error' => $e, 'id_provincia' => $id_provincia]);
         }
     }
 
@@ -101,13 +101,14 @@ class ClientesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function login(Request $request){
-        try {
-            DB::table('clientes')
-            ->where('id_autor',$id)
-            ->delete();
-            return response()->json(['id_autores' => $id, 'status' => 'Eliminacion Exitosa!', 'status_code' => '1']);
-        } catch (\Exception $e){
-            return response()->json(['id_autores' => '-1', 'status' => 'Eliminacion Fallida!', 'status_code' => '-1', 'error' => $e, 'id' => $id]);
+        $result = DB::table('clientes')
+        ->select('id_cliente')
+        ->where('contrasena', '=', $request->input('password'))
+        ->delete();
+        if($result == ''){
+            return response()->json(['id_cliente' => '-1', 'status' => 'Cliente no encontrado', 'status_code' => '-1']);
+        } else {
+            return response()->json(['id_cliente' => $result, 'status' => 'Cliente encontrado', 'status_code' => '1']);
         }
     }
 }

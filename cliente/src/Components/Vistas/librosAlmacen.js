@@ -102,7 +102,7 @@ export default class Almacenes extends React.Component {
     eliminarRegistro(id_almacen) {
       var headers = new Headers();
       headers.append("Content-Type", "application/json");
-      fetch(`http://localhost:8000/almacen/${id_almacen}`, {        //revisar que efectivamente sea ../insert
+      fetch(`http://localhost:8000/librosAlmacen/${id_almacen}`, {        //revisar que efectivamente sea ../insert
           method: "DELETE",
           headers: headers,
           body: JSON.stringify({})
@@ -111,11 +111,8 @@ export default class Almacenes extends React.Component {
             console.log(resultado);    
             this.setState({
                 id_almacen: "",
-                nombre: "",
-                direccion: "",
-                provincia: "",
-                localidad: "",
-                telefono: "",
+                id_libro: "",
+                stock: "",
                 alerta: true,
                 msgAlerta: resultado.status,
                 tipoAlerta: "success",
@@ -133,7 +130,7 @@ export default class Almacenes extends React.Component {
       return(
           <div className="main">
             <Container>
-            <h1 className="h1">Libros almacenados</h1>
+            <h1 className="h1">Libros almacenados</h1><hr></hr><br></br>
               {
                 this.state.alerta === true ? (
                   <Alert variant={this.state.tipoAlerta} onClose={() => {
@@ -144,11 +141,8 @@ export default class Almacenes extends React.Component {
                     <Alert.Heading>{this.state.msgAlerta}</Alert.Heading>
                   </Alert>
                 ) : null}
-              <FormLabel>Almacen:</FormLabel>
-                    <FormControl as="select" name="autor">
-                        <option value="">ejemplo1</option>
-                        <option value="">ejemplo2</option>
-                    </FormControl>
+              <FormLabel>Almacén:</FormLabel>                
+              <FormControl as="select" name="almacen" placeholder="Nombre de almacen" onChangeCapture={this.handleChange} value={this.state.nombre_alm} />
               <Row>
                 <Table striped bordered hover size="sm" >
                   <thead>

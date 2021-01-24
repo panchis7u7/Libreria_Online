@@ -30,7 +30,7 @@
         grid-template-columns: 50% 50%;
         .propietarios{
             label{
-                @include labelsLibro();
+                @include labels();
             }
             input{
                 @include inputs();
@@ -41,7 +41,7 @@
         }
         .foraneos{
             label{
-                @include labelsLibro();
+                @include labels();
                 
             }
             select{

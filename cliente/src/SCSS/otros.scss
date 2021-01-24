@@ -13,6 +13,17 @@
 
 .main {
     text-align: center;
+    label{
+        @include labels();
+    }
+    input{
+        @include inputs();
+        width: 80%;
+    }
+    select {
+        @include inputs();
+        width: 85%;
+    }
 }
 
 .popup-content{

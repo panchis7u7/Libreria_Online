@@ -31,7 +31,15 @@ Route::resource('autores', 'App\Http\Controllers\AutoresController');
 //API para Almacenes GET, POST, UPDATE
 Route::resource('almacenes', 'App\Http\Controllers\AlmacenesController');
 
-Route::get('/basic', 'App\Http\Controllers\LibrosController@getBasic');
+
+//API para registrar usuarios o clientes.
+Route::resource('register', 'App\Http\Controllers\ClientesController');
+
+//API para iniciar sesion.
+Route::post('login', 'App\Http\Controllers\ClientesController@login');
+
+//API para obtener informacion basica (resumida) de los libros.
+Route::get('basic', 'App\Http\Controllers\LibrosController@getBasic');
 
 Route::get('/posts', function () {
     $post = Libro::create([

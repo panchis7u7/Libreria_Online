@@ -260,13 +260,13 @@ export default class Libros extends React.Component {
                       return (
                         <tr key={item.id_libro}>
                           <td className="align-middle">{item.id_libro}</td>
+                          <td className="align-middle">{item.titulo}</td>
                           <td className="align-middle">{item.isbn}</td>
                           <td className="align-middle">{item.anio_publicacion}</td>
                           <td className="align-middle">{item.descripcion}</td>
-                          <td className="align-middle">{item.titulo}</td>
-                          <td className="align-middle">{item.precio_fisico}</td>
                           <td className="align-middle">{item.precio_electronico}</td>
                           <td className="align-middle">{item.tamanio}</td>
+                          <td className="align-middle">{item.precio_fisico}</td>
                           <td className="align-middle">{item.fecha_impresion}</td>
                           <td className="align-middle">{item.lugar_impresion}</td>
                           <td className="align-middle">
