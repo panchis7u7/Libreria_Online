@@ -6,10 +6,16 @@ $ColorTexto: white;
     padding: 0;
   }
   
-  .nav {
-    background-color: $ColorBack;
-    font-family: sans-serif;
-    .navItem {
-        color: $ColorTexto;
-      }
+
+  .main-nav{
+    width: 100%;
+    z-index: 200;
+    position: fixed;
+    .nav {
+      background-color: $ColorBack;
+      font-family: sans-serif;
+      .navItem {
+          color: $ColorTexto;
+        }
+    }
   }

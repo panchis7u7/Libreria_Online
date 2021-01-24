@@ -59,7 +59,7 @@ export default class Main extends React.Component {
                 {/*----------------------------------------------------------------------------------------------------------------*/} 
                 {/*Recepcion automatica de libros de la BD. En cuanto la base de datos este lista, jalar los libros dinamicamente de la BD.*/}
 
-                <Carousel ssr containerClass="first-carousel-container container" className="popular" responsive={responsive} infinite={true} swipeable={true} removeArrowOnDeviceType={["tablet", "mobile"]}>
+                <Carousel ssr containerClass="first-carousel-container" className="popular" responsive={responsive} infinite={true} swipeable={true} removeArrowOnDeviceType={["tablet", "mobile"]}>
                     {this.state.libros.map((item, index) => {
                         return (
                             <Book key={index} titulo={item.titulo} author="prueba" precio={item.precio_fisico} portada={item.url} ></Book>

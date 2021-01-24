@@ -5,7 +5,7 @@ main {
         background-attachment: fixed;
         background-repeat: no-repeat;
         background-size: cover;
-        height: 98vh;
+        height: 100vh;
         margin-bottom: 2rem;
         .bottom {
             position: absolute;
@@ -47,4 +47,9 @@ main {
         }
 
     }
+}
+
+.react-multi-carousel-item{
+    max-width: 350px;
+    min-width:230px;
 }
