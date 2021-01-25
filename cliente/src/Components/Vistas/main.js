@@ -3,7 +3,6 @@ import Carousel from 'react-multi-carousel';
 import { Container, Form, FormLabel, FormControl, Button } from 'react-bootstrap'; 
 import "react-multi-carousel/lib/styles.css";
 import '../../SCSS/libreria.scss';
-import Popup from 'reactjs-popup';
 import 'react-notifications/lib/notifications.css';
 import {NotificationContainer, NotificationManager} from 'react-notifications';
 

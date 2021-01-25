@@ -2,11 +2,8 @@ import React from 'react';
 import {Container, Form, FormControl, FormLabel, Button, Alert, Row, Table} from 'react-bootstrap';
 import '../../SCSS/Base.scss';
 import Popup from 'reactjs-popup';
-import AuthApi from '../Authentication';
 
 export default class Libros extends React.Component {
-    static contextType = AuthApi;
-
     constructor(props){
         super(props);
         this.state = {

@@ -1,6 +1,6 @@
 import React from 'react';
 import {Container, Alert} from 'react-bootstrap';
-import '../../SCSS/carrito.scss'
+import '../../SCSS/Base.scss'
 
 export default class Carrito extends React.Component {
     constructor(props){
@@ -54,13 +54,12 @@ export default class Carrito extends React.Component {
                     <Alert.Heading>{this.state.msgAlerta}</Alert.Heading>
                   </Alert>
                 ) : null}
-                {this.state.libros.map((item, index) => {
+                {this.state.libros.map((item) => {
                             return (
-                                <Container className="popular">
-                                    <div key={index} className="shadow-lg p-3 mb-5 bg-white rounded">
-                                        <Book titulo={item.titulo} author="prueba" precio={item.precio_fisico} portada={item.url} ></Book>
+                                <Container className="carrito">
+                                        <Book titulo={item.titulo} author="prueba" precio={item.precio_fisico} portada={item.url} 
+                                            anio_publicacion={item.anio_publicacion} descripcion={item.descripcion}></Book>
                                         <button className="btn-eliminar">Eliminar</button>
-                                    </div>
                                 </Container>
                             );
                         })}
@@ -80,27 +79,23 @@ class Book extends React.Component {
             anio_publicacion: props.anio_publicacion,
             descripcion: props.descripcion,
             precio: props.precio,
-            categoria: props.categoria,
         }
     }
 
     render(){
         return (
-            <div className="book">
-            <div className="book-top">
-                <div className="book-title">{this.state.titulo}</div>
-                <div className="book-authors">{this.state.autor}</div>
-            </div>
-            <div className="book-cover"
-                style={{
-                    width: 128,
-                    height: 193,
-                    backgroundImage:
-                    `url('${this.state.portada}')`,
+            <div className="libro-descrip">
+                <div className="libro-cover"
+                    style={{
+                        width: 128,
+                        height: 193,
+                        backgroundImage:
+                        `url('${this.state.portada}')`,
                 }}/>
-            <div className="book-footer">
-                <div className="book-price">Precio: ${this.state.precio}</div>
-            </div>
+                <div className="libro-top">
+                    <div className="libro-title">{this.state.titulo}</div>
+                    <div className="libro-authors">{this.state.autor}</div>
+                </div>
         </div>
         );
     };

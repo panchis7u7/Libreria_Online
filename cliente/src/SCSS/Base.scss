@@ -26,6 +26,27 @@
         @include inputs();
         width: 80%;
     }
+    .carrito{
+        .libro-descrip{
+            max-height: 220px;
+            padding: 20px;
+            width: 100%;
+            box-shadow: 0 6px 10px 0 #666;
+            border: 5px black;
+        }
+        .btn-eliminar {
+            position: absolute;
+            top: 78%;
+            left: 88%;
+            width: 70px;
+            height: 70px;
+            background-color: red;
+            border-radius: 5%;
+            transition: all 0.1s ease-in-out;
+            border: none;
+            padding: 0%;
+         }
+    }
 }
 
 .popup-content{
