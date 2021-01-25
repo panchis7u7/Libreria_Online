@@ -1,15 +1,12 @@
 import React from 'react';
-import {Container,Form, FormControl, FormLabel, Button, Alert, Row, Table} from 'react-bootstrap';
+import {Container, Alert, Row, Table} from 'react-bootstrap';
 import '../../SCSS/otros.scss'
-import Popup from 'reactjs-popup';
-import mexico from '../../Data/México.min.json';
 
 export default class Editoriales extends React.Component {
     constructor(props){
         super(props);
         this.state = {
             registros: [],
-            localidades: [],
             id_cliente: "",
             nombre: "",
             apellidos: "",
@@ -82,9 +79,10 @@ export default class Editoriales extends React.Component {
                     </tr>
                   </thead>
                   <tbody>
-                    {this.state.registros.map((item) => {
+                    {this.state.registros.map((item, index) => {
                       return (
-                        <tr onClickCapture={() => this.updateInput(item)} key={item.id_cliente}>
+                        <tr key={item.id_cliente}>
+                          <td className="align-middle">{index+1}</td>
                           <td className="align-middle">{item.nombre}</td>
                           <td className="align-middle">{item.apellidos}</td>
                           <td className="align-middle">{item.direccion}</td>

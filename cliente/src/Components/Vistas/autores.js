@@ -209,24 +209,15 @@ export default class Autores extends React.Component {
       fetch(`http://localhost:8000/autores/${id_autor}`, {        //revisar que efectivamente sea ../insert
           method: "DELETE",
           headers: headers,
-          body: JSON.stringify({})
+          body: JSON.stringify({}),
       })
       .then((respuesta) => respuesta.json())
       .then((resultado) => {
           console.log(resultado);    
           this.setState({
-              id_almacen: "",
-              nombre: "",
-              direccion: "",
-              provincia: "",
-              localidad: "",
-              telefono: "",
               alerta: true,
               msgAlerta: resultado.status,
               tipoAlerta: "success",
-              disable_localidades: true,
-              open: false,
-              update: false,
           });
           this.fetchRegistros();
       });
@@ -264,9 +255,10 @@ export default class Autores extends React.Component {
                     </tr>
                   </thead>
                   <tbody>
-                    {this.state.registros.map((item) => {
+                    {this.state.registros.map((item, index) => {
                       return (
                         <tr key={item.id_autor}>
+                          <td className="align-middle">{index+1}</td>
                           <td className="align-middle">{item.nombre}</td>
                           <td className="align-middle">{item.apellidos}</td>
                           <td className="align-middle">{item.direccion}</td>

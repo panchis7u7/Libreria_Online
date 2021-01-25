@@ -205,18 +205,9 @@ export default class Editoriales extends React.Component {
       .then((resultado) => {
           console.log(resultado);    
           this.setState({
-              id_almacen: "",
-              nombre: "",
-              direccion: "",
-              provincia: "",
-              localidad: "",
-              telefono: "",
-              alerta: true,
-              msgAlerta: resultado.status,
-              tipoAlerta: "success",
-              disable_localidades: true,
-              open: false,
-              update: false,
+            alerta: true,
+            msgAlerta: resultado.status,
+            tipoAlerta: "success",
           });
           this.fetchRegistros();
       });
@@ -253,9 +244,10 @@ export default class Editoriales extends React.Component {
                     </tr>
                   </thead>
                   <tbody>
-                    {this.state.registros.map((item) => {
+                    {this.state.registros.map((item, index) => {
                       return (
                         <tr onClickCapture={() => this.updateInput(item)} key={item.id_editorial}>
+                          <td className="align-middle">{index+1}</td>
                           <td className="align-middle">{item.nombre}</td>
                           <td className="align-middle">{item.direccion}</td>
                           <td className="align-middle">{item.localidad}</td>
