@@ -1,10 +1,10 @@
 import React from 'react';
 //Importar el archivo que maneja la encriptacion de datos que se enviaran al lado del servidor!.
-import { encrypt } from '../EncryptionHandler';
 import '../../SCSS/Login.scss';
-import Authentication from '../Authentication';
+import AuthApi from '../Authentication';
 
 export default class Login extends React.Component{
+  static contextType = AuthApi;
   constructor(props) {
     super(props);
     this.state = {
@@ -59,9 +59,11 @@ export default class Login extends React.Component{
           redirect: resultado.redirect,
           nombre: resultado.nombre,
       });
-      Authentication.login(() => {
+      if(resultado.status_code == 1){
+        this.props.history.push(`${this.state.redirect}`, resultado);
+      } else {
         this.props.history.push(`${this.state.redirect}`);
-      })
+      }
     })
     .catch((err) => console.log("Error: ", err));
   };

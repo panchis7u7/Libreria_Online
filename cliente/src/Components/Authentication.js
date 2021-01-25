@@ -1,4 +1,5 @@
-class Authentication {
+export default class AuthApi {
+    
     constructor(){
         this.authenticated = false;
     }
@@ -16,6 +17,4 @@ class Authentication {
     isAuthenticated(){
         return this.authenticated;
     }
-}
-
-export default new Authentication;
+} 

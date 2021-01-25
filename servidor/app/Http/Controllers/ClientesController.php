@@ -109,9 +109,9 @@ class ClientesController extends Controller
         ->get();
         if(($result[0]->email != '') && (Crypt::decryptString($result[0]->contrasena) == $request->input('contrasena')))
         {
-            return response()->json(['cliente' => $result[0]->nombre, 'redirect' => '/main', 'status' => 'Cliente encontrado', 'status_code' => '1']);
+            return response()->json(['cliente' => $result[0]->nombre, 'email' => $result[0]->email, 'redirect' => '/main', 'status' => 'Cliente encontrado', 'status_code' => 1]);
         } else {
-            return response()->json(['cliente' => '-1', 'redirect' => '/', 'status' => 'Error al iniciar sesion!', 'status_code' => '-1']);
+            return response()->json(['cliente' => '-1', 'email' => $request->input('email'),'redirect' => '/', 'status' => 'Error al iniciar sesion!', 'status_code' => -1]);
         }
     }
 }
