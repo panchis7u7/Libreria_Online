@@ -42,7 +42,7 @@ export default class Register extends React.Component{
     return (
       <div className="register-box">
         <h2>Registrar</h2>
-        <form onSubmit={this.handleSubmit} action="http://localhost:8000/register">
+        <form onSubmit={this.handleSubmit} action="http://localhost:8000/clientes">
         <div className="form-row">
             <div className="form-group col">
               <label htmlFor="nombre">Nombre</label>
@@ -117,22 +117,31 @@ export default class Register extends React.Component{
         direccion: this.state.direccion,
         email: this.state.email,
         telefono: this.state.telefono,
-        password: this.state.password,
+        contrasena: this.state.contrasena,
         provincia: this.state.provincia,
         localidad: this.state.localidad,
     });
     console.log(body);
-    fetch("http://localhost:8000/register", {
+    fetch("http://localhost:8000/clientes", {
       method: 'POST',
       headers: headers,
       body: body,
     })
     .then((respuesta) => respuesta.json())
     .then((resultado) => {
+      console.log(resultado);
       this.setState({
-          redirect: resultado.redirect,
+        redirect: resultado.redirect,
+        nombre: "",
+        apellidos: "",
+        direccion: "",
+        email: "",
+        telefono: "",
+        contrasena: "",
+        provincia: "",
+        localidad: "",
       });
-      this.props.history.push(`${this.state.redirect}`, {user: this.state.user});
+      this.props.history.push(`${this.state.redirect}`);
     })
     .catch((err) => console.log("Error: ", err));
   };

@@ -35,14 +35,10 @@
             input{
                 @include inputs();
             }
-            select {
-                @include inputs();
-            }
         }
         .foraneos{
             label{
                 @include labels();
-                
             }
             select{
                 @include inputs();

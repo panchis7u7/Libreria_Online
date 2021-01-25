@@ -19,6 +19,9 @@ export default function NavBar(){
                                 <ReactBootStrap.NavDropdown.Item href="/almacenes">Almacenes</ReactBootStrap.NavDropdown.Item>
                                 <ReactBootStrap.NavDropdown.Item href="/librosAlmacen">Libros almacenados</ReactBootStrap.NavDropdown.Item>
                         </ReactBootStrap.NavDropdown>
+                        <ReactBootStrap.NavDropdown title="Personal ?" id="collasible-nav-dropdown">
+                                <ReactBootStrap.NavDropdown.Item href="/clientes">Clientes</ReactBootStrap.NavDropdown.Item>
+                        </ReactBootStrap.NavDropdown>
                     </ReactBootStrap.Nav>
                 </ReactBootStrap.Navbar.Collapse>
             </ReactBootStrap.Navbar>

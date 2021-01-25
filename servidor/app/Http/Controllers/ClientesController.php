@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-//use App\Models\Cliente;
+use App\Models\Cliente;
 use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\DB;
 
 class ClientesController extends Controller
 {
@@ -44,15 +45,15 @@ class ClientesController extends Controller
             'direccion' => $request->input('direccion'),
             'email' => $request->input('email'),
             'telefono' => $request->input('telefono'),
-            'contrasena' => Crypt::encrypt($request->input('contrasena')),
+            'contrasena' => Crypt::encryptString($request->input('contrasena')),
             'id_localidad' => $id_localidad
             ));
 
             DB::commit();
-            return response()->json(['id_cliente' => $id_cliente, 'status' => 'Insercion Exitosa!', 'redirect' => 'http://localhost:3000/main', 'status_code' => '1']);
+            return response()->json(['id_cliente' => $id_cliente, 'status' => 'Insercion Exitosa!', 'redirect' => '/main', 'status_code' => '1']);
         } catch (\Exception $e){
             DB::rollback();
-            return response()->json(['id_cliente' => '-1', 'status' => 'Insercion Fallida!', 'redirect' => 'http://localhost:3000/error', 'status_code' => '-1', 'error' => $e, 'id_provincia' => $id_provincia]);
+            return response()->json(['id_cliente' => '-1', 'status' => 'Insercion Fallida!', 'redirect' => '/main', 'status_code' => '-1', 'error' => $e]);
         }
     }
 
@@ -102,13 +103,15 @@ class ClientesController extends Controller
      */
     public function login(Request $request){
         $result = DB::table('clientes')
-        ->select('id_cliente')
-        ->where('contrasena', '=', $request->input('password'))
-        ->delete();
-        if($result == ''){
-            return response()->json(['id_cliente' => '-1', 'status' => 'Cliente no encontrado', 'status_code' => '-1']);
+        ->select('nombre', 'email', 'contrasena')
+        ->where('email', '=', $request->input('email'))
+        //->where('contrasena', '=', Crypt::encryptString($request->input('contrasena')))
+        ->get();
+        if(($result[0]->email != '') && (Crypt::decryptString($result[0]->contrasena) == $request->input('contrasena')))
+        {
+            return response()->json(['cliente' => $result[0]->nombre, 'status' => 'Cliente encontrado', 'status_code' => '1']);
         } else {
-            return response()->json(['id_cliente' => $result, 'status' => 'Cliente encontrado', 'status_code' => '1']);
+            return response()->json(['cliente' => '-1', 'status' => 'Cliente no encontrado', 'status_code' => '-1']);
         }
     }
 }

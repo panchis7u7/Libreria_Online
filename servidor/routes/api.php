@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Models\Libro;
 use App\Models\Autor;
 use App\Models\Almacen;
+use App\Models\Cliente;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,7 +34,7 @@ Route::resource('almacenes', 'App\Http\Controllers\AlmacenesController');
 
 
 //API para registrar usuarios o clientes.
-Route::resource('register', 'App\Http\Controllers\ClientesController');
+Route::resource('clientes', 'App\Http\Controllers\ClientesController');
 
 //API para iniciar sesion.
 Route::post('login', 'App\Http\Controllers\ClientesController@login');

@@ -6,8 +6,9 @@ import Editoriales from './Vistas/editoriales';
 import Almacenes from './Vistas/almacenes';
 import LibrosAlmacen from './Vistas/librosAlmacen';
 import Login from './Vistas/Login';
-import Register from './Vistas/Register';
-import NavBar from './navBar';
+import Register from './Vistas/Register'; 
+import Clientes from './Vistas/clientes'; 
+import NavBar from './navBar'; 
 
 export default function Rutas() {
   return (
@@ -21,6 +22,7 @@ export default function Rutas() {
           <Route path="/libros" key="" component={Libros}></Route>
           <Route path="/autores" key="" component={Autores}></Route>
           <Route path="/editoriales" key="" component={Editoriales}></Route>
+          <Route path="/clientes" key="" component={Clientes}></Route>
           <Route path="/almacenes" key="" component={Almacenes}></Route>
           <Route path="/librosAlmacen" key="" component={LibrosAlmacen}></Route>
         </Switch>

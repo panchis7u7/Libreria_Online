@@ -9,8 +9,9 @@ class Login extends React.Component{
     super(props);
     this.state = {
         redirect: null,
-        user: "",
-        password: "",
+        email: "",
+        contrasena: "",
+        nombre: '',
     }; 
   } 
 
@@ -22,7 +23,7 @@ class Login extends React.Component{
           <label for="email">Correo Electronico</label>
           <input value={this.state.email} onChange={this.handleChange} name="email" type="text" placeholder="Ingrese correo electronico"></input>
           <label for="password">Contraseña</label>
-          <input value={this.state.password} onChange={this.handleChange} name="password" type="password" placeholder="Enter Password"></input>
+          <input value={this.state.contrasena} onChange={this.handleChange} name="contrasena" type="password" placeholder="Ingrese la contraseña"></input>
           <input type="submit" value="Log In"></input>
           <a href="#">Olvidaste tu contraseña?</a><br></br>
           <a href="/register">No tienes una cuenta?</a>
@@ -41,20 +42,24 @@ class Login extends React.Component{
     e.preventDefault();
     let headers = new Headers();
     headers.append("Content-Type", "application/json");
-    let body = JSON.stringify({user: this.state.user, password: encrypt(this.state.password)});
+    let body = JSON.stringify({
+      email: this.state.email, 
+      contrasena: this.state.contrasena
+    });
     console.log(body);
-    fetch("http://localhost:3001/login", {
+    fetch("http://localhost:8000/login", {
       method: 'POST',
       headers: headers,
       body: body,
     })
     .then((respuesta) => respuesta.json())
     .then((resultado) => {
+      console.log(resultado);
       this.setState({
           redirect: resultado.redirect,
-          user: resultado.user,
+          nombre: resultado.nombre,
       });
-      this.props.history.push(`${this.state.redirect}`, {user: this.state.user});
+      //this.props.history.push(`${this.state.redirect}`);
     })
     .catch((err) => console.log("Error: ", err));
   };
