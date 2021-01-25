@@ -1,6 +1,5 @@
 import React from 'react';
 //Importar el archivo que maneja la encriptacion de datos que se enviaran al lado del servidor!.
-import { encrypt } from '../EncryptionHandler';
 import '../../SCSS/Register.scss';
 import mexico from '../../Data/México.min.json';
 
@@ -95,7 +94,7 @@ export default class Register extends React.Component{
           <input value={this.state.recontrasena} onChange={this.handleChange} name="recontrasena" type="password" placeholder="Reingrese la contraseña" required></input>
           <input type="submit" value="Registrar"></input>
           <a href="/">Ya tienes una cuenta?</a><br></br>
-          <a href="#">Olvidaste tu contraseña?</a>
+          <a href="/">Olvidaste tu contraseña?</a>
         </form>
       </div>
     );

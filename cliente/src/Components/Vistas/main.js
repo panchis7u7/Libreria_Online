@@ -4,6 +4,8 @@ import { Container } from 'react-bootstrap';
 import "react-multi-carousel/lib/styles.css";
 import '../../SCSS/libreria.scss';
 import Popup from 'reactjs-popup';
+import 'react-notifications/lib/notifications.css';
+import {NotificationContainer, NotificationManager} from 'react-notifications';
 
 export default class Main extends React.Component {
     constructor(props){
@@ -13,6 +15,19 @@ export default class Main extends React.Component {
             open: false,
         }
     }
+
+    createNotification = (type) => {
+        return () => {
+          switch (type) {
+            case 'success':
+              NotificationManager.success('', 'Agregado al carrito!');
+              break;
+            case 'error':
+              NotificationManager.error('Intente más tarde', 'Error', 3000);
+              break;
+          }
+        }
+    };
 
     componentDidMount(){
         this.fetchLibros();
@@ -71,10 +86,7 @@ export default class Main extends React.Component {
                             return (
                                 <div key={index} className="shadow-lg p-3 mb-5 bg-white rounded">
                                     <Book titulo={item.titulo} author="prueba" precio={item.precio_fisico} portada={item.url} ></Book>
-                                    <button className="btn-agregar-carro" onClick={() => {this.setState({open: true})}}>+</button>
-                                    <Popup position="center center" open={this.state.open} onClose={this.onCloseHandler}>
-                                        <div>Producto anadido!</div>
-                                    </Popup>
+                                    <button className="btn-agregar-carro" onClick={this.createNotification('error')}>+</button><NotificationContainer/>
                                 </div>
                             );
                         })}
@@ -88,9 +100,6 @@ export default class Main extends React.Component {
                                 <div key={index} className="shadow-lg p-3 mb-5 bg-white rounded">
                                     <Book titulo={item.titulo} author="prueba" precio={item.precio_fisico} portada={item.url} ></Book>
                                     <button className="btn-agregar-carro" onClick={() => {this.setState({open: true})}}>+</button>
-                                    <Popup position="center center" open={this.state.open} onClose={this.onCloseHandler}>
-                                        <div>Producto anadido!</div>
-                                    </Popup>
                                 </div>
                             );
                         })}

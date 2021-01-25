@@ -11,7 +11,6 @@ import Clientes from './Vistas/clientes';
 import Carrito from './Vistas/carrito';
 import NavBar from './navBar'; 
 import ProtectedRoute from './ProtectedRoutes';
-import AuthApi from './Authentication';
 
 export default function Rutas() {
   return (
@@ -20,7 +19,7 @@ export default function Rutas() {
           <NavBar></NavBar>
           <Switch>
             <Route exact path="/" component={Login}></Route>
-            <Route path="/login" component={Login}></Route>
+            {/*<Route path="/login" component={Login}></Route>*/}
             <Route path="/register" component={Register}></Route>
             <ProtectedRoute path="/main" component={Main}></ProtectedRoute>
             <ProtectedRoute path="/libros" component={Libros}></ProtectedRoute>

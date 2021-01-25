@@ -22,11 +22,11 @@ export default function NavBar(props){
                             <ReactBootStrap.NavDropdown.Item href="/editoriales">Editoriales</ReactBootStrap.NavDropdown.Item>
                         </ReactBootStrap.NavDropdown>
                         <ReactBootStrap.Nav.Link id="nav-usuario" href="/carrito">
-                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS3wb_RqiZ67AK3X1QuQg4F7IS65-6FuSYrCQ&usqp=CAU"></img>
+                            <img alt="login" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS3wb_RqiZ67AK3X1QuQg4F7IS65-6FuSYrCQ&usqp=CAU"></img>
                             Carrito de compras
                         </ReactBootStrap.Nav.Link>
                         <ReactBootStrap.Nav.Link id="nav-usuario" href="/perfil">
-                            <img src="https://i.pinimg.com/736x/d9/7b/bb/d97bbb08017ac2309307f0822e63d082.jpg"></img>
+                            <img alt="usuario" src="https://i.pinimg.com/736x/d9/7b/bb/d97bbb08017ac2309307f0822e63d082.jpg"></img>
                             Perfil
                         </ReactBootStrap.Nav.Link>
                     </ReactBootStrap.Nav>

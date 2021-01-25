@@ -1,10 +1,9 @@
 import React from 'react';
 //Importar el archivo que maneja la encriptacion de datos que se enviaran al lado del servidor!.
 import '../../SCSS/Login.scss';
-import AuthApi from '../Authentication';
+
 
 export default class Login extends React.Component{
-  static contextType = AuthApi;
   constructor(props) {
     super(props);
     this.state = {
@@ -12,20 +11,32 @@ export default class Login extends React.Component{
         email: "",
         contrasena: "",
         nombre: '',
+        isLoggedIn: false,
+        formSubmiting: false,
     }; 
   } 
+
+  componentDidMount(){
+    let state = localStorage["appState"];
+    if(state) {
+      let AppState = JSON.parse(state);
+      this.setState({
+        isLoggedIn: AppState.isLoggedIn, 
+        email: AppState.user.email})
+    }
+  }
 
   render() {
     return (
       <div className="login-box">
         <h2>Login</h2>
         <form onSubmit={this.handleSubmit} action="http://localhost:8000/login">
-          <label for="email">Correo Electronico</label>
+          <label htmlFor="email">Correo Electronico</label>
           <input value={this.state.email} onChange={this.handleChange} name="email" type="text" placeholder="Ingrese correo electronico"></input>
-          <label for="password">Contraseña</label>
+          <label htmlFor="password">Contraseña</label>
           <input value={this.state.contrasena} onChange={this.handleChange} name="contrasena" type="password" placeholder="Ingrese la contraseña"></input>
           <input type="submit" value="Log In"></input>
-          <a href="#">Olvidaste tu contraseña?</a><br></br>
+          <a href="/">Olvidaste tu contraseña?</a><br></br>
           <a href="/register">No tienes una cuenta?</a>
         </form>
       </div>
@@ -58,10 +69,30 @@ export default class Login extends React.Component{
       this.setState({
           redirect: resultado.redirect,
           nombre: resultado.nombre,
+          isLoggedIn: resultado.success,
       });
-      if(resultado.status_code == 1){
-        this.props.history.push(`${this.state.redirect}`, resultado);
+      if(resultado.status_code === 1){
+        let userData = {
+          email: resultado.email,
+        };
+        let appState = {
+          isLoggedIn: this.state.isLoggedIn,
+          user: userData,
+        };
+        localStorage["appState"] = JSON.stringify(appState);
+        this.props.history.push(`${resultado.redirect}`, resultado);
       } else {
+        let userData = {
+          email: resultado.email,
+        };
+        let appState = {
+          isLoggedIn: false,
+          user: userData,
+        };
+        localStorage["appState"] = JSON.stringify(appState);
+        this.setState({
+          isLoggedIn: appState.isLoggedIn,
+        })
         this.props.history.push(`${this.state.redirect}`);
       }
     })

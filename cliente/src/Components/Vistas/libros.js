@@ -3,7 +3,6 @@ import {Container, Form, FormControl, FormLabel, Button, Alert, Row, Table} from
 import '../../SCSS/Base.scss';
 import Popup from 'reactjs-popup';
 import AuthApi from '../Authentication';
-import Cookies from 'js-cookie';
 
 export default class Libros extends React.Component {
     static contextType = AuthApi;

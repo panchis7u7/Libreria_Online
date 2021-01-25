@@ -659,6 +659,45 @@ libros en referencia a mi interés.
 
 @@@@@@@@@@@@@@@@@@@@@@@ SCRUM Diario 25 de enero del 2021 @@@@@@@@@@@@@@@@@@@@@@
 
+1) Katherine:
+
+¿Que hiciste ayer?
+	*> Generarnotificaciones la agregar items al carrito y generar la interfaz de
+  clientes y arregle los popup.
+¿Tuviste algun impedimento?
+	*> No.
+¿Que haras hoy?
+	*> Terminar la interfaz de carrito de compras asi como "poblar" la interfaz de
+  cliente.
+
+2) Alexis:
+
+¿Que hiciste ayer?
+	*> Terminar las pruebas de mysql.
+¿Tuviste algun impedimento?
+	*> Ninguno.
+¿Que haras hoy?
+	*> Ayudar con las interfaces.
+
+3) Carlos:
+
+¿Que hiciste ayer?
+	*> Documentar las pruebas en un archivo.
+¿Tuviste algun impedimento?
+	*> No.
+¿Que haras hoy?
+	*> Ayudar con las interfaces.
+
+4) Sebastian:
+
+¿Que hiciste ayer?
+	*> Generar las vistas de login y registrar asi como generar las APIs o requests
+    en el servidor.
+¿Tuviste algun impedimento?
+	*> No.
+¿Que haras hoy?
+	*> Encriptar contrasenas.
+
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
 ----------------------------- Sprint Review Meeting ----------------------------
