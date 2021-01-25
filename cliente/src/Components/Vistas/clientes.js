@@ -1,8 +1,8 @@
 import React from 'react';
 import {Container, Alert, Row, Table} from 'react-bootstrap';
-import '../../SCSS/otros.scss'
+import '../../SCSS/Base.scss'
 
-export default class Editoriales extends React.Component {
+export default class Clientes extends React.Component {
     constructor(props){
         super(props);
         this.state = {

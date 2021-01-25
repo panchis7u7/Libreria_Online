@@ -16,9 +16,9 @@ export default class Libros extends React.Component {
             isbn: "",
             anio_publicacion: "",
             descripcion: "",
-            //autor: "",
-            //editorial: "",
-            //categoria: "",
+            autor: "",
+            editorial: "",
+            categoria: "",
             precio_electronico: "",
             precio_fisico: "",
             fecha_impresion: "",
@@ -55,6 +55,9 @@ export default class Libros extends React.Component {
         fecha_impresion: "",
         tamanio: "",
         portada_url: "",
+        autor: "",
+        editorial: "",
+        categoria: "",
         open: false,
         update: false,
         update_message: 'Agregar libro',
@@ -75,6 +78,9 @@ export default class Libros extends React.Component {
         fecha_impresion: item.fecha_impresion,
         tamanio: item.tamanio,
         portada_url: item.url,
+        autor: item.autor,
+        editorial: item.editorial,
+        categoria: item.categoria,
         update: true,
         update_message: "Actualizar libro",
         open: true,
@@ -109,9 +115,9 @@ export default class Libros extends React.Component {
           isbn: this.state.isbn,
           anio_publicacion: this.state.anio_publicacion,
           descripcion: this.state.descripcion,
-          //autor: this.state.autor,
-          //editorial: this.state.editorial,
-          //categoria: this.state.categoria,
+          autor: this.state.autor,
+          editorial: this.state.editorial,
+          categoria: this.state.categoria,
           ebook: this.state.ebook,
           precio_electronico: this.state.precio_electronico,
           tamanio: this.state.tamanio,
@@ -143,6 +149,9 @@ export default class Libros extends React.Component {
                   fecha_impresion: '',
                   pdf: '',
                   portada_url: '',
+                  autor: '',
+                  editorial: '',
+                  categoria: '',
                   alerta: true,
                   msgAlerta: resultado.status,
                   tipoAlerta: "success",
@@ -159,9 +168,9 @@ export default class Libros extends React.Component {
         isbn: this.state.isbn,
         anio_publicacion: this.state.anio_publicacion,
         descripcion: this.state.descripcion,
-        //autor: this.state.autor,
-        //editorial: this.state.editorial,
-        //categoria: this.state.categoria,
+        autor: this.state.autor,
+        editorial: this.state.editorial,
+        categoria: this.state.categoria,
         precio_electronico: this.state.precio_electronico,
         tamanio: this.state.tamanio,
         precio_fisico: this.state.precio_fisico,
@@ -192,6 +201,9 @@ export default class Libros extends React.Component {
             fecha_impresion: '',
             pdf: '',
             portada: '',
+            autor: '',
+            editorial: '',
+            categoria: '',
             alerta: true,
             msgAlerta: resultado.status,
             tipoAlerta: "success",
@@ -246,10 +258,12 @@ export default class Libros extends React.Component {
                   <thead>
                     <tr>
                       <th className="align-middle">Id</th>
+                      <th className="align-middle">Titulo</th>
                       <th className="align-middle">ISBN</th>
+                      <th className="align-middle">Autor</th>
+                      <th className="align-middle">Editorial</th>
                       <th className="align-middle">Año Publicacion</th>
                       <th className="align-middle">Descripcion</th>
-                      <th className="align-middle">Titulo</th>
                       <th className="align-middle">Precio Fisico</th>
                       <th className="align-middle">Precio Electronico</th>
                       <th className="align-middle">Tamaño</th>
@@ -265,6 +279,8 @@ export default class Libros extends React.Component {
                           <td className="align-middle">{index+1}</td>
                           <td className="align-middle">{item.titulo}</td>
                           <td className="align-middle">{item.isbn}</td>
+                          <td className="align-middle">{item.autor}</td>
+                          <td className="align-middle">{item.editorial}</td>
                           <td className="align-middle">{item.anio_publicacion}</td>
                           <td className="align-middle">{item.descripcion}</td>
                           <td className="align-middle">{item.precio_electronico}</td>

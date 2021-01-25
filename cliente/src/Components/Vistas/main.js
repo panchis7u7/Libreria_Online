@@ -1,6 +1,6 @@
 import React from 'react';
 import Carousel from 'react-multi-carousel';
-import { Container } from 'react-bootstrap'; 
+import { Container, Form, FormLabel, FormControl, Button } from 'react-bootstrap'; 
 import "react-multi-carousel/lib/styles.css";
 import '../../SCSS/libreria.scss';
 import Popup from 'reactjs-popup';
@@ -16,7 +16,7 @@ export default class Main extends React.Component {
         }
     }
 
-    createNotification = (type) => {
+    createNotification(type){
         return () => {
           switch (type) {
             case 'success':
@@ -55,6 +55,21 @@ export default class Main extends React.Component {
         }).catch((error) => console.log("error: ", error));
     }
 
+    insertarCarrito = (item) => {
+        var headers = new Headers();
+        headers.append("Content-Type", "application/json");
+        var body = JSON.stringify(item)
+      console.log("A enviar: ", body);
+      fetch("http://localhost:8000/cesta", {        //revisar que efectivamente sea ../insert
+          method: "POST",
+          headers: headers,
+          body: body
+      }).then((respuesta) => respuesta.json())
+          .then((resultado) => {
+              console.log(resultado);    
+          });
+    }
+
     render(){
         const responsive = {
             superLargeDesktop: {
@@ -86,7 +101,13 @@ export default class Main extends React.Component {
                             return (
                                 <div key={index} className="shadow-lg p-3 mb-5 bg-white rounded">
                                     <Book titulo={item.titulo} author="prueba" precio={item.precio_fisico} portada={item.url} ></Book>
-                                    <button className="btn-agregar-carro" onClick={this.createNotification('error')}>+</button><NotificationContainer/>
+                                    <Popup trigger={<button className="btn-agregar-carro" onClick={() => {this.insertarCarrito(item)}}>+</button>} position="bottom center">
+                                        <Form className="form">
+                                            <FormLabel>Cestas:</FormLabel>
+                                            <FormControl as="select" name="titulo" placeholder="Título." onChange={this.handleChange} value={this.state.titulo} required={true}/>
+                                            <Button type="submit" variant="primary" block>Agregar</Button><br></br>
+                                        </Form>
+                                    </Popup>
                                 </div>
                             );
                         })}
@@ -113,9 +134,7 @@ export default class Main extends React.Component {
                                 <div key={index} className="shadow-lg p-3 mb-5 bg-white rounded">
                                     <Book titulo={item.titulo} author="prueba" precio={item.precio_fisico} portada={item.url} ></Book>
                                     <button className="btn-agregar-carro" onClick={() => {this.setState({open: true})}}>+</button>
-                                    <Popup position="center center" open={this.state.open} onClose={this.onCloseHandler}>
-                                        <div>Producto anadido!</div>
-                                    </Popup>
+                                    
                                 </div>
                             );
                         })}

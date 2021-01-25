@@ -15,6 +15,17 @@
     text-align: center;
     padding-top: 3em;
     margin-bottom: 3em;
+    label{
+        @include labels();
+    }
+    input{
+        @include inputs();
+        width: 80%;
+    }
+    select {
+        @include inputs();
+        width: 80%;
+    }
 }
 
 .popup-content{
@@ -35,10 +46,14 @@
             input{
                 @include inputs();
             }
+            select {
+                @include inputs();
+            }
         }
         .foraneos{
             label{
                 @include labels();
+                padding-left: 4em;
             }
             select{
                 @include inputs();
@@ -52,6 +67,10 @@
                 padding-right: 5px;
             }
             input{
+                @include inputs();
+                width: 80%;
+            }
+            select{
                 @include inputs();
                 width: 80%;
             }
@@ -78,7 +97,7 @@
             }
         }
     }
-    Button {
+    #btnSend {
         padding: 1em;
         background-color: rgb(15, 15, 105);
         border-radius: 10px;
@@ -129,7 +148,7 @@ h1{
   }
 
   [role='tooltip'].popup-content {
-    width: 60%;
+    width: 200px;
     box-shadow: rgba(0, 0, 0, 0.16) 0px 0px 3px;
     border-radius: 5px;
   }

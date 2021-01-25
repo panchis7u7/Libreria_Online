@@ -1,6 +1,6 @@
 import React from 'react';
 import {Container, Form, FormControl, FormLabel, Button, Alert, Row, Table} from 'react-bootstrap';
-import '../../SCSS/otros.scss';
+import '../../SCSS/Base.scss';
 import Popup from 'reactjs-popup';
 import mexico from '../../Data/México.min.json';
 
@@ -280,7 +280,7 @@ export default class Autores extends React.Component {
               </Row>
             </Container>
             <Button variant="info" onClick={() => {this.setState({open: true,})}}>Añadir nuevo</Button>
-            <Popup open={this.state.open} onClose={() => {this.handlePopupClose()}} position="bottom center">
+            <Popup open={this.state.open} className="popup" onClose={() => {this.handlePopupClose()}} position="bottom center">
                 <Form className = "popup-root" action="http://localhost:3001/autores" onSubmit={(e) => {this.state.update ?  this.editRegistro(e) : this.addRegistro(e)}}>
                     <h2>Registro de autor</h2><hr></hr>
                     <Container className="contenedor-2">

@@ -1,6 +1,6 @@
 import React from 'react';
 import {Container,Form, FormControl, FormLabel, Button, Alert, Row, Table} from 'react-bootstrap';
-import '../../SCSS/otros.scss'
+import '../../SCSS/Base.scss'
 import Popup from 'reactjs-popup';
 
 export default class Almacenes extends React.Component {

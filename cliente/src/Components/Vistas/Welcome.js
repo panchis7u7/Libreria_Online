@@ -1,4 +1,4 @@
-import '../../SCSS/Welcome.css';
+import '../../SCSS/Welcome.scss';
 
 function Welcome(props) {
     const { user } = (props.location && props.location.state) || {};
