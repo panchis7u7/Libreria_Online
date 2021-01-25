@@ -13,6 +13,7 @@ export default class Main extends React.Component {
         this.state = {
             libros: [],
             open: false,
+            tipo: ""
         }
     }
 
@@ -101,13 +102,11 @@ export default class Main extends React.Component {
                             return (
                                 <div key={index} className="shadow-lg p-3 mb-5 bg-white rounded">
                                     <Book titulo={item.titulo} author="prueba" precio={item.precio_fisico} portada={item.url} ></Book>
-                                    <Popup trigger={<button className="btn-agregar-carro" onClick={() => {this.insertarCarrito(item)}}>+</button>} position="bottom center">
-                                        <Form className="form">
-                                            <FormLabel>Cestas:</FormLabel>
-                                            <FormControl as="select" name="titulo" placeholder="Título." onChange={this.handleChange} value={this.state.titulo} required={true}/>
-                                            <Button type="submit" variant="primary" block>Agregar</Button><br></br>
-                                        </Form>
-                                    </Popup>
+                                    <FormControl as="select" name="titulo" placeholder="Título." onChange={this.handleChange} value={this.state.titulo} required={true}>
+                                        <option>Fisico</option>
+                                        <option>Electronico</option>
+                                    </FormControl>
+                                    <button className="btn-agregar-carro" onClick={() => {this.insertarCarrito(item)}}>+</button>
                                 </div>
                             );
                         })}

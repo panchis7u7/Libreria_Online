@@ -128,7 +128,7 @@ export default class Libros extends React.Component {
           pdf: this.state.pdf,
           portada_url: this.state.portada_url,
       });
-      console.log("Solicitut mandada");
+      console.log("Solicitud mandada");
       fetch("http://localhost:8000/libros", {
           method: "POST",
           headers: headers,

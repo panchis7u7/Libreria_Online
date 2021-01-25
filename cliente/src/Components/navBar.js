@@ -1,7 +1,21 @@
 import * as ReactBootStrap from 'react-bootstrap';
-import '../SCSS/navBar.scss'
+import Popup from 'reactjs-popup';
+import '../SCSS/navBar.scss';
+import { useHistory } from 'react-router-dom';
+//import { useState, useEffect } from 'react'
 
 export default function NavBar(props){
+    const history = useHistory();
+    const onLogout = () => {
+        let appState = {
+            isLoggedIn: false,
+            user: {
+              email: "",
+            }
+          };
+          localStorage["appState"] = JSON.stringify(appState);
+        history.push("/");
+    }
     return(
         <div className="main-nav">
             <ReactBootStrap.Navbar className="nav" collapseOnSelect expand="lg" variant="dark">
@@ -25,10 +39,12 @@ export default function NavBar(props){
                             <img alt="login" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS3wb_RqiZ67AK3X1QuQg4F7IS65-6FuSYrCQ&usqp=CAU"></img>
                             Carrito de compras
                         </ReactBootStrap.Nav.Link>
-                        <ReactBootStrap.Nav.Link id="nav-usuario" href="/perfil">
-                            <img alt="usuario" src="https://i.pinimg.com/736x/d9/7b/bb/d97bbb08017ac2309307f0822e63d082.jpg"></img>
-                            Perfil
-                        </ReactBootStrap.Nav.Link>
+                        <Popup trigger={
+                            <ReactBootStrap.Nav.Link id="nav-usuario">
+                                <img alt="usuario" src="https://i.pinimg.com/736x/d9/7b/bb/d97bbb08017ac2309307f0822e63d082.jpg"></img>
+                                Perfil</ReactBootStrap.Nav.Link>} position="bottom left">
+                            <ReactBootStrap.Button as="button" onClick={() => {onLogout()}}>Salir</ReactBootStrap.Button>
+                        </Popup>
                     </ReactBootStrap.Nav>
                 </ReactBootStrap.Navbar.Collapse>
             </ReactBootStrap.Navbar>

@@ -72,29 +72,26 @@ export default class Login extends React.Component{
           isLoggedIn: resultado.success,
       });
       if(resultado.status_code === 1){
-        let userData = {
-          email: resultado.email,
-        };
         let appState = {
           isLoggedIn: this.state.isLoggedIn,
-          user: userData,
+          user: {
+            email: resultado.email,
+          }
         };
         localStorage["appState"] = JSON.stringify(appState);
-        this.props.history.push(`${resultado.redirect}`, resultado);
       } else {
-        let userData = {
-          email: resultado.email,
-        };
         let appState = {
           isLoggedIn: false,
-          user: userData,
+          user: {
+            email: ""
+          }
         };
         localStorage["appState"] = JSON.stringify(appState);
         this.setState({
           isLoggedIn: appState.isLoggedIn,
         })
-        this.props.history.push(`${this.state.redirect}`);
       }
+      this.props.history.push(`${this.state.redirect}`, resultado);
     })
     .catch((err) => console.log("Error: ", err));
   };

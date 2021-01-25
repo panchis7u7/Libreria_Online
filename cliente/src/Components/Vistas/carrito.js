@@ -1,6 +1,6 @@
 import React from 'react';
 import {Container, Alert} from 'react-bootstrap';
-import '../../SCSS/Base.scss'
+import '../../SCSS/carrito.scss'
 
 export default class Carrito extends React.Component {
     constructor(props){
@@ -56,10 +56,12 @@ export default class Carrito extends React.Component {
                 ) : null}
                 {this.state.libros.map((item, index) => {
                             return (
-                                <div key={index} className="shadow-lg p-3 mb-5 bg-white rounded">
-                                    <Book titulo={item.titulo} author="prueba" precio={item.precio_fisico} portada={item.url} ></Book>
-                                    <button className="btn-agregar-carro" onClick={() => {this.createNotification(item)}}>+</button>
-                                </div>
+                                <Container className="popular">
+                                    <div key={index} className="shadow-lg p-3 mb-5 bg-white rounded">
+                                        <Book titulo={item.titulo} author="prueba" precio={item.precio_fisico} portada={item.url} ></Book>
+                                        <button className="btn-eliminar">Eliminar</button>
+                                    </div>
+                                </Container>
                             );
                         })}
             </Container>
@@ -91,8 +93,8 @@ class Book extends React.Component {
             </div>
             <div className="book-cover"
                 style={{
-                    width: 256,
-                    height: 386,
+                    width: 128,
+                    height: 193,
                     backgroundImage:
                     `url('${this.state.portada}')`,
                 }}/>
