@@ -16,5 +16,19 @@ $ColorTexto: white;
       .navItem {
           color: $ColorTexto;
         }
+      #nav-usuario {
+        img {
+          background-repeat: no-repeat;
+          background-position: 0 top;
+          content: "";
+          display: inline-block;
+          height: 50px;
+          margin-right: 10px;
+          vertical-align: middle;
+          width: 50px;
+          border-radius: 100%;
+          border: 1px solid black;
+        }
+      }
     }
   }

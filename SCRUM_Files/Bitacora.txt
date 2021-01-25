@@ -200,21 +200,6 @@ libros en referencia a mi interés.
 *> Manejo de solicitudes.
 
 ################################################################################
-11
-################################################################################
-
-*--11 // PA Comentarios (3)
-Como Cliente quiero tener la opción de obtener feedback de la comunidad de un
-libro para ayudarme a decidir si es una buena opción.
-
-*> Crear entidades e interrelaciones en mysql.
-*> Disenos UI, Formulario y UX.
-*> Pruebas UI, Formulario y Backend.
-*> Manejo de solicitudes.
-
-################################################################################
-
-@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
 
 @@@@@@@@@@@@@@@@@@@@@@@ SCRUM Diario 16 de enero del 2021 @@@@@@@@@@@@@@@@@@@@@@
@@ -632,6 +617,43 @@ libro para ayudarme a decidir si es una buena opción.
 --------------------------------------------------------------------------------
 
 @@@@@@@@@@@@@@@@@@@@@@@ SCRUM Diario 24 de enero del 2021 @@@@@@@@@@@@@@@@@@@@@@
+
+1) Katherine:
+
+¿Que hiciste ayer?
+	*> Terminar interfaces.
+¿Tuviste algun impedimento?
+	*> No.
+¿Que haras hoy?
+	*> Terminar de detallar las interfaces, implementar manejo de peticiones en la
+    forma.
+
+2) Alexis:
+
+¿Que hiciste ayer?
+	*> Investigando las pruebas automaticas.
+¿Tuviste algun impedimento?
+	*> Dificultad en las pruebas.
+¿Que haras hoy?
+	*> Documentar las pruebas (pruebas de aceptacion).
+
+3) Carlos:
+
+¿Que hiciste ayer?
+	*> Pruebas finalizadas de la base de datos.
+¿Tuviste algun impedimento?
+	*> No.
+¿Que haras hoy?
+	*> Integrar el documento (entregable).
+
+4) Sebastian:
+
+¿Que hiciste ayer?
+	*> Generar las vistas de login y registrar asi como generar las APIs o requests en el servidor.
+¿Tuviste algun impedimento?
+	*> No.
+¿Que haras hoy?
+	*> Encriptar contrasenas.
 
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 

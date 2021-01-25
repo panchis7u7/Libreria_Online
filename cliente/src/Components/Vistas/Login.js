@@ -2,9 +2,9 @@ import React from 'react';
 //Importar el archivo que maneja la encriptacion de datos que se enviaran al lado del servidor!.
 import { encrypt } from '../EncryptionHandler';
 import '../../SCSS/Login.scss';
+import Authentication from '../Authentication';
 
-
-class Login extends React.Component{
+export default class Login extends React.Component{
   constructor(props) {
     super(props);
     this.state = {
@@ -59,11 +59,11 @@ class Login extends React.Component{
           redirect: resultado.redirect,
           nombre: resultado.nombre,
       });
-      this.props.history.push(`${this.state.redirect}`);
+      Authentication.login(() => {
+        this.props.history.push(`${this.state.redirect}`);
+      })
     })
     .catch((err) => console.log("Error: ", err));
   };
 
 };
-
-export default Login;
