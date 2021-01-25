@@ -13,14 +13,14 @@ export default function NavBar(){
                     </ReactBootStrap.Nav>
                     <ReactBootStrap.Nav>
                             <ReactBootStrap.Nav.Link href="/libros"><span className="navItem">Libros</span></ReactBootStrap.Nav.Link>
-                            <ReactBootStrap.Nav.Link href="/autores"><span className="navItem">Autores</span></ReactBootStrap.Nav.Link>
-                            <ReactBootStrap.Nav.Link href="/editoriales"><span className="navItem">Editoriales</span></ReactBootStrap.Nav.Link>
                         <ReactBootStrap.NavDropdown title="Contenido" id="collasible-nav-dropdown">
                                 <ReactBootStrap.NavDropdown.Item href="/almacenes">Almacenes</ReactBootStrap.NavDropdown.Item>
                                 <ReactBootStrap.NavDropdown.Item href="/librosAlmacen">Libros almacenados</ReactBootStrap.NavDropdown.Item>
                         </ReactBootStrap.NavDropdown>
-                        <ReactBootStrap.NavDropdown title="Personal ?" id="collasible-nav-dropdown">
+                        <ReactBootStrap.NavDropdown title="Usuarios" id="collasible-nav-dropdown">
                                 <ReactBootStrap.NavDropdown.Item href="/clientes">Clientes</ReactBootStrap.NavDropdown.Item>
+                                <ReactBootStrap.NavDropdown.Item href="/autores">Autores</ReactBootStrap.NavDropdown.Item>
+                                <ReactBootStrap.NavDropdown.Item href="/editoriales">Editoriales</ReactBootStrap.NavDropdown.Item>
                         </ReactBootStrap.NavDropdown>
                     </ReactBootStrap.Nav>
                 </ReactBootStrap.Navbar.Collapse>

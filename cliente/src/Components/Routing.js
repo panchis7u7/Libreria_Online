@@ -3,11 +3,11 @@ import Main from './Vistas/main'
 import Libros from './Vistas/libros';
 import Autores from './Vistas/autores';
 import Editoriales from './Vistas/editoriales';
+import Clientes from './Vistas/clientes'; 
 import Almacenes from './Vistas/almacenes';
 import LibrosAlmacen from './Vistas/librosAlmacen';
 import Login from './Vistas/Login';
 import Register from './Vistas/Register'; 
-import Clientes from './Vistas/clientes'; 
 import NavBar from './navBar'; 
 
 export default function Rutas() {

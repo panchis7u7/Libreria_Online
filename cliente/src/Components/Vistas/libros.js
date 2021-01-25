@@ -256,10 +256,10 @@ export default class Libros extends React.Component {
                     </tr>
                   </thead>
                   <tbody>
-                    {this.state.registros.map((item) => {
+                    {this.state.registros.map((item, index) => {
                       return (
                         <tr key={item.id_libro}>
-                          <td className="align-middle">{item.id_libro}</td>
+                          <td className="align-middle">{index+1}</td>
                           <td className="align-middle">{item.titulo}</td>
                           <td className="align-middle">{item.isbn}</td>
                           <td className="align-middle">{item.anio_publicacion}</td>

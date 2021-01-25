@@ -59,7 +59,7 @@ class Login extends React.Component{
           redirect: resultado.redirect,
           nombre: resultado.nombre,
       });
-      //this.props.history.push(`${this.state.redirect}`);
+      this.props.history.push(`${this.state.redirect}`);
     })
     .catch((err) => console.log("Error: ", err));
   };
