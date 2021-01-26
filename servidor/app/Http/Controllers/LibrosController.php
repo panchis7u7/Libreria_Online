@@ -54,7 +54,11 @@ class LibrosController extends Controller
      */
     public function show($id)
     {
-        //
+        return DB::table('libros')
+        ->join('autor_escribe_libro', 'autor_escribe_libro.id_libro', '=', 'libros.id_libro')
+        ->join('autores', 'autores.id_autor', '=', 'autor_escribe_libro.id_autor')
+        ->where('autores.id_autor', '=', $id)
+        ->get();
     }
 
     /**

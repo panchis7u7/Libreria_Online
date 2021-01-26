@@ -55,6 +55,20 @@ export default class Almacenes extends React.Component {
       });
     }
 
+    autorChange = (e) => {
+      this.handleChange(e);
+      if (e.target.value !== ''){
+        let autor = this.state.autores.find(item => item.nombre === e.target.value).id_autor;
+        this.getLibrosAutores(autor);
+      } else {
+        this.setState({
+          libros: [],
+        })
+      }
+    } 
+
+/************************************************************************************************************************/
+    
     getAutores = () => {
         let headers = new Headers();
           headers.append("Content-Type", "application/json");
@@ -78,7 +92,7 @@ export default class Almacenes extends React.Component {
     getLibrosAutores = (id_autor) => {
       let headers = new Headers();
         headers.append("Content-Type", "application/json");
-        fetch(`http://localhost:8000/autores/${id_autor}`, {
+        fetch(`http://localhost:8000/libros/${id_autor}`, {
           method: "GET",
           headers: headers,
         })
@@ -250,7 +264,7 @@ export default class Almacenes extends React.Component {
                         <Container className="contenedor-2">
                             <div className="largos">
                                 <FormLabel>Autor:</FormLabel>
-                                <FormControl as="select" name="autor" placeholder="Nombre de autor" onChangeCapture={this.handleChange} value={this.state.autor}>
+                                <FormControl as="select" name="autor" placeholder="Nombre de autor" onChangeCapture={this.autorChange} value={this.state.autor}>
                                   <option></option>
                                   {this.state.autores.map((item, index) => {
                                       return(
@@ -260,7 +274,15 @@ export default class Almacenes extends React.Component {
                                   }
                                 </FormControl>
                                 <FormLabel>Titulo:</FormLabel>
-                                <FormControl as="select" name="titulo" placeholder="Título." onChangeCapture={this.handleChange} value={this.state.titulo} required={true}/>
+                                <FormControl as="select" name="titulo" placeholder="Título." onChangeCapture={this.handleChange} value={this.state.titulo} required={true}>
+                                <option></option>
+                                  {this.state.libros.map((item, index) => {
+                                      return(
+                                        <option key={index}>{item.titulo}</option>
+                                      );
+                                    })
+                                  }
+                                </FormControl>
                                 <FormLabel>Libros en stock:</FormLabel>
                                 <FormControl type="number" name="stock" placeholder="Cantidad de libros en stock" onChange={this.handleChange} value={this.state.stock} required={true}/>
                             </div>
