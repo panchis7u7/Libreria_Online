@@ -16,6 +16,7 @@
   Carlos Daniel Villa: BackEnd Developer - Scrum team.
   Carlos Alexis Moreno Cortes: DataBase Engineer.
   Carlos Sebastian Madrigal Rodriguez.
+  
 -> Definicion de "Tarea terminada" o "Done" para el equipo de Scrum.
   Serie de requisitos que las tareas deben de tener para ser consideradas como
   "terminadas":
@@ -23,6 +24,7 @@
     => Codigo hecho por programcion por pares y todos los integrantes del
        equipo hayan hecho una reseña.
     => Refactorizacion de codigo (eliminar codigo repetido).
+    
 -> Estimar y Comprometer las historias de usuario.
   => Scrum poker usando numeros Fibonacci.
 
@@ -90,7 +92,7 @@ seguimiento a nuestro trabajo.
 *> Crear entidades e interrelaciones en mysql.
 *> Desarrollo del Formulario.
 *> Diseño de la pagina Formulario.
-*> Pruebas Formularioss y Backend.
+*> Pruebas de los Formularioss y Backend.
 *> Manejo de solicitudes.
 
 ################################################################################
@@ -105,7 +107,8 @@ popularidad y potenciales escritores que quieran publicar su libro.
 
 *> Crear entidades e interrelaciones en mysql.
 *> Desarrollo del Formulario.
-*> Pruebas Formularioss y Backend.
+*> Diseño de la pagina Formulario.
+*> Pruebas de los Formularioss y Backend.
 *> Manejo de solicitudes.
 
 ################################################################################
@@ -120,7 +123,8 @@ para tener un analisis de logistica optimo de la gestion de encargos de los libr
 
 *> Crear entidades e interrelaciones en mysql.
 *> Desarrollo del Formulario.
-*> Pruebas Formularioss y Backend.
+*> Diseño de la pagina Formulario.
+*> Pruebas de los Formularios y Backend.
 *> Manejo de solicitudes.
 
 ################################################################################
@@ -136,7 +140,8 @@ productos.
 
 *> Crear entidades e interrelaciones en mysql.
 *> Desarrollo del Formulario.
-*> Pruebas Formularioss y Backend.
+*> Diseño de la pagina Formulario.
+*> Pruebas de los Formularios y Backend.
 *> Manejo de solicitudes.
 
 ################################################################################
@@ -151,7 +156,8 @@ provincia, email y teléfono para tener una gestion de los datos clientes
 
 *> Crear entidades e interrelaciones en mysql.
 *> Desarrollo del Formulario.
-*> Pruebas Formularioss y Backend.
+*> Diseño de la pagina Formulario.
+*> Pruebas de los Formularios y Backend.
 *> Manejo de solicitudes.
 
 ################################################################################
@@ -282,7 +288,7 @@ libros en referencia a mi interés.
 	*> Instale y realice la integracion de laravel con un modulo el frontend, asi como
 	generar las APIs o requests en el servidor.
 ¿Tuviste algun impedimento?
-	*> Documentacion.
+	*> Ninguna.
 ¿Que haras hoy?
 	*> Actualizar las url de las peticiones del formularios en desarrollo asi
 	   como asociarlas en el backend.
@@ -341,10 +347,9 @@ libros en referencia a mi interés.
 4) Sebastian:
 
 ¿Que hiciste ayer?
-	*> Instale y realice la integracion de laravel con un modulo el frontend, asi como
-	generar las APIs o requests en el servidor.
+	*> Genere las rutas las APIs o requests en el servidor.
 ¿Tuviste algun impedimento?
-	*> Documentacion.
+	*> Ninguna.
 ¿Que haras hoy?
 	*> Actualizar las url de las peticiones del formularios en desarrollo asi
 	   como asociarlas en el backend.
@@ -385,7 +390,7 @@ libros en referencia a mi interés.
 4) Sebastian:
 
 ¿Que hiciste ayer?
-	*> Instale y realice la integracion de laravel con un modulo el frontend, asi como
+	*> Realice la integracion de laravel con un modulo el frontend, asi como
 	generar las APIs o requests en el servidor.
 ¿Tuviste algun impedimento?
 	*> Documentacion.

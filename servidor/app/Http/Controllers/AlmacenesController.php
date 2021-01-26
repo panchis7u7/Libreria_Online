@@ -48,7 +48,7 @@ class AlmacenesController extends Controller
             ));
 
             DB::commit();
-            return response()->json(['id_almacen' => $id_almacen, 'status' => 'Insercion Exitosa!', 'status_code' => '1']);
+            return response()->json(['id_almacen' => $id_almacen, 'nombre' => $request->input('localidad'), 'status' => 'Insercion Exitosa!', 'status_code' => '1']);
         } catch (\Exception $e){
             DB::rollback();
             return response()->json(['id_almacen' => '-1', 'status' => 'Insercion Fallida!', 'status_code' => '-1', 'error' => $e, 'id_provincia' => $id_provincia]);

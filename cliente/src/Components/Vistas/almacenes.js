@@ -27,13 +27,14 @@ export default class Almacenes extends React.Component {
     }
 
     componentDidMount(){
-        this.fetchRegistros()
+        this.fetchRegistros();
     };
 
     handleChange = (evt) => {
         this.setState({
           [evt.target.name]: evt.target.value,
         });
+        //console.log(`${evt.target.name}: ${evt.target.value}`)
     };
 
     handlePopupClose = () => {
@@ -229,8 +230,8 @@ export default class Almacenes extends React.Component {
                     <th className="align-middle">ID</th>
                       <th className="align-middle">Nombre</th>
                       <th className="align-middle">Dirección</th>
-                      <th className="align-middle">Localidad</th>
                       <th className="align-middle">Provincia</th>
+                      <th className="align-middle">Localidad</th>
                       <th className="align-middle">Telefono</th>
                       <th className="align-middle" colSpan="2">Acciones</th>
                     </tr>
@@ -287,6 +288,7 @@ export default class Almacenes extends React.Component {
                           <div className="propietarios">
                               <FormLabel>Localidad:</FormLabel>
                               <FormControl as="select" disabled={this.state.disable_localidades} name="localidad" placeholder="Localidades" onChange={this.handleChange} value={this.state.localidad}>
+                                <option></option>
                                 {
                                   this.state.localidades.map((localidad, index) => {
                                     return(

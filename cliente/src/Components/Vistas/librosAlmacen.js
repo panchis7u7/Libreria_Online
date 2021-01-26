@@ -30,6 +30,8 @@ export default class Almacenes extends React.Component {
 
     componentDidMount(){
         this.fetchAlmacenes();
+        this.getAutores();
+        this.getLibrosAutores();
     };
 
     handleChange = (evt) => {
@@ -52,6 +54,46 @@ export default class Almacenes extends React.Component {
         update_message: "Agregar libro en almacen",
       });
     }
+
+    getAutores = () => {
+        let headers = new Headers();
+          headers.append("Content-Type", "application/json");
+          fetch("http://localhost:8000/autores", {
+            method: "GET",
+            headers: headers,
+          })
+            .then((respuesta) => respuesta.json())
+            .then((resultado) => {
+              console.log(resultado);
+                this.setState({
+                  autores: resultado,
+                });
+          })
+          .catch((error) => {
+            console.log("error: ", error)
+            return error;
+        });
+    }
+
+    getLibrosAutores = (id_autor) => {
+      let headers = new Headers();
+        headers.append("Content-Type", "application/json");
+        fetch(`http://localhost:8000/autores/${id_autor}`, {
+          method: "GET",
+          headers: headers,
+        })
+          .then((respuesta) => respuesta.json())
+          .then((resultado) => {
+            console.log(resultado);
+              this.setState({
+                libros: resultado,
+              });
+        })
+        .catch((error) => {
+          console.log("error: ", error)
+          return error;
+      });
+  }
 
     fetchAlmacenes = () => {
       let headers = new Headers();
@@ -161,6 +203,7 @@ export default class Almacenes extends React.Component {
                 ) : null}
               <FormLabel>Almacén:</FormLabel>                
               <FormControl as="select" name="nombre_alm" placeholder="Nombre de almacen" onChangeCapture={this.handleChange} value={this.state.nombre_alm}>
+                <option></option>
                   {this.state.almacenes.map((item, index) =>{
                     return (
                       <option key={index}>{item.nombre}</option>
@@ -208,6 +251,13 @@ export default class Almacenes extends React.Component {
                             <div className="largos">
                                 <FormLabel>Autor:</FormLabel>
                                 <FormControl as="select" name="autor" placeholder="Nombre de autor" onChangeCapture={this.handleChange} value={this.state.autor}>
+                                  <option></option>
+                                  {this.state.autores.map((item, index) => {
+                                      return(
+                                        <option key={index}>{item.nombre}</option>
+                                      );
+                                    })
+                                  }
                                 </FormControl>
                                 <FormLabel>Titulo:</FormLabel>
                                 <FormControl as="select" name="titulo" placeholder="Título." onChangeCapture={this.handleChange} value={this.state.titulo} required={true}/>
