@@ -2,6 +2,8 @@
 
 -------------------- Product Backlog Refinement Meeting ------------------------
 
+    11:00am - 1:00pm
+
 -> Identificar epicas.
 -> Convertir requerimientos a historias de usuario.
 
@@ -208,6 +210,8 @@ libros en referencia a mi interés.
 
 ---------------------------- Sprint Planning Meeting ---------------------------
 
+    1:00pm - 3:00pm
+
 -> Normas de las juntas.
 -> Generar Vision de Proyecto.
 -> Identificacion de Roles:
@@ -300,6 +304,8 @@ libros en referencia a mi interés.
 
 @@@@@@@@@@@@@@@@@@@@@@@ SCRUM Diario 17 de enero del 2021 @@@@@@@@@@@@@@@@@@@@@@
 
+11:00am - 11:15am
+
 1) Katherine:
 
 ¿Que hiciste ayer?
@@ -343,17 +349,29 @@ libros en referencia a mi interés.
 
 ----------------------------- Sprint Review Meeting ----------------------------
 
-->
+  11:20 - 11:40
+
+-> El trabajo fue completado de manera satisfactoria y a tiempo, cumpliendo la
+  definicion de terminado que establecio el propio equipo y requerimientos.
+-> Los desarrolladores muestran el trabajo funcional que fue terminado.
+-> El equipo tras discutir, decidio que la carga de trabajo fue un poco elevada.
 
 --------------------------------------------------------------------------------
 
 -------------------------- Sprint Retrospective Meeting ------------------------
 
-->
+11:20 - 11:40
+
+¿Que funciono bien?
+  - Organizacion y compromiso del equipo.
+¿Que debe mejorarse?
+  - Comunicacion entre integrantes.
 
 --------------------------------------------------------------------------------
 
 ---------------------------- Sprint Planning Meeting ---------------------------
+
+10:00pm - 10:30pm
 
 ->  Historias de usuario a desarrollar -> |3| y |4| (desicion tomada en equipo)
 
@@ -470,17 +488,30 @@ libros en referencia a mi interés.
 
 ----------------------------- Sprint Review Meeting ----------------------------
 
-->
+  11:20 - 11:40
+
+-> El trabajo fue completado de manera satisfactoria y a tiempo, cumpliendo la
+  definicion de terminado que establecio el propio equipo y requerimientos.
+-> Los desarrolladores muestran el trabajo funcional que fue terminado.
+-> El equipo tras discutir, decidio que la carga de trabajo fue la adecuada para
+  el sprint.
 
 --------------------------------------------------------------------------------
 
 -------------------------- Sprint Retrospective Meeting ------------------------
 
-->
+  11:20 - 11:40
+
+  ¿Que funciono bien?
+    - Organizacion y compromiso del equipo.
+  ¿Que debe mejorarse?
+    - Comunicacion entre integrantes.
 
 --------------------------------------------------------------------------------
 
 ---------------------------- Sprint Planning Meeting ---------------------------
+
+    10:00pm - 10:30pm
 
 ->  Historias de usuario a desarrollar -> |5| y |6| (desicion tomada en equipo)
 
@@ -593,17 +624,31 @@ libros en referencia a mi interés.
 
 ----------------------------- Sprint Review Meeting ----------------------------
 
-->
+  11:20 - 11:40
+
+-> El trabajo fue completado de manera satisfactoria y a tiempo, cumpliendo la
+  definicion de terminado que establecio el propio equipo y requerimientos.
+-> Los desarrolladores muestran el trabajo funcional que fue terminado.
+-> El equipo tras discutir, decidio que la carga de trabajo fue la adecuada para
+  el sprint.
 
 --------------------------------------------------------------------------------
 
 -------------------------- Sprint Retrospective Meeting ------------------------
 
-->
+    11:20 - 11:40
+
+-> El trabajo fue completado de manera satisfactoria y a tiempo, cumpliendo la
+  definicion de terminado que establecio el propio equipo y requerimientos.
+-> Los desarrolladores muestran el trabajo funcional que fue terminado.
+-> El equipo tras discutir, decidio que la carga de trabajo fue la adecuada para
+  el sprint.
 
 --------------------------------------------------------------------------------
 
 ---------------------------- Sprint Planning Meeting ---------------------------
+
+    10:00pm - 10:30pm
 
 ->  Historias de usuario a desarrollar -> |7| y |8| (desicion tomada en equipo)
 
@@ -675,6 +720,8 @@ libros en referencia a mi interés.
 
 @@@@@@@@@@@@@@@@@@@@@@@ SCRUM Diario 23 de enero del 2021 @@@@@@@@@@@@@@@@@@@@@@
 
+11:00am - 11:15am
+
 1) Katherine:
 
 ¿Que hiciste ayer?
@@ -716,18 +763,31 @@ libros en referencia a mi interés.
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
 ----------------------------- Sprint Review Meeting ----------------------------
+  11:20 - 11:40
 
-->
+-> El trabajo fue completado de manera satisfactoria y a tiempo, cumpliendo la
+  definicion de terminado que establecio el propio equipo y requerimientos.
+-> Los desarrolladores muestran el trabajo funcional que fue terminado.
+-> El equipo tras discutir, decidio que la carga de trabajo fue la adecuada para
+  el sprint.
 
 --------------------------------------------------------------------------------
 
 -------------------------- Sprint Retrospective Meeting ------------------------
 
-->
+    11:20 - 11:40
+
+¿Que funciono bien?
+  - Organizacion y compromiso del equipo.
+¿Que debe mejorarse?
+  - Puntualidad en las juntas.
+  - Mejor colaboracion entre equipo.
 
 --------------------------------------------------------------------------------
 
 ---------------------------- Sprint Planning Meeting ---------------------------
+
+    10:00pm - 10:30pm
 
 ->  Historias de usuario a desarrollar -> |9| y |10| (desicion tomada en equipo)
 
@@ -838,12 +898,23 @@ libros en referencia a mi interés.
 
 ----------------------------- Sprint Review Meeting ----------------------------
 
-->
+  11:20 - 11:40
+
+-> El trabajo fue completado de manera satisfactoria y a tiempo, cumpliendo la
+  definicion de terminado que establecio el propio equipo y requerimientos.
+-> Los desarrolladores muestran el producto finalizado.
+-> El equipo al discutir llego a la conclusion de que la carga de trabajo y la
+  cantidad de sprints fueron las mas optimas.
 
 --------------------------------------------------------------------------------
 
 -------------------------- Sprint Retrospective Meeting ------------------------
 
-->
+11:20 - 11:40
+
+¿Que funciono bien?
+  - Organizacion y compromiso del equipo.
+¿Que debe mejorarse?
+  - Comunicacion entre integrantes.
 
 --------------------------------------------------------------------------------
