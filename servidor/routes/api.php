@@ -40,6 +40,9 @@ Route::resource('almacenes', 'App\Http\Controllers\AlmacenesController');
 //API para registrar usuarios o clientes.
 Route::resource('clientes', 'App\Http\Controllers\ClientesController');
 
+//Api para iniciar session.
+Route::post('login', 'App\Http\Controllers\ClientesController@login');
+
 //API para registrar las cestas.
 Route::resource('cestas', 'App\Http\Controllers\CestasController');
 

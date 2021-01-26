@@ -76,7 +76,8 @@ class CestasController extends Controller
             $id_cesta = DB::table('cestas')->select('cestas.id_cesta')
             ->join('clientes', 'clientes.id_cliente', '=', 'cestas.id_cliente')
             ->whereNull('fecha_compra')
-            ->where('email', '=', $request->input('email'));
+            ->where('email', '=', $request->input('email'))
+            ->get();
 
             DB::table('cesta_contiene_libro')->insert(array(
                 'id_cesta' => $id_cesta[0]->id_cesta,

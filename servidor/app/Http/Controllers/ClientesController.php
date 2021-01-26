@@ -121,7 +121,7 @@ class ClientesController extends Controller
         {
             return response()->json([
             'id_cliente' => $result[0]->id_cliente,
-            'cliente' => $result[0]->nombre, 
+            'nombre' => $result[0]->nombre, 
             'email' => $result[0]->email, 
             'success' => true, 
             'redirect' => '/main', 

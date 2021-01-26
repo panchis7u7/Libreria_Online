@@ -4,39 +4,17 @@ import '../SCSS/navBar.scss';
 import { useHistory } from 'react-router-dom';
 //import { useState, useEffect } from 'react'
 
-let state_of_state = localStorage["appState"];
-if(!state_of_state){
-    let appState = {
-        isLoggedIn: false,
-        user: {}
-    };
-    localStorage["appState"] =JSON.stringify(appState);
-}
-
-let state = localStorage["appState"];
-let AppState = JSON.parse(state);
-
-const Auth = {
-    isLoggedIn: AppState.isLoggedIn,
-    user: AppState
-};
-
-
 export default function NavBar(props){
     const history = useHistory();
+    let state = JSON.parse(localStorage["appState"]);
     const onLogout = () => {
-        let appState = {
-            isLoggedIn: false,
-            user: {
-              email: "",
-            }
-          };
-          localStorage["appState"] = JSON.stringify(appState);
+        state.isLoggedIn = false;
+        localStorage["appState"] = JSON.stringify(state);
         history.push("/");
     }
     return(
         <div className="main-nav">
-            <ReactBootStrap.Navbar hidden={!(Auth.isLoggedIn)} className="nav" collapseOnSelect expand="lg" variant="dark">
+            <ReactBootStrap.Navbar className="nav" collapseOnSelect expand="lg" variant="dark">
                     <ReactBootStrap.Navbar.Brand href="/main"><span className="navItem">Libreria Panchitos</span></ReactBootStrap.Navbar.Brand>
                 <ReactBootStrap.Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <ReactBootStrap.Navbar.Collapse id="responsive-navbar-nav">
@@ -61,6 +39,7 @@ export default function NavBar(props){
                             <ReactBootStrap.Nav.Link id="nav-usuario">
                                 <img alt="usuario" src="https://i.pinimg.com/736x/d9/7b/bb/d97bbb08017ac2309307f0822e63d082.jpg"></img>
                                 Perfil</ReactBootStrap.Nav.Link>} position="bottom left">
+                            Usuario: {state.user.nombre} <br></br>
                             <ReactBootStrap.Button as="button" onClick={() => {onLogout()}}>Salir</ReactBootStrap.Button>
                         </Popup>
                     </ReactBootStrap.Nav>

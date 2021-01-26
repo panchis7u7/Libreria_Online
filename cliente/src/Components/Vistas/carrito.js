@@ -74,9 +74,9 @@ export default class Carrito extends React.Component {
                     <Alert.Heading>{this.state.msgAlerta}</Alert.Heading>
                   </Alert>
                 ) : null}
-                {this.state.libros.map((item) => {
+                {this.state.libros.map((item, index) => {
                     return (
-                        <Container className="carrito">
+                        <Container key={index} className="carrito">
                                 <Book titulo={item.titulo} author="prueba" precio={item.precio_fisico} portada={item.url} 
                                     anio_publicacion={item.anio_publicacion} descripcion={item.descripcion}></Book>
                         </Container>
