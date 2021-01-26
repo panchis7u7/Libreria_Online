@@ -226,6 +226,7 @@ export default class Almacenes extends React.Component {
                 <Table striped bordered hover size="sm" >
                   <thead>
                     <tr>
+                    <th className="align-middle">ID</th>
                       <th className="align-middle">Nombre</th>
                       <th className="align-middle">Dirección</th>
                       <th className="align-middle">Localidad</th>
@@ -241,8 +242,8 @@ export default class Almacenes extends React.Component {
                           <td className="align-middle">{index+1}</td>
                           <td className="align-middle">{item.nombre}</td>
                           <td className="align-middle">{item.direccion}</td>
-                          <td className="align-middle">{item.localidad}</td>
                           <td className="align-middle">{item.provincia}</td>
+                          <td className="align-middle">{item.localidad}</td>
                           <td className="align-middle">{item.telefono}</td>
                           <td className="align-middle">
                             <Button onClick={() => {this.editControl(item)}} variant="info">Actualizar</Button>

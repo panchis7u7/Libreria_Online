@@ -8,6 +8,7 @@ export default class Almacenes extends React.Component {
         super(props);
         this.state = {
             registros: [],
+            almacenes: [],
             libros: [],
             autores: [],
             id_libro: "",
@@ -28,7 +29,7 @@ export default class Almacenes extends React.Component {
     }
 
     componentDidMount(){
-        this.fetchRegistros()
+        this.fetchAlmacenes();
     };
 
     handleChange = (evt) => {
@@ -52,10 +53,27 @@ export default class Almacenes extends React.Component {
       });
     }
 
+    fetchAlmacenes = () => {
+      let headers = new Headers();
+      headers.append("Content-Type", "application/json");
+        fetch("http://localhost:8000/librosAlmacenados", {
+          method: "GET",
+          headers: headers,
+      })
+      .then((respuesta) => respuesta.json())
+      .then((resultado) => {
+        console.log("resultado: ", resultado);
+        this.setState({
+          almacenes: resultado,
+        });
+    })
+      .catch((error) => console.log("error: ", error));
+    };
+
     fetchRegistros = () => {
         let headers = new Headers();
         headers.append("Content-Type", "application/json");
-        fetch("http://localhost:8000/librosAlmacen", {
+        fetch(`http://localhost:8000/librosAlmacen`, {
           method: "GET",
           headers: headers,
         })
@@ -63,7 +81,7 @@ export default class Almacenes extends React.Component {
           .then((resultado) => {
             console.log("resultado: ", resultado);
             this.setState({
-              registros: resultado.response,
+              registros: resultado,
             });
         })
         .catch((error) => console.log("error: ", error));
@@ -142,7 +160,14 @@ export default class Almacenes extends React.Component {
                   </Alert>
                 ) : null}
               <FormLabel>Almacén:</FormLabel>                
-              <FormControl as="select" name="almacen" placeholder="Nombre de almacen" onChangeCapture={this.handleChange} value={this.state.nombre_alm} />
+              <FormControl as="select" name="nombre_alm" placeholder="Nombre de almacen" onChangeCapture={this.handleChange} value={this.state.nombre_alm}>
+                  {this.state.almacenes.map((item, index) =>{
+                    return (
+                      <option key={index}>{item.nombre}</option>
+                    );
+                  })
+                }
+              </FormControl>
               <Row>
                 <Table striped bordered hover size="sm" >
                   <thead>

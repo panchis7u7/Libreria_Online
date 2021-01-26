@@ -14,7 +14,8 @@ class AlmacenesController extends Controller
      */
     public function index()
     {
-        return DB::table('almacenes')->select('almacenes.*', 'localidades.nombre as localidad', 'provincias.nombre as provincia')
+        return DB::table('almacenes')
+        ->select('almacenes.*', 'localidades.nombre as localidad', 'provincias.nombre as provincia')
         ->join('localidades', 'localidades.id_localidad', '=', 'almacenes.id_localidad')
         ->join('provincias', 'provincias.id_provincia', '=', 'localidades.id_provincia')
         ->get();
@@ -40,6 +41,7 @@ class AlmacenesController extends Controller
             ));
 
             $id_almacen = DB::table('almacenes')->insertGetId(array(
+            'nombre' => $request->input('nombre'),
             'direccion' => $request->input('direccion'),
             'telefono' => $request->input('telefono'),
             'id_localidad' => $id_localidad
