@@ -82,7 +82,7 @@ export default class Carrito extends React.Component {
                         </Container>
                     );
                 })}
-                <Button id="btnSend" type="submit" variant="primary" block>
+                <Button id="btn-generar-pago" type="submit" variant="primary" block>
                     Generar pago
                 </Button><br></br>
             </Container>

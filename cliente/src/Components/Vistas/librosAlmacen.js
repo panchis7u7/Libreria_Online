@@ -12,6 +12,7 @@ export default class Almacenes extends React.Component {
             libros: [],
             autores: [],
             id_libro: "",
+            id_autor: "",
             id_almacen: "",
             titulo: "",
             nombre_alm: "",
@@ -29,9 +30,9 @@ export default class Almacenes extends React.Component {
     }
 
     componentDidMount(){
-        this.fetchAlmacenes();
-        this.getAutores();
-        this.getLibrosAutores();
+      this.fetchAlmacenes();
+      this.getAutores();
+      this.fetchRegistros();
     };
 
     handleChange = (evt) => {
@@ -58,8 +59,9 @@ export default class Almacenes extends React.Component {
     autorChange = (e) => {
       this.handleChange(e);
       if (e.target.value !== ''){
-        let autor = this.state.autores.find(item => item.nombre === e.target.value).id_autor;
-        this.getLibrosAutores(autor);
+        //let autor = this.state.autores.find(item => item.id_autor === e.target.value).id_autor;
+        console.log(e.target.value)
+        this.getLibrosAutores(e.target.value);
       } else {
         this.setState({
           libros: [],
@@ -112,7 +114,7 @@ export default class Almacenes extends React.Component {
     fetchAlmacenes = () => {
       let headers = new Headers();
       headers.append("Content-Type", "application/json");
-        fetch("http://localhost:8000/librosAlmacenados", {
+        fetch("http://localhost:8000/almacenes", {
           method: "GET",
           headers: headers,
       })
@@ -129,7 +131,7 @@ export default class Almacenes extends React.Component {
     fetchRegistros = () => {
         let headers = new Headers();
         headers.append("Content-Type", "application/json");
-        fetch(`http://localhost:8000/librosAlmacen`, {
+        fetch(`http://localhost:8000/librosAlmacenados/${this.state.id_almacen}`, {
           method: "GET",
           headers: headers,
         })
@@ -143,16 +145,17 @@ export default class Almacenes extends React.Component {
         .catch((error) => console.log("error: ", error));
     };
 
-    addRegistro = () => {
+    addRegistro = (e) => {
+        e.preventDefault();
         var headers = new Headers();
         headers.append("Content-Type", "application/json");
         var body = JSON.stringify({
-            id_libro: this.state.id_libro,
             id_almacen: this.state.id_almacen,
+            id_libro: this.state.id_libro,
             stock: this.state.stock,
         })
         console.log("A enviar: ",body);
-        fetch("http://localhost:8000/librosAlmacen", {        //revisar que efectivamente sea ../insert
+        fetch("http://localhost:8000/librosAlmacenados", {        //revisar que efectivamente sea ../insert
             method: "POST",
             headers: headers,
             body: body
@@ -164,7 +167,7 @@ export default class Almacenes extends React.Component {
                     id_almacen: "",
                     stock: "",
                     alerta: true,
-                    sgAlerta: resultado.status,
+                    msgAlerta: resultado.status,
                     tipoAlerta: "success",
                     disable_localidades: true,
                     open: false,
@@ -216,11 +219,11 @@ export default class Almacenes extends React.Component {
                   </Alert>
                 ) : null}
               <FormLabel>Almacén:</FormLabel>                
-              <FormControl as="select" name="nombre_alm" placeholder="Nombre de almacen" onChangeCapture={this.handleChange} value={this.state.nombre_alm}>
+              <FormControl as="select" name="id_almacen" placeholder="Nombre de almacen" onChangeCapture={this.handleChange} value={this.state.id_almacen}>
                 <option></option>
                   {this.state.almacenes.map((item, index) =>{
                     return (
-                      <option key={index}>{item.nombre}</option>
+                      <option key={index} value={item.id_almacen}>{item.nombre}</option>
                     );
                   })
                 }
@@ -229,6 +232,7 @@ export default class Almacenes extends React.Component {
                 <Table striped bordered hover size="sm" >
                   <thead>
                     <tr>
+                    <th className="align-middle">ID</th>
                       <th className="align-middle">Titulo</th>
                       <th className="align-middle">ISBN</th>
                       <th className="align-middle">Autor</th>
@@ -264,21 +268,21 @@ export default class Almacenes extends React.Component {
                         <Container className="contenedor-2">
                             <div className="largos">
                                 <FormLabel>Autor:</FormLabel>
-                                <FormControl as="select" name="autor" placeholder="Nombre de autor" onChangeCapture={this.autorChange} value={this.state.autor}>
+                                <FormControl as="select" name="id_autor" placeholder="Nombre de autor" onChangeCapture={this.autorChange} value={this.state.id_autor}>
                                   <option></option>
                                   {this.state.autores.map((item, index) => {
                                       return(
-                                        <option key={index}>{item.nombre}</option>
+                                        <option key={index} value={item.id_autor}>{item.nombre}</option>
                                       );
                                     })
                                   }
                                 </FormControl>
                                 <FormLabel>Titulo:</FormLabel>
-                                <FormControl as="select" name="titulo" placeholder="Título." onChangeCapture={this.handleChange} value={this.state.titulo} required={true}>
+                                <FormControl as="select" name="id_libro" placeholder="Título." onChangeCapture={this.handleChange} value={this.state.id_libro} required={true}>
                                 <option></option>
                                   {this.state.libros.map((item, index) => {
                                       return(
-                                        <option key={index}>{item.titulo}</option>
+                                        <option key={index} value={item.id_libro} >{item.titulo}</option>
                                       );
                                     })
                                   }

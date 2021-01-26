@@ -284,7 +284,7 @@ export default class Editoriales extends React.Component {
                         </Container>
                         <Container className="contenedor-1">
                             <div className="propietarios">
-                                <FormLabel>Localidad:</FormLabel>
+                                <FormLabel>Provincia:</FormLabel>
                                 <FormControl as="select" name="provincia" placeholder="Provincias" onChangeCapture={this.estadoChange} value={this.state.provincia} required={true}>
                                   <option></option>
                                   {mexico.map((estado, index) => {
@@ -297,7 +297,7 @@ export default class Editoriales extends React.Component {
                                 <FormControl type="tel" name="telefono" placeholder="Telefono (10 digitos)." onChange={this.handleChange} value={this.state.telefono || ''}/>
                             </div>
                             <div className="propietarios">
-                                <FormLabel>Provincia:</FormLabel>
+                                <FormLabel>Localidad:</FormLabel>
                                 <FormControl as="select" disabled={this.state.disable_localidades} name="localidad" placeholder="Localidades" onChange={this.handleChange} value={this.state.localidad} required={true}>
                                 {
                                   this.state.localidades.map((localidad, index) => {

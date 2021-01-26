@@ -14,8 +14,12 @@ class LibrosAlmacenadosController extends Controller
      */
     public function index()
     {
-        return DB::table('almacenes')
-        ->select('nombre', 'direccion')
+        return DB::table('autores')
+        ->select('libros.*', 'a.stock', 'autores.*')
+        ->join('autor_escribe_libro as aut', 'aut.id_autor','=', 'autores.id_autor')
+        ->join('libros', 'libros.id_libro', '=', 'aut.id_libro')
+        ->join('almacen_almacena_libro as a', 'a.id_libro', '=', 'libros.id_libro')
+        ->join('almacenes', 'almacenes.id_almacen', '=', 'a.id_almacen')
         ->get();
     }
 
@@ -27,7 +31,21 @@ class LibrosAlmacenadosController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        DB::beginTransaction();
+        try {
+
+            DB::table('almacen_almacena_libro')->insert(array(
+                'id_almacen' => $request->input('id_almacen'),
+                'id_libro' => $request->input('id_libro'),
+                'stock' => $request->input('stock')
+            ));
+
+            DB::commit();
+            return response()->json(['status' => 'Insercion Exitosa!', 'status_code' => '1']);
+        } catch (\Exception $e){
+            DB::rollback();
+            return response()->json(['status' => 'Insercion Fallida!', 'status_code' => '-1', 'error' => $e]);
+        }
     }
 
     /**
@@ -38,9 +56,13 @@ class LibrosAlmacenadosController extends Controller
      */
     public function show($id)
     {
-        return DB::table('almacenes')
-        ->select('nombre', 'direccion')
-        ->where('id_almacen', '=', $id)
+        return DB::table('autores')
+        ->select('libros.*', 'a.stock', 'autores.*')
+        ->join('autor_escribe_libro as aut', 'aut.id_autor','=', 'autores.id_autor')
+        ->join('libros', 'libros.id_libro', '=', 'aut.id_libro')
+        ->join('almacen_almacena_libro as a', 'a.id_libro', '=', 'libros.id_libro')
+        ->join('almacenes', 'almacenes.id_almacen', '=', 'a.id_almacen')
+        ->where('almacenes.id_almacen', '=', $id)
         ->get();
     }
 
