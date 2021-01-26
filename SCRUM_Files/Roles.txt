@@ -1,9 +1,0 @@
------------------------------------- Roles -------------------------------------
-
-Sprint 1 (
-
-* Generar codigo MySql en base al diagrama E/R.
-* Instalar y configurar el backend (php laravel).
-* Vista Principal del lado del cliente (react -> ).
-
-)

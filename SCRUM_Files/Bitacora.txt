@@ -3,30 +3,20 @@
 -------------------- Product Backlog Refinement Meeting ------------------------
 
 -> Identificar epicas.
--> Convertir requerimientos a hisstorias de usuario.
+-> Convertir requerimientos a historias de usuario.
 
---------------------------------------------------------------------------------
-
----------------------------- Sprint Planning Meeting ---------------------------
-
--> Normas de las juntas.
--> Generar Vision de Proyecto.
--> Identificacion de Roles:
-  Katherine Arzate Serrano: FrontEnd Developer - Scrum team.
-  Carlos Daniel Villa: BackEnd Developer - Scrum team.
-  Carlos Alexis Moreno Cortes: DataBase Engineer.
-  Carlos Sebastian Madrigal Rodriguez.
-  
--> Definicion de "Tarea terminada" o "Done" para el equipo de Scrum.
-  Serie de requisitos que las tareas deben de tener para ser consideradas como
-  "terminadas":
-    => Preubas pasaron.
-    => Codigo hecho por programcion por pares y todos los integrantes del
-       equipo hayan hecho una reseña.
-    => Refactorizacion de codigo (eliminar codigo repetido).
-    
--> Estimar y Comprometer las historias de usuario.
-  => Scrum poker usando numeros Fibonacci.
+-> Definir la vision del proyecto:
+    -> Nuestra vision es ofrecerle a los usuarios la comodidad
+      que todo usuario interesado pueda buscar libros
+      con una facil interaccion.
+    -> Grupo Objetivo:
+       Interesados en comprar un libro. Alumnos. Profesores. Escritores.
+    ->Necesidades:  Estimular inteligencia asi como los sentidos.
+      Anticiparse a las necesidades del lector (fisico y virtual).
+      Ágora cultural y de amistad.
+    ->Valor: Estimular inteligencia asi como los sentidos.
+      Ágora cultural y de amistad.
+      Anticiparse a las necesidades del lector (fisico y virtual)
 
 --------------------------------------------------------------------------------
 
@@ -48,9 +38,11 @@ estructurar el manejo de libros.
 
 *> Crear entidades e interrelaciones en mysql.
 *> Desarrollo del Formulario.
+*> Desarrollo de la tabla de informacion.
 *> Diseño de la pagina Formulario.
 *> Pruebas de los Formularios y Backend.
-*> Generar Conexion a BD
+*> Instalacion de mysql server.
+*> Instalacion de laravel.
 *> Manejo de solicitudes.
 
 ################################################################################
@@ -68,6 +60,7 @@ opciones de compra que se adequen a tus necesidades.
 
 *> Crear entidades e interrelaciones en mysql.
 *> Desarrollo del Formulario.
+*> Desarrollo de la tabla de informacion.
 *> Diseño de la pagina Formulario.
 *> Disenos UI y UX.
 *> Pruebas Formularioss y Backend.
@@ -91,6 +84,7 @@ seguimiento a nuestro trabajo.
 
 *> Crear entidades e interrelaciones en mysql.
 *> Desarrollo del Formulario.
+*> Desarrollo de la tabla de informacion.
 *> Diseño de la pagina Formulario.
 *> Pruebas de los Formularioss y Backend.
 *> Manejo de solicitudes.
@@ -107,6 +101,7 @@ popularidad y potenciales escritores que quieran publicar su libro.
 
 *> Crear entidades e interrelaciones en mysql.
 *> Desarrollo del Formulario.
+*> Desarrollo de la tabla de informacion.
 *> Diseño de la pagina Formulario.
 *> Pruebas de los Formularioss y Backend.
 *> Manejo de solicitudes.
@@ -123,6 +118,7 @@ para tener un analisis de logistica optimo de la gestion de encargos de los libr
 
 *> Crear entidades e interrelaciones en mysql.
 *> Desarrollo del Formulario.
+*> Desarrollo de la tabla de informacion.
 *> Diseño de la pagina Formulario.
 *> Pruebas de los Formularios y Backend.
 *> Manejo de solicitudes.
@@ -140,6 +136,7 @@ productos.
 
 *> Crear entidades e interrelaciones en mysql.
 *> Desarrollo del Formulario.
+*> Desarrollo de la tabla de informacion.
 *> Diseño de la pagina Formulario.
 *> Pruebas de los Formularios y Backend.
 *> Manejo de solicitudes.
@@ -156,6 +153,7 @@ provincia, email y teléfono para tener una gestion de los datos clientes
 
 *> Crear entidades e interrelaciones en mysql.
 *> Desarrollo del Formulario.
+*> Desarrollo de la tabla de informacion.
 *> Diseño de la pagina Formulario.
 *> Pruebas de los Formularios y Backend.
 *> Manejo de solicitudes.
@@ -188,7 +186,8 @@ Como usuario quiero tener una seccion de login para tener un ingreso seguro a la
 plataforma y asi proteger mis datos personales.
 
 *> Crear entidades e interrelaciones en mysql.
-*> Desarrollo del formulario.
+*> Desarrollo del Formulario.
+*> Diseño de la pagina Formulario.
 *> Modulo de encriptacion (mysql y envio de datos).
 *> Pruebas formulario y Backend.
 *> Manejo de solicitudes.
@@ -207,6 +206,53 @@ libros en referencia a mi interés.
 
 ################################################################################
 
+---------------------------- Sprint Planning Meeting ---------------------------
+
+-> Normas de las juntas.
+-> Generar Vision de Proyecto.
+-> Identificacion de Roles:
+  Katherine Arzate Serrano: FrontEnd Developer - Scrum team.
+  Carlos Daniel Villa: BackEnd Developer - Scrum team.
+  Carlos Alexis Moreno Cortes: DataBase Engineer.
+  Carlos Sebastian Madrigal Rodriguez.
+
+-> Definicion de "Tarea terminada" o "Done" para el equipo de Scrum.
+  Serie de requisitos que las tareas deben de tener para ser consideradas como
+  "terminadas":
+    => Preubas pasaron.
+    => Codigo hecho por programcion por pares y todos los integrantes del
+       equipo hayan hecho una reseña.
+    => Refactorizacion de codigo (eliminar codigo repetido).
+
+-> Estimar y Comprometer las historias de usuario.
+  => Scrum poker usando numeros Fibonacci.
+
+  ->  Historias de usuario a desarrollar -> |1| |2| (desicion tomada en equipo)
+
+      Historia |1|
+      Tareas:
+
+      *> Crear entidades e interrelaciones en mysql.  (Alexis)
+      *> Desarrollo del Formulario.                   (Katherine)
+      *> Diseño de la pagina Formulario.              (Ketherine)
+      *> Pruebas de los Formularios y Backend.        (Alexis y Daniel)
+      *> Instalacion de mysql server.                 (Sebastian)
+      *> Instalacion de laravel.                      (Sebastian)
+      *> Generar ambiente colaborativo.               (Sebastian)
+      *> Manejo de solicitudes.                       (Daniel)
+
+
+      Historia |2|
+      Tareas:
+
+      *> Crear entidades e interrelaciones en mysql.  (Alexis)
+      *> Desarrollo del Formulario.                   (Katherine)
+      *> Diseño de la pagina Formulario.              (Katherine)
+      *> Disenos UI y UX de la pagina principal.      (Katherine y Sebastian)
+      *> Pruebas Formularioss y Backend.              (Alexis y Daniel)
+      *> Manejo de solicitudes.                       (Daniel)
+
+--------------------------------------------------------------------------------
 
 @@@@@@@@@@@@@@@@@@@@@@@ SCRUM Diario 16 de enero del 2021 @@@@@@@@@@@@@@@@@@@@@@
 
@@ -309,7 +355,28 @@ libros en referencia a mi interés.
 
 ---------------------------- Sprint Planning Meeting ---------------------------
 
-->
+->  Historias de usuario a desarrollar -> |3| y |4| (desicion tomada en equipo)
+
+    Historia |3|
+    Tareas:
+
+    *> Crear entidades e interrelaciones en mysql.  (Alexis)
+    *> Desarrollo del Formulario.                   (Katherine)
+    *> Desarrollo de la tabla de informacion.       (Katherine y Sebastian)
+    *> Diseño de la pagina Formulario.              (Katherine)
+    *> Pruebas de los Formularios y Backend.        (Alexis y Daniel)
+    *> Manejo de solicitudes.                       (Daniel y Sebastian)
+
+
+    Historia |4|
+    Tareas:
+
+    *> Crear entidades e interrelaciones en mysql.  (Alexis)
+    *> Desarrollo del Formulario.                   (Katherine)
+    *> Desarrollo de la tabla de informacion.       (Katherine y Sebastian)
+    *> Diseño de la pagina Formulario.              (Katherine)
+    *> Pruebas de los Formularios y Backend.        (Alexis y Daniel)
+    *> Manejo de solicitudes.                       (Daniel y Sebastian)
 
 --------------------------------------------------------------------------------
 
@@ -391,9 +458,9 @@ libros en referencia a mi interés.
 
 ¿Que hiciste ayer?
 	*> Realice la integracion de laravel con un modulo el frontend, asi como
-	generar las APIs o requests en el servidor.
+	   generar las APIs o requests en el servidor y supervision del equipo.
 ¿Tuviste algun impedimento?
-	*> Documentacion.
+	*> No.
 ¿Que haras hoy?
 	*> Actualizar las url de las peticiones del formularios en desarrollo asi
 	   como asociarlas en el backend.
@@ -415,7 +482,28 @@ libros en referencia a mi interés.
 
 ---------------------------- Sprint Planning Meeting ---------------------------
 
-->
+->  Historias de usuario a desarrollar -> |5| y |6| (desicion tomada en equipo)
+
+    Historia |5|
+    Tareas:
+
+    *> Crear entidades e interrelaciones en mysql.  (Alexis)
+    *> Desarrollo del Formulario.                   (Katherine)
+    *> Desarrollo de la tabla de informacion.       (Katherine y Sebastian)
+    *> Diseño de la pagina Formulario.              (Katherine)
+    *> Pruebas de los Formularios y Backend.        (Alexis y Daniel)
+    *> Manejo de solicitudes.                       (Daniel y Sebastian)
+
+
+    Historia |6|
+    Tareas:
+
+    *> Crear entidades e interrelaciones en mysql.  (Alexis)
+    *> Desarrollo del Formulario.                   (Katherine)
+    *> Desarrollo de la tabla de informacion.       (Katherine y Sebastian)
+    *> Diseño de la pagina Formulario.              (Katherine)
+    *> Pruebas de los Formularios y Backend.        (Alexis y Daniel)
+    *> Manejo de solicitudes.                       (Daniel y Sebastian)
 
 --------------------------------------------------------------------------------
 
@@ -435,7 +523,8 @@ libros en referencia a mi interés.
 
 ¿Que hiciste ayer?
 	*> Generar entidades - relaciones en mysql.
-¿Tuviste algun impedimento?
+¿Tuviste algun impedime, asi como
+	generar las APIs o requests en el servidor.nto?
 	*> No, nada.
 ¿Que haras hoy?
 	*> Me reunire con kate para desarrollar el front-end
@@ -452,8 +541,7 @@ libros en referencia a mi interés.
 4) Sebastian:
 
 ¿Que hiciste ayer?
-	*> Instale y realice la integracion de laravel con un modulo el frontend, asi como
-	generar las APIs o requests en el servidor.
+	*> Generar las APIs o requests en el servidor.
 ¿Tuviste algun impedimento?
 	*> Documentacion.
 ¿Que haras hoy?
@@ -493,7 +581,8 @@ libros en referencia a mi interés.
 4) Sebastian:
 
 ¿Que hiciste ayer?
-	*> Generar
+	*> Ayude a katherine a programar las interfaces de PopUp en una session de pair
+      programming.
 ¿Tuviste algun impedimento?
 	*> Ninguno.
 ¿Que haras hoy?
@@ -516,7 +605,29 @@ libros en referencia a mi interés.
 
 ---------------------------- Sprint Planning Meeting ---------------------------
 
-->
+->  Historias de usuario a desarrollar -> |7| y |8| (desicion tomada en equipo)
+
+    Historia |3|
+    Tareas:
+
+    *> Crear entidades e interrelaciones en mysql.  (Alexis)
+    *> Desarrollo del Formulario.                   (Katherine)
+    *> Desarrollo de la tabla de informacion.       (Katherine y Sebastian)
+    *> Diseño de la pagina Formulario.              (Katherine)
+    *> Pruebas de los Formularios y Backend.        (Alexis y Daniel)
+    *> Manejo de solicitudes.                       (Daniel y Sebastian)
+
+
+    Historia |4|
+    Tareas:
+
+    *> Crear entidades e interrelaciones en mysql.  (Alexis)
+    *> Desarrollo del Formulario.                   (Katherine)
+    *> Diseño de la pagina Formulario.              (Katherine)
+    *> Crear UI                                     (Katherine y Sebastian)
+    *> Disenos UI y UX de la pagina principal.      (Katherine y Sebastian)
+    *> Pruebas de los Formularios y Backend.        (Alexis y Daniel)
+    *> Manejo de solicitudes.                       (Daniel y Sebastian)
 
 --------------------------------------------------------------------------------
 
@@ -580,7 +691,8 @@ libros en referencia a mi interés.
 ¿Tuviste algun impedimento?
 	*> Dificultad en las pruebas.
 ¿Que haras hoy?
-	*> Me reunire con kate para desarrollar el front-end y seguir investigando sobre las pruebas.
+	*> Me reunire con kate para desarrollar el front-end y seguir investigando sobre
+      las pruebas.
 
 3) Carlos:
 
@@ -617,7 +729,26 @@ libros en referencia a mi interés.
 
 ---------------------------- Sprint Planning Meeting ---------------------------
 
-->
+->  Historias de usuario a desarrollar -> |9| y |10| (desicion tomada en equipo)
+
+    Historia |9|
+    Tareas:
+
+    *> Crear entidades e interrelaciones en mysql.      (Alexis)
+    *> Desarrollo del Formulario.                       (Katherine)
+    *> Diseño de la pagina Formulario.                  (Katherine)
+    *> Modulo de encriptacion (mysql y envio de datos). (Sebastian)
+    *> Pruebas de los Formularios y Backend.            (Alexis y Daniel)
+    *> Manejo de solicitudes.                           (Daniel y Sebastian)
+
+
+    Historia |10|
+    Tareas:
+
+    *> Crear entidades e interrelaciones en mysql.  (Alexis)
+    *> Disenos UI y UX de la pagina principal.      (Katherine y Sebastian)
+    *> Pruebas de los Formularios y Backend.        (Alexis y Daniel)
+    *> Manejo de solicitudes.                       (Daniel y Sebastian)
 
 --------------------------------------------------------------------------------
 
