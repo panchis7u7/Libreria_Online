@@ -43,5 +43,8 @@ Route::resource('clientes', 'App\Http\Controllers\ClientesController');
 //API para registrar las cestas.
 Route::resource('cestas', 'App\Http\Controllers\CestasController');
 
-//API para obtener informacion basica (resumida) de los libros.
+//API para insertar libros al carrito.
 Route::post('carrito', 'App\Http\Controllers\CestasController@carrito');
+
+//API para obtener informacion de los libros en base al usuario.
+Route::post('getCarritos', 'App\Http\Controllers\CestasController@getCarrito');

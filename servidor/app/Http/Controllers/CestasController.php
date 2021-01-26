@@ -76,8 +76,7 @@ class CestasController extends Controller
             $id_cesta = DB::table('cestas')->select('cestas.id_cesta')
             ->join('clientes', 'clientes.id_cliente', '=', 'cestas.id_cliente')
             ->whereNull('fecha_compra')
-            ->where('email', '=', $request->input('email'))
-            ->get();
+            ->where('email', '=', $request->input('email'));
 
             DB::table('cesta_contiene_libro')->insert(array(
                 'id_cesta' => $id_cesta[0]->id_cesta,
@@ -93,7 +92,7 @@ class CestasController extends Controller
         }
     }
 
-    public function getcCarrito(Request $request)
+    public function getCarrito(Request $request)
     {
         return DB::table('libros')
         ->select('libros.*')

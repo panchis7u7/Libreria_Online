@@ -21,12 +21,32 @@ export default class Carrito extends React.Component {
         });
     }; 
 
-    fetchLibros = () => {
+    /*fetchLibros = () => {
         let headers = new Headers();
         headers.append("Content-Type", "application/json");
         fetch("http://127.0.0.1:8000/basic", {
             method: "GET",
             headers: headers,
+        })
+        .then((respuesta) => respuesta.json())
+        .then((resultado) => {
+            console.log(resultado);
+            this.setState({
+                libros: resultado,
+            });
+        }).catch((error) => console.log("error: ", error));
+    };*/
+
+    fetchLibros = () => {
+        let headers = new Headers();
+        headers.append("Content-Type", "application/json");
+        var body = JSON.stringify({
+            email: JSON.parse(localStorage["appState"]).user.email,
+        });
+        fetch("http://127.0.0.1:8000/getCarritos", {
+            method: "POST",
+            headers: headers,
+            body: body,
         })
         .then((respuesta) => respuesta.json())
         .then((resultado) => {
