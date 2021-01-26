@@ -104,17 +104,17 @@ export default class Editoriales extends React.Component {
           .then((resultado) => {
             console.log("resultado: ", resultado);
             this.setState({
-              registros: resultado.response,
+              registros: resultado,
             });
         })
         .catch((error) => console.log("error: ", error));
     };
 
-    addRegistro = () => {
+    addRegistro = (e) => {
+        e.preventDefault();
         var headers = new Headers();
         headers.append("Content-Type", "application/json");
         var body = JSON.stringify({
-            id_editorial: this.state.id_editorial,
             nombre: this.state.nombre,
             direccion: this.state.direccion,
             localidad: this.state.localidad,
@@ -234,6 +234,7 @@ export default class Editoriales extends React.Component {
                 <Table striped bordered hover size="sm" >
                   <thead>
                     <tr>
+                      <th className="align-middle">Id</th>
                       <th className="align-middle">Nombre</th>
                       <th className="align-middle">Dirección</th>
                       <th className="align-middle">Localidad</th>
@@ -246,7 +247,7 @@ export default class Editoriales extends React.Component {
                   <tbody>
                     {this.state.registros.map((item, index) => {
                       return (
-                        <tr onClickCapture={() => this.updateInput(item)} key={item.id_editorial}>
+                        <tr key={item.id_editorial}>
                           <td className="align-middle">{index+1}</td>
                           <td className="align-middle">{item.nombre}</td>
                           <td className="align-middle">{item.direccion}</td>
@@ -268,7 +269,7 @@ export default class Editoriales extends React.Component {
               </Row>
             </Container>
             <Button variant="info" onClick={() => {this.setState({open: true,})}}>Añadir nuevo</Button>
-            <Popup open={this.state.open} onClose={() => {this.handlePopupClose()}} position="bottom center">
+            <Popup open={this.state.open} className="popup" onClose={() => {this.handlePopupClose()}} position="bottom center">
                 <Form className = "popup-root" action="http://localhost:8000/editoriales" onSubmit={(e) => {this.state.update ?  this.editRegistro(e) : this.addRegistro(e)}}>
                     <h2>Registro de editorial</h2><hr></hr>
                         <Container className="contenedor-2">
@@ -276,15 +277,15 @@ export default class Editoriales extends React.Component {
                                 <FormLabel>Nombre:</FormLabel>
                                 <FormControl type="text" name="nombre" placeholder="Nombre." onChange={this.handleChange} value={this.state.nombre}  required={true}/>
                                 <FormLabel>Dirección:</FormLabel>
-                                <FormControl type="text" name="direccion" placeholder="Dirección." onChange={this.handleChange} value={this.state.direccion} />
+                                <FormControl type="text" name="direccion" placeholder="Dirección." onChange={this.handleChange} value={this.state.direccion} required={true}/>
                                 <FormLabel>URL:</FormLabel>
-                                <FormControl type="url" name="url" placeholder="URL para contactar al autor." onChange={this.handleChange} value={this.state.url}/>    
+                                <FormControl type="url" name="url" placeholder="URL para contactar al autor." onChange={this.handleChange} value={this.state.url || ''}/>    
                             </div>
                         </Container>
                         <Container className="contenedor-1">
                             <div className="propietarios">
                                 <FormLabel>Localidad:</FormLabel>
-                                <FormControl as="select" name="provincia" placeholder="Provincias" onChangeCapture={this.estadoChange} value={this.state.provincia}>
+                                <FormControl as="select" name="provincia" placeholder="Provincias" onChangeCapture={this.estadoChange} value={this.state.provincia} required={true}>
                                   <option></option>
                                   {mexico.map((estado, index) => {
                                     return (
@@ -293,11 +294,11 @@ export default class Editoriales extends React.Component {
                                   })}
                                 </FormControl>
                                 <FormLabel>Teléfono:</FormLabel>
-                                <FormControl type="tel" name="telefono" placeholder="Telefono (10 digitos)." onChange={this.handleChange} value={this.state.telefono}/>
+                                <FormControl type="tel" name="telefono" placeholder="Telefono (10 digitos)." onChange={this.handleChange} value={this.state.telefono || ''}/>
                             </div>
                             <div className="propietarios">
                                 <FormLabel>Provincia:</FormLabel>
-                                <FormControl as="select" disabled={this.state.disable_localidades} name="localidad" placeholder="Localidades" onChange={this.handleChange} value={this.state.localidad}>
+                                <FormControl as="select" disabled={this.state.disable_localidades} name="localidad" placeholder="Localidades" onChange={this.handleChange} value={this.state.localidad} required={true}>
                                 {
                                   this.state.localidades.map((localidad, index) => {
                                     return(

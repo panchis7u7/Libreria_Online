@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Editor;
+use Illuminate\Support\Facades\DB;
 
 class EditorialesController extends Controller
 {
@@ -13,7 +15,10 @@ class EditorialesController extends Controller
      */
     public function index()
     {
-        //
+        return DB::table('editoriales')->select('editoriales.*', 'localidades.nombre as localidad', 'provincias.nombre as provincia')
+        ->join('localidades', 'localidades.id_localidad', '=', 'editoriales.id_localidad')
+        ->join('provincias', 'provincias.id_provincia', '=', 'localidades.id_provincia')
+        ->get();
     }
 
     /**
@@ -24,7 +29,31 @@ class EditorialesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        DB::beginTransaction();
+        try {
+            $id_provincia = DB::table('provincias')->insertGetId(array(
+                'nombre' => $request->input('provincia')
+            ));
+
+            $id_localidad = DB::table('localidades')->insertGetId(array(
+                'nombre' => $request->input('localidad'),
+                'id_provincia' => $id_provincia
+            ));
+
+            $id_editorial = DB::table('editoriales')->insertGetId(array(
+                'nombre' => $request->input('nombre'),
+                'direccion' => $request->input('direccion'),
+                'telefono' => $request->input('telefono'),
+                'url' => $request->input('url'),
+                'id_localidad' => $id_localidad
+            ));
+
+            DB::commit();
+            return response()->json(['id_editorial' => $id_editorial, 'status' => 'Insercion Exitosa!', 'status_code' => '1']);
+        } catch (\Exception $e){
+            DB::rollback();
+            return response()->json(['id_editorial' => '-1', 'status' => 'Insercion Fallida!', 'status_code' => '-1', 'error' => $e, 'id_provincia' => $id_provincia]);
+        }
     }
 
     /**
@@ -47,7 +76,29 @@ class EditorialesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        DB::beginTransaction();
+        try {
+            DB::table('editoriales')
+            ->where('id_editorial',$id)
+            ->update(array(
+                'nombre' => $request->input('nombre'),
+                'direccion' => $request->input('direccion'),
+                'telefono' => $request->input('telefono'),
+                'url' => $request->input('url')
+            ));
+
+            DB::table('localidades')
+            ->where('id_localidad',$request->input('id_localidad'))
+            ->update(array(
+                'nombre' => $request->input('localidad')
+            ));
+
+            DB::commit();
+            return response()->json(['id_editorial' => $id, 'status' => 'Actualizacion Exitosa!', 'status_code' => '1']);
+        } catch (\Exception $e){
+            DB::rollback();
+            return response()->json(['id_editorial' => '-1', 'status' => 'Actualizacion Fallida!', 'status_code' => '-1', 'error' => $e, 'id' => $id]);
+        }
     }
 
     /**
@@ -58,6 +109,17 @@ class EditorialesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        DB::beginTransaction();
+        try {
+            DB::table('editoriales')
+            ->where('id_editorial',$id)
+            ->delete();
+
+            DB::commit();
+            return response()->json(['id_editorial' => $id, 'status' => 'Eliminacion Exitosa!', 'status_code' => '1']);
+        } catch (\Exception $e){
+            DB::rollback();
+            return response()->json(['id_editorial' => '-1', 'status' => 'Eliminacion Fallida!', 'status_code' => '-1', 'error' => $e, 'id' => $id]);
+        }
     }
 }

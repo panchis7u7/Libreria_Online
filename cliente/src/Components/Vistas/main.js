@@ -65,6 +65,7 @@ export default class Main extends React.Component {
         var headers = new Headers();
         headers.append("Content-Type", "application/json");
         var body = JSON.stringify({
+            email: JSON.parse(localStorage["appState"]).user.email,
             id_libro: item.id_libro,
             cantidad: 1,
         });

@@ -16,7 +16,12 @@ class ClientesController extends Controller
      */
     public function index()
     {
-        //
+        //return DB::table('autores')->get();
+        return DB::table('clientes')->select('clientes.nombre','clientes.apellidos','clientes.direccion','clientes.email',
+        'clientes.telefono', 'localidades.nombre as localidad', 'provincias.nombre as provincia')
+        ->join('localidades', 'localidades.id_localidad', '=', 'clientes.id_localidad')
+        ->join('provincias', 'provincias.id_provincia', '=', 'localidades.id_provincia')
+        ->get();
     }
 
     /**
@@ -40,13 +45,18 @@ class ClientesController extends Controller
             ));
 
             $id_cliente = DB::table('clientes')->insertGetId(array(
-            'nombre' => $request->input('nombre'),
-            'apellidos' => $request->input('apellidos'),
-            'direccion' => $request->input('direccion'),
-            'email' => $request->input('email'),
-            'telefono' => $request->input('telefono'),
-            'contrasena' => Crypt::encryptString($request->input('contrasena')),
-            'id_localidad' => $id_localidad
+                'nombre' => $request->input('nombre'),
+                'apellidos' => $request->input('apellidos'),
+                'direccion' => $request->input('direccion'),
+                'email' => $request->input('email'),
+                'telefono' => $request->input('telefono'),
+                'contrasena' => Crypt::encryptString($request->input('contrasena')),
+                'id_localidad' => $id_localidad
+            ));
+
+            DB::table('cestas')->insertGetId(array(
+                'fecha_compra' => NULL,
+                'id_cliente' => $id_cliente
             ));
 
             DB::commit();

@@ -124,3 +124,4 @@ INSERT INTO generos VALUES (2,'Ciencia Ficcion');
 INSERT INTO generos VALUES (3,'Drama');
 INSERT INTO generos VALUES (4,'Suspenso');
 
+SELECT * FROM clientes;

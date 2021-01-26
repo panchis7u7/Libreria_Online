@@ -282,7 +282,7 @@ export default class Autores extends React.Component {
             </Container>
             <Button variant="info" onClick={() => {this.setState({open: true,})}}>Añadir nuevo</Button>
             <Popup open={this.state.open} className="popup" onClose={() => {this.handlePopupClose()}} position="bottom center">
-                <Form className = "popup-root" action="http://localhost:3001/autores" onSubmit={(e) => {this.state.update ?  this.editRegistro(e) : this.addRegistro(e)}}>
+                <Form className = "popup-root" action="http://localhost:8000/autores" onSubmit={(e) => {this.state.update ?  this.editRegistro(e) : this.addRegistro(e)}}>
                     <h2>Registro de autor</h2><hr></hr>
                     <Container className="contenedor-2">
                         <div className="largos">

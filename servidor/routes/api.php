@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Models\Libro;
+use App\Models\Editor;
 use App\Models\Autor;
 use App\Models\Almacen;
 use App\Models\Cliente;
@@ -27,6 +28,9 @@ use App\Models\Carrito;
 //API para libros GET, POST, UPDATE
 Route::resource('libros', 'App\Http\Controllers\LibrosController');
 
+//API para Editoriales GET, POST, UPDATE
+Route::resource('editoriales', 'App\Http\Controllers\EditorialesController');
+
 //API para Autores GET, POST, UPDATE
 Route::resource('autores', 'App\Http\Controllers\AutoresController');
 
@@ -41,35 +45,3 @@ Route::resource('cestas', 'App\Http\Controllers\CestasController');
 
 //API para obtener informacion basica (resumida) de los libros.
 Route::post('carrito', 'App\Http\Controllers\CestasController@carrito');
-
-//API para iniciar sesion.
-Route::post('login', 'App\Http\Controllers\ClientesController@login');
-
-
-//API para obtener informacion basica (resumida) de los libros.
-Route::get('basic', 'App\Http\Controllers\LibrosController@getBasic');
-
-Route::get('/posts', function () {
-    $post = Libro::create([
-        'id_libro' => 2,
-        'isbn' => 'FGFG',
-        'anio_publicacion' => '2008-08-08',
-        'descripcion' => 'Alguna descripcion',
-        'titulo' => 'Prueba',
-        'precio_fisico' => 30.09,
-        'precio_electronico' => 20.09,
-        'tamanio' => '40mb',
-        'fecha_impresion' => '2007-05-05',
-        'lugar_impresion' => 'mexico'
-    ]);
-    return $post;
-});
-
-Route::get('/test', function () {
-    return ['message' => 'hello'];
-});
-
-/* Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
- */

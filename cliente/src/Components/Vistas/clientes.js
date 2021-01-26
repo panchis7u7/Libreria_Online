@@ -42,7 +42,7 @@ export default class Clientes extends React.Component {
           .then((resultado) => {
             console.log("resultado: ", resultado);
             this.setState({
-              registros: resultado.response,
+              registros: resultado,
             });
         })
         .catch((error) => console.log("error: ", error));
@@ -69,6 +69,7 @@ export default class Clientes extends React.Component {
                 <Table striped bordered hover size="sm" >
                   <thead>
                     <tr>
+                      <th className="align-middle">Id</th>
                       <th className="align-middle">Nombre</th>
                       <th className="align-middle">Apellidos</th>
                       <th className="align-middle">Dirección</th>
