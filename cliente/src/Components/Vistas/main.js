@@ -1,10 +1,10 @@
 import React from 'react';
 import Carousel from 'react-multi-carousel';
-import { Container, Form, FormLabel, FormControl, Button } from 'react-bootstrap'; 
+import { Container, FormControl} from 'react-bootstrap'; 
 import "react-multi-carousel/lib/styles.css";
 import '../../SCSS/libreria.scss';
 import 'react-notifications/lib/notifications.css';
-import {NotificationContainer, NotificationManager} from 'react-notifications';
+import {NotificationManager} from 'react-notifications';
 
 export default class Main extends React.Component {
     constructor(props){
@@ -12,7 +12,7 @@ export default class Main extends React.Component {
         this.state = {
             libros: [],
             open: false,
-            tipo: ""
+            tipo: '',
         }
     }
 
@@ -39,10 +39,16 @@ export default class Main extends React.Component {
         });
     }
 
+    handleChange = (evt) => {
+        this.setState({
+          [evt.target.name]: evt.target.value,
+        });
+    };
+
     fetchLibros = () => {
         let headers = new Headers();
         headers.append("Content-Type", "application/json");
-        fetch("http://127.0.0.1:8000/basic", {
+        fetch("http://127.0.0.1:8000/libros", {
             method: "GET",
             headers: headers,
         })
@@ -100,10 +106,10 @@ export default class Main extends React.Component {
                         {this.state.libros.map((item, index) => {
                             return (
                                 <div key={index} className="shadow-lg p-3 mb-5 bg-white rounded">
-                                    <Book titulo={item.titulo} author="prueba" precio={item.precio_fisico} portada={item.url} ></Book>
-                                    <FormControl as="select" name="titulo" placeholder="Título." onChange={this.handleChange} value={this.state.titulo} required={true}>
-                                        <option>Fisico</option>
-                                        <option>Electronico</option>
+                                    <Book titulo={item.titulo} author="prueba" portada={item.url} ></Book>
+                                    <FormControl as="select" name="tipo" onChange={this.handleChange}>
+                                        <option disabled={!(item.precio_fisico)} value={"Fisico"}>Fisico ${item.precio_fisico}</option>
+                                        <option disabled={!(item.precio_electronico)} value={"Electronico"}>Electronico ${item.precio_electronico}</option>
                                     </FormControl>
                                     <button className="btn-agregar-carro" onClick={() => {this.insertarCarrito(item)}}>+</button>
                                 </div>
@@ -117,8 +123,12 @@ export default class Main extends React.Component {
                         {this.state.libros.map((item, index) => {
                             return (
                                 <div key={index} className="shadow-lg p-3 mb-5 bg-white rounded">
-                                    <Book titulo={item.titulo} author="prueba" precio={item.precio_fisico} portada={item.url} ></Book>
-                                    <button className="btn-agregar-carro" onClick={() => {this.setState({open: true})}}>+</button>
+                                    <Book titulo={item.titulo} author="prueba" portada={item.url} ></Book>
+                                    <FormControl as="select" name="tipo" onChange={this.handleChange}>
+                                        <option disabled={!(item.precio_fisico)} value={"Fisico"}>Fisico ${item.precio_fisico}</option>
+                                        <option disabled={!(item.precio_electronico)} value={"Electronico"}>Electronico ${item.precio_electronico}</option>
+                                    </FormControl>
+                                    <button className="btn-agregar-carro" onClick={() => {this.insertarCarrito(item)}}>+</button>
                                 </div>
                             );
                         })}
@@ -130,9 +140,12 @@ export default class Main extends React.Component {
                         {this.state.libros.map((item, index) => {
                             return (
                                 <div key={index} className="shadow-lg p-3 mb-5 bg-white rounded">
-                                    <Book titulo={item.titulo} author="prueba" precio={item.precio_fisico} portada={item.url} ></Book>
-                                    <button className="btn-agregar-carro" onClick={() => {this.setState({open: true})}}>+</button>
-                                    
+                                    <Book titulo={item.titulo} author="prueba" portada={item.url} ></Book>
+                                    <FormControl as="select" name="tipo" onChange={this.handleChange}>
+                                        <option disabled={!(item.precio_fisico)} value={"Fisico"}>Fisico ${item.precio_fisico}</option>
+                                        <option disabled={!(item.precio_electronico)} value={"Electronico"}>Electronico ${item.precio_electronico}</option>
+                                    </FormControl>
+                                    <button className="btn-agregar-carro" onClick={() => {this.insertarCarrito(item)}}>+</button>
                                 </div>
                             );
                         })}
@@ -168,9 +181,9 @@ class Book extends React.Component {
                     backgroundImage:
                     `url('${this.state.portada}')`,
                 }}/>
-            <div className="book-footer">
+            {/*<div className="book-footer">
                 <div className="book-price">Precio: ${this.state.precio}</div>
-            </div>
+            </div>*/}
         </div>
         );
     };
