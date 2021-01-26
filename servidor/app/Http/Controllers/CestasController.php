@@ -24,25 +24,7 @@ class CestasController extends Controller
      */
     public function store(Request $request)
     {
-        DB::beginTransaction();
-        try {
 
-            $id_cliente = DB::table('clientes')->insertGetId(array(
-            'nombre' => $request->input('nombre'),
-            'apellidos' => $request->input('apellidos'),
-            'direccion' => $request->input('direccion'),
-            'email' => $request->input('email'),
-            'telefono' => $request->input('telefono'),
-            'contrasena' => Crypt::encryptString($request->input('contrasena')),
-            'id_localidad' => $id_localidad
-            ));
-
-            DB::commit();
-            return response()->json(['id_cliente' => $id_cliente, 'status' => 'Insercion Exitosa!', 'redirect' => '/main', 'status_code' => '1']);
-        } catch (\Exception $e){
-            DB::rollback();
-            return response()->json(['id_cliente' => '-1', 'status' => 'Insercion Fallida!', 'redirect' => '/main', 'status_code' => '-1', 'error' => $e]);
-        }
     }
     /**
      * Display the specified resource.
@@ -50,6 +32,7 @@ class CestasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
     public function show($id)
     {
         //
@@ -76,5 +59,29 @@ class CestasController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function carrito(Request $request)
+    {
+        DB::beginTransaction();
+        try {
+
+            $id_cesta = DB::table('cesta_contiene_libro')->insertGetId(array(
+            'id_libro' => $request->input('id_libro'),
+            'cantidad' => $request->input('cantidad'),
+            ));
+
+            DB::commit();
+            return response()->json(['id_cesta' => $id_cesta, 'status' => 'Insercion Exitosa!', 'status_code' => '1']);
+        } catch (\Exception $e){
+            DB::rollback();
+            return response()->json(['id_cesta' => '-1', 'status' => 'Insercion Fallida!', 'status_code' => '-1', 'error' => $e]);
+        }
     }
 }

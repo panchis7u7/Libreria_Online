@@ -1,5 +1,5 @@
 import React from 'react';
-import {Container, Alert} from 'react-bootstrap';
+import {Container, Alert, Button} from 'react-bootstrap';
 import '../../SCSS/Base.scss'
 
 export default class Carrito extends React.Component {
@@ -55,14 +55,16 @@ export default class Carrito extends React.Component {
                   </Alert>
                 ) : null}
                 {this.state.libros.map((item) => {
-                            return (
-                                <Container className="carrito">
-                                        <Book titulo={item.titulo} author="prueba" precio={item.precio_fisico} portada={item.url} 
-                                            anio_publicacion={item.anio_publicacion} descripcion={item.descripcion}></Book>
-                                        <button className="btn-eliminar">Eliminar</button>
-                                </Container>
-                            );
-                        })}
+                    return (
+                        <Container className="carrito">
+                                <Book titulo={item.titulo} author="prueba" precio={item.precio_fisico} portada={item.url} 
+                                    anio_publicacion={item.anio_publicacion} descripcion={item.descripcion}></Book>
+                        </Container>
+                    );
+                })}
+                <Button id="btnSend" type="submit" variant="primary" block>
+                    Generar pago
+                </Button><br></br>
             </Container>
             </div>
         );
@@ -84,19 +86,29 @@ class Book extends React.Component {
 
     render(){
         return (
-            <div className="libro-descrip">
+            <Container className="libro-descrip">
                 <div className="libro-cover"
                     style={{
                         width: 128,
-                        height: 193,
+                        height: 190,
                         backgroundImage:
                         `url('${this.state.portada}')`,
                 }}/>
-                <div className="libro-top">
-                    <div className="libro-title">{this.state.titulo}</div>
-                    <div className="libro-authors">{this.state.autor}</div>
+                <div className="libro-contenido">
+                    <div className="libro-title">{this.state.titulo}</div><br></br>
+                    <div className="libro-mas">
+                        <p>
+                            Autor: <br></br>
+                            Año de publicación: <br></br>
+                            Descripción: <br></br>
+                        </p>
+                    </div>
+                    <button className="btn-eliminar">Eliminar</button>
                 </div>
-        </div>
+            </Container>
         );
     };
 };
+
+//<div className="libro-mas">{this.state.autor}{this.state.anio_publicacion}{this.state.autor}{this.state.descripcion}</div>
+                    

@@ -244,6 +244,7 @@ export default class Autores extends React.Component {
                 <Table striped bordered hover size="sm" >
                   <thead>
                     <tr>
+                      <th className="align-middle">Id</th>
                       <th className="align-middle">Nombre</th>
                       <th className="align-middle">Apellidos</th>
                       <th className="align-middle">Dirección</th>

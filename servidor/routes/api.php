@@ -6,6 +6,7 @@ use App\Models\Libro;
 use App\Models\Autor;
 use App\Models\Almacen;
 use App\Models\Cliente;
+use App\Models\Carrito;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,12 +33,18 @@ Route::resource('autores', 'App\Http\Controllers\AutoresController');
 //API para Almacenes GET, POST, UPDATE
 Route::resource('almacenes', 'App\Http\Controllers\AlmacenesController');
 
-
 //API para registrar usuarios o clientes.
 Route::resource('clientes', 'App\Http\Controllers\ClientesController');
 
+//API para registrar las cestas.
+Route::resource('cestas', 'App\Http\Controllers\CestasController');
+
+//API para obtener informacion basica (resumida) de los libros.
+Route::post('carrito', 'App\Http\Controllers\CestasController@carrito');
+
 //API para iniciar sesion.
 Route::post('login', 'App\Http\Controllers\ClientesController@login');
+
 
 //API para obtener informacion basica (resumida) de los libros.
 Route::get('basic', 'App\Http\Controllers\LibrosController@getBasic');

@@ -4,6 +4,24 @@ import '../SCSS/navBar.scss';
 import { useHistory } from 'react-router-dom';
 //import { useState, useEffect } from 'react'
 
+let state_of_state = localStorage["appState"];
+if(!state_of_state){
+    let appState = {
+        isLoggedIn: false,
+        user: {}
+    };
+    localStorage["appState"] =JSON.stringify(appState);
+}
+
+let state = localStorage["appState"];
+let AppState = JSON.parse(state);
+
+const Auth = {
+    isLoggedIn: AppState.isLoggedIn,
+    user: AppState
+};
+
+
 export default function NavBar(props){
     const history = useHistory();
     const onLogout = () => {
@@ -18,7 +36,7 @@ export default function NavBar(props){
     }
     return(
         <div className="main-nav">
-            <ReactBootStrap.Navbar className="nav" collapseOnSelect expand="lg" variant="dark">
+            <ReactBootStrap.Navbar hidden={!(Auth.isLoggedIn)} className="nav" collapseOnSelect expand="lg" variant="dark">
                     <ReactBootStrap.Navbar.Brand href="/main"><span className="navItem">Libreria Panchitos</span></ReactBootStrap.Navbar.Brand>
                 <ReactBootStrap.Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <ReactBootStrap.Navbar.Collapse id="responsive-navbar-nav">

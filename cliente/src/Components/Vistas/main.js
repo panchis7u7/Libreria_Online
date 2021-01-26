@@ -64,16 +64,20 @@ export default class Main extends React.Component {
     insertarCarrito = (item) => {
         var headers = new Headers();
         headers.append("Content-Type", "application/json");
-        var body = JSON.stringify(item)
+        var body = JSON.stringify({
+            id_libro: item.id_libro,
+            cantidad: 1,
+        });
       console.log("A enviar: ", body);
-      fetch("http://localhost:8000/cesta", {        //revisar que efectivamente sea ../insert
+      fetch("http://localhost:8000/carrito", {        //revisar que efectivamente sea ../insert
           method: "POST",
           headers: headers,
           body: body
-      }).then((respuesta) => respuesta.json())
-          .then((resultado) => {
-              console.log(resultado);    
-          });
+      })
+    .then((respuesta) => respuesta.json())
+    .then((resultado) => {
+        console.log(resultado);    
+        });
     }
 
     render(){

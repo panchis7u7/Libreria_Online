@@ -103,13 +103,14 @@ class ClientesController extends Controller
      */
     public function login(Request $request){
         $result = DB::table('clientes')
-        ->select('nombre', 'email', 'contrasena')
+        ->select('id_cliente', 'nombre', 'email', 'contrasena')
         ->where('email', '=', $request->input('email'))
         //->where('contrasena', '=', Crypt::encryptString($request->input('contrasena')))
         ->get();
         if(($result[0]->email != '') && (Crypt::decryptString($result[0]->contrasena) == $request->input('contrasena')))
         {
             return response()->json([
+            'id_cliente' => $result[0]->id_cliente,
             'cliente' => $result[0]->nombre, 
             'email' => $result[0]->email, 
             'success' => true, 

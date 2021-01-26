@@ -28,21 +28,32 @@
     }
     .carrito{
         .libro-descrip{
-            max-height: 220px;
+            display: grid;
+            grid-template-columns: 30% 70%;
+            max-height: 230px;
             padding: 20px;
+            margin: 10px;
             width: 100%;
-            box-shadow: 0 6px 10px 0 #666;
-            border: 5px black;
+            box-shadow: 0 1px 10px 0 #666;
+            .libro-contenido{
+                padding: 5px;
+                text-align: left;
+                .libro-title{
+                    font-size: 18px;
+                    font-weight: 500;
+                }
+                .libro-mas{
+                    font-size: 15px;
+                }
+            }
         }
         .btn-eliminar {
-            position: absolute;
-            top: 78%;
-            left: 88%;
-            width: 70px;
-            height: 70px;
-            background-color: red;
+            width: 100px;
+            height: 40px;
+            margin: 10px;
+            background-color: darkred;
+            color: white;
             border-radius: 5%;
-            transition: all 0.1s ease-in-out;
             border: none;
             padding: 0%;
          }
@@ -51,11 +62,12 @@
 
 .popup-content{
     font-family: sans-serif;
+    box-sizing: border-box;
     h2{
         text-align: center;
         font-size: 2em;
         font-weight: bold;
-        padding: 1.5em 0 0.1em 0;
+        padding: 1em 0 0.1em 0;
     }
     .contenedor-1{
         display: grid;
@@ -74,7 +86,6 @@
         .foraneos{
             label{
                 @include labels();
-                padding-left: 4em;
             }
             select{
                 @include inputs();
@@ -98,23 +109,29 @@
         }
     }
     .contenedor-3{
+        h4{
+            font-size: 20px;
+            margin-left: 10px;
+        }
         display: grid;
         grid-template-columns: 50% 50%;
+        font-size: 14px;
         .electronico{
             label{
-                @include labels();
+                @include labels();width: 9em;
             }
             input{
-                @include inputs();
+                @include inputs();width: 60%;
             }
         }
         .papel{
             label{
                 @include labels();
-                
+                width: 10em;
             }
             input{
                 @include inputs();
+                width: 50%;
             }
         }
     }

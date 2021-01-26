@@ -8,6 +8,7 @@ export default class Login extends React.Component{
     super(props);
     this.state = {
         redirect: null,
+        id_cliente: 0,
         email: "",
         contrasena: "",
         nombre: '',
@@ -22,7 +23,10 @@ export default class Login extends React.Component{
       let AppState = JSON.parse(state);
       this.setState({
         isLoggedIn: AppState.isLoggedIn, 
-        email: AppState.user.email})
+        email: AppState.user.email,
+        id_cliente: AppState.user.id_cliente,
+        nombre: AppState.user.nombre,
+      })
     }
   }
 
@@ -70,12 +74,15 @@ export default class Login extends React.Component{
           redirect: resultado.redirect,
           nombre: resultado.nombre,
           isLoggedIn: resultado.success,
+          id_cliente: resultado.id_cliente,
       });
       if(resultado.status_code === 1){
         let appState = {
           isLoggedIn: this.state.isLoggedIn,
           user: {
             email: resultado.email,
+            nombre: resultado.nombre,
+            id_cliente: resultado.id_cliente,
           }
         };
         localStorage["appState"] = JSON.stringify(appState);
@@ -83,7 +90,9 @@ export default class Login extends React.Component{
         let appState = {
           isLoggedIn: false,
           user: {
-            email: ""
+            email: "",
+            nombre: "",
+            id_cliente: resultado.id_cliente,
           }
         };
         localStorage["appState"] = JSON.stringify(appState);

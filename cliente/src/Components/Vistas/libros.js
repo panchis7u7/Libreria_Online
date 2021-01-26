@@ -26,6 +26,8 @@ export default class Libros extends React.Component {
             msgAlerta: "",
             tipoAlerta: "success",
             open: false,
+            update: false,
+            update_message: 'Agregar libro',
         };
     }
 
@@ -125,7 +127,7 @@ export default class Libros extends React.Component {
           pdf: this.state.pdf,
           portada_url: this.state.portada_url,
       });
-      console.log("Solicitud mandada");
+      console.log("Solicitud mandada a:", body);
       fetch("http://localhost:8000/libros", {
           method: "POST",
           headers: headers,
@@ -134,7 +136,7 @@ export default class Libros extends React.Component {
           .then((resultado) => {
               console.log(resultado);     //para verificar que se haya recibido
               this.setState({
-                  id_libro: resultado.id_libro,
+                  id_libro: '',
                   titulo: '',
                   isbn: '',
                   anio_publicacion: '',
@@ -152,7 +154,9 @@ export default class Libros extends React.Component {
                   alerta: true,
                   msgAlerta: resultado.status,
                   tipoAlerta: "success",
-              })
+                  open: false,
+              });
+              this.fetchRegistros();
           })
   }
 
@@ -204,10 +208,9 @@ export default class Libros extends React.Component {
             alerta: true,
             msgAlerta: resultado.status,
             tipoAlerta: "success",
-            disable_localidades: true,
             open: false,
             update: false,
-            update_message: 'Agregar editorial',
+            update_message: 'Agregar libro',
           });
           this.fetchRegistros();
       });
@@ -343,7 +346,7 @@ export default class Libros extends React.Component {
                         <FormLabel>Precio:</FormLabel>
                         <FormControl type="number" name="precio_electronico" placeholder="Precio del ebook." onChange={this.handleChange} value={this.state.precio_electronico}/>
                         <FormLabel>Tamaño:</FormLabel>
-                        <FormControl type="number" name="tamanio"  placeholder="Tamaño del archivo en MB." onChange={this.handleChange} value={this.state.tamanio}/>
+                        <FormControl type="number" name="tamanio"  placeholder="Tamaño en MB." onChange={this.handleChange} value={this.state.tamanio}/>
                         <FormLabel>Archivo:</FormLabel>
                         <FormControl type="file" name="pdf" placeholder="PDF del libro." onChange={this.handleChange} value={this.state.pdf}/>
                     </Container>
@@ -357,7 +360,7 @@ export default class Libros extends React.Component {
                         <FormControl type="date" name="fecha_impresion" onChange={this.handleChange} value={this.state.fecha_impresion}/>
                     </Container>
                 </Container>
-                <Button type="submit" className="submit" variant="primary" block>{this.state.update_message}</Button><br></br>
+                <Button type="submit" id="btnSend" variant="primary" block>{this.state.update_message}</Button><br></br>
                 </Form>
             </Popup>
           </div>
