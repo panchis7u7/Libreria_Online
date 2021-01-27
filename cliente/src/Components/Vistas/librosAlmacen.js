@@ -32,13 +32,14 @@ export default class Almacenes extends React.Component {
     componentDidMount(){
       this.fetchAlmacenes();
       this.getAutores();
-      this.fetchRegistros();
     };
 
     handleChange = (evt) => {
         this.setState({
           [evt.target.name]: evt.target.value,
         });
+        console.log("name: ", evt.target.name);
+        console.log("value: ", evt.target.value);
     };
 
     handlePopupClose = () => {
@@ -54,6 +55,11 @@ export default class Almacenes extends React.Component {
         update: false,
         update_message: "Agregar libro en almacen",
       });
+    }
+
+    almacenChange = (e) => {
+      this.handleChange(e);
+      this.fetchRegistros(e.target.value);
     }
 
     autorChange = (e) => {
@@ -128,10 +134,11 @@ export default class Almacenes extends React.Component {
       .catch((error) => console.log("error: ", error));
     };
 
-    fetchRegistros = () => {
+    fetchRegistros = (id_almacen) => {
+      if(id_almacen !== ''){
         let headers = new Headers();
         headers.append("Content-Type", "application/json");
-        fetch(`http://localhost:8000/librosAlmacenados/${this.state.id_almacen}`, {
+        fetch(`http://localhost:8000/librosAlmacenados/${id_almacen}`, {
           method: "GET",
           headers: headers,
         })
@@ -143,6 +150,11 @@ export default class Almacenes extends React.Component {
             });
         })
         .catch((error) => console.log("error: ", error));
+      } else {
+        this.setState({
+          registros: [],
+        });
+      }
     };
 
     addRegistro = (e) => {
@@ -219,8 +231,8 @@ export default class Almacenes extends React.Component {
                   </Alert>
                 ) : null}
               <FormLabel>Almacén:</FormLabel>                
-              <FormControl as="select" name="id_almacen" placeholder="Nombre de almacen" onChangeCapture={this.handleChange} value={this.state.id_almacen}>
-                <option></option>
+              <FormControl as="select" name="id_almacen" placeholder="Nombre de almacen" onChange={this.almacenChange} value={this.state.id_almacen}>
+                <option value="">Seleccione el almacen</option>
                   {this.state.almacenes.map((item, index) =>{
                     return (
                       <option key={index} value={item.id_almacen}>{item.nombre}</option>
