@@ -89,6 +89,7 @@ CREATE TABLE IF NOT EXISTS cesta_contiene_libro (
 	id_cesta INT NOT NULL,
 	id_libro INT NOT NULL,
 	cantidad INT DEFAULT 1,
+	tipo VARCHAR(10),
 	PRIMARY KEY (id_cesta, id_libro),
 	FOREIGN KEY (id_cesta) REFERENCES cestas(id_cesta) ON DELETE CASCADE ON UPDATE CASCADE,
 	FOREIGN KEY (Id_libro) REFERENCES libros(id_libro) ON DELETE CASCADE ON UPDATE CASCADE

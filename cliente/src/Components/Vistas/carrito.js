@@ -7,12 +7,15 @@ export default class Carrito extends React.Component {
         super(props);
         this.state = {
             libros: [],
+            historial: [],
+            libros_historial: [],
             open: false,
         };
     }
 
     componentDidMount(){
         this.fetchLibros()
+        this.fetchHistory();
     };
 
     handleChange = (evt) => {
@@ -20,6 +23,26 @@ export default class Carrito extends React.Component {
           [evt.target.name]: evt.target.value,
         });
     }; 
+
+    onCompra = () => {
+        let headers = new Headers();
+        headers.append("Content-Type", "application/json");
+        var body = JSON.stringify({
+            email: JSON.parse(localStorage["appState"]).user.email,
+        });
+        fetch("http://127.0.0.1:8000/getCarritos", {
+            method: "POST",
+            headers: headers,
+            body: body,
+        })
+        .then((respuesta) => respuesta.json())
+        .then((resultado) => {
+            console.log(resultado);
+            this.setState({
+                libros: resultado,
+            });
+        }).catch((error) => console.log("error: ", error));
+    }
 
     /*fetchLibros = () => {
         let headers = new Headers();
@@ -57,6 +80,10 @@ export default class Carrito extends React.Component {
         }).catch((error) => console.log("error: ", error));
     };
 
+    fetchHistory = () => {
+
+    }
+
 /************************************************************************************************************************/
 
     render(){
@@ -64,6 +91,16 @@ export default class Carrito extends React.Component {
           <div className="main">
             <Container>
             <h1 className="h1">Carrito de compras</h1><hr></hr>
+            {this.state.historial.map((item, index) => {
+                    return (
+                        <Container key={index} className="carrito">
+                                <Book titulo={item.titulo} author="prueba" precio={item.precio_fisico} portada={item.url} 
+                                    anio_publicacion={item.anio_publicacion} descripcion={item.descripcion}
+                                    nombre={item.nombre} apellidos={item.apellidos}></Book>
+                        </Container>
+                    );
+                })}
+                <hr></hr>
               {
                 this.state.alerta === true ? (
                   <Alert variant={this.state.tipoAlerta} onClose={() => {
@@ -78,11 +115,12 @@ export default class Carrito extends React.Component {
                     return (
                         <Container key={index} className="carrito">
                                 <Book titulo={item.titulo} author="prueba" precio={item.precio_fisico} portada={item.url} 
-                                    anio_publicacion={item.anio_publicacion} descripcion={item.descripcion}></Book>
+                                    anio_publicacion={item.anio_publicacion} descripcion={item.descripcion}
+                                    nombre={item.nombre} apellidos={item.apellidos}></Book>
                         </Container>
                     );
                 })}
-                <Button id="btn-generar-pago" type="submit" variant="primary" block>
+                <Button id="btn-generar-pago" type="button" onClick={this.onCompra} variant="primary" block>
                     Generar pago
                 </Button><br></br>
             </Container>
@@ -101,6 +139,8 @@ class Book extends React.Component {
             anio_publicacion: props.anio_publicacion,
             descripcion: props.descripcion,
             precio: props.precio,
+            nombre: props.nombre,
+            apellidos: props.apellidos
         }
     }
 
@@ -118,9 +158,9 @@ class Book extends React.Component {
                     <div className="libro-title">{this.state.titulo}</div><br></br>
                     <div className="libro-mas">
                         <p>
-                            Autor: <br></br>
-                            Año de publicación: <br></br>
-                            Descripción: <br></br>
+                            Autor: {this.state.nombre} {this.state.apellidos}<br></br>
+                            Año de publicación: {this.state.anio_publicacion}<br></br>
+                            Descripción: {this.state.descripcion}<br></br>
                         </p>
                     </div>
                     <button className="btn-eliminar">Eliminar</button>

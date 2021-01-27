@@ -1,18 +1,24 @@
 import React from 'react';
 import Carousel from 'react-multi-carousel';
-import { Container, FormControl} from 'react-bootstrap'; 
+import { Container, FormControl, Alert} from 'react-bootstrap'; 
 import "react-multi-carousel/lib/styles.css";
 import '../../SCSS/libreria.scss';
 import 'react-notifications/lib/notifications.css';
 import {NotificationManager} from 'react-notifications';
+import NotificationContainer from 'react-notifications/lib/NotificationContainer';
 
 export default class Main extends React.Component {
     constructor(props){
         super(props);
         this.state = {
             libros: [],
+            terror: [],
+            ciencia_ficcion: [],
             open: false,
             tipo: '',
+            alerta: false,
+            msgAlerta: "",
+            tipoAlerta: "success",
         }
     }
 
@@ -31,6 +37,7 @@ export default class Main extends React.Component {
 
     componentDidMount(){
         this.fetchLibros();
+        this.fetchTerror(); 
     }
 
     onCloseHandler = (e) => {
@@ -60,25 +67,51 @@ export default class Main extends React.Component {
             });
         }).catch((error) => console.log("error: ", error));
     }
+    
+    fetchTerror = () => {
+        let headers = new Headers();
+        headers.append("Content-Type", "application/json");
+        fetch("http://127.0.0.1:8000/generos/Terror", {
+            method: "GET",
+            headers: headers,
+        })
+        .then((respuesta) => respuesta.json())
+        .then((resultado) => {
+            console.log(resultado);
+            this.setState({
+                terror: resultado,
+            });
+        }).catch((error) => console.log("error: ", error));
+    }
 
     insertarCarrito = (item) => {
-        var headers = new Headers();
-        headers.append("Content-Type", "application/json");
-        var body = JSON.stringify({
-            email: JSON.parse(localStorage["appState"]).user.email,
-            id_libro: item.id_libro,
-            cantidad: 1,
+        if(this.state.tipo !== ""){
+            var headers = new Headers();
+            headers.append("Content-Type", "application/json");
+            var body = JSON.stringify({
+                email: JSON.parse(localStorage["appState"]).user.email,
+                id_libro: item.id_libro,
+                tipo: this.state.tipo,
+                cantidad: 1,
+            });
+            console.log("A enviar: ", body);
+            fetch("http://localhost:8000/carrito", {        //revisar que efectivamente sea ../insert
+                method: "POST",
+                headers: headers,
+                body: body
+            })
+            .then((respuesta) => respuesta.json())
+            .then((resultado) => {
+                this.setState({
+                    alerta: true,
+                    msgAlerta: resultado.status,
+                    tipoAlerta: resultado.tipo
+                })
+            console.log(resultado);    
         });
-      console.log("A enviar: ", body);
-      fetch("http://localhost:8000/carrito", {        //revisar que efectivamente sea ../insert
-          method: "POST",
-          headers: headers,
-          body: body
-      })
-    .then((respuesta) => respuesta.json())
-    .then((resultado) => {
-        console.log(resultado);    
-        });
+        } else {
+            console.log("Error");
+        }
     }
 
     render(){
@@ -106,13 +139,23 @@ export default class Main extends React.Component {
                     <p className="bottom"><strong>Conoce un mundo<br></br>lleno de imaginacion</strong></p>
                 </div>
                 <section className="secciones">
+                    {this.state.alerta === true ? (
+                      <Alert variant={this.state.tipoAlerta} onClose={() => {
+                        this.setState({
+                          alerta: false,
+                        })
+                      }} dismissible>
+                        <Alert.Heading>{this.state.msgAlerta}</Alert.Heading>
+                      </Alert>
+                    ) : null}
                     <Container className="titulos">Nuestra mejor seleccion de libros</Container>
-                    <Carousel ssr containerClass="first-carousel-container" className="popular" responsive={responsive} infinite={true} swipeable={true} removeArrowOnDeviceType={["tablet", "mobile"]}>
+                    <Carousel  ssr containerClass="first-carousel-container" className="popular" responsive={responsive} infinite={false} swipeable={true} removeArrowOnDeviceType={["tablet", "mobile"]}>
                         {this.state.libros.map((item, index) => {
                             return (
                                 <div key={index} className="shadow-lg p-3 mb-5 bg-white rounded">
                                     <Book titulo={item.titulo} author="prueba" portada={item.url} ></Book>
                                     <FormControl as="select" name="tipo" onChange={this.handleChange}>
+                                        <option value="">Seleccione el tipo</option>
                                         <option disabled={!(item.precio_fisico)} value={"Fisico"}>Fisico ${item.precio_fisico}</option>
                                         <option disabled={!(item.precio_electronico)} value={"Electronico"}>Electronico ${item.precio_electronico}</option>
                                     </FormControl>
@@ -120,7 +163,8 @@ export default class Main extends React.Component {
                                 </div>
                             );
                         })}
-                    </Carousel>
+                        <NotificationContainer/>
+                        </Carousel>
                 </section>
                 <section className="secciones">
                     <Container className="titulos">Ciencia Ficcion</Container>
@@ -130,6 +174,7 @@ export default class Main extends React.Component {
                                 <div key={index} className="shadow-lg p-3 mb-5 bg-white rounded">
                                     <Book titulo={item.titulo} author="prueba" portada={item.url} ></Book>
                                     <FormControl as="select" name="tipo" onChange={this.handleChange}>
+                                        <option value="">Seleccione el tipo</option>
                                         <option disabled={!(item.precio_fisico)} value={"Fisico"}>Fisico ${item.precio_fisico}</option>
                                         <option disabled={!(item.precio_electronico)} value={"Electronico"}>Electronico ${item.precio_electronico}</option>
                                     </FormControl>
@@ -142,11 +187,12 @@ export default class Main extends React.Component {
                 <section className="secciones">
                     <Container className="titulos">Terror!</Container>
                     <Carousel ssr containerClass="first-carousel-container" className="popular" responsive={responsive} infinite={true} swipeable={true} removeArrowOnDeviceType={["tablet", "mobile"]}>
-                        {this.state.libros.map((item, index) => {
+                        {this.state.terror.map((item, index) => {
                             return (
                                 <div key={index} className="shadow-lg p-3 mb-5 bg-white rounded">
                                     <Book titulo={item.titulo} author="prueba" portada={item.url} ></Book>
                                     <FormControl as="select" name="tipo" onChange={this.handleChange}>
+                                        <option value="">Seleccione el tipo</option>
                                         <option disabled={!(item.precio_fisico)} value={"Fisico"}>Fisico ${item.precio_fisico}</option>
                                         <option disabled={!(item.precio_electronico)} value={"Electronico"}>Electronico ${item.precio_electronico}</option>
                                     </FormControl>

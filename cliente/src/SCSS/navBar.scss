@@ -33,20 +33,21 @@ $ColorTexto: white;
     }
   }
 
+  #btnSalir {
+    width: 100%;
+  }
+
   .popup-arrow {
     color: rgb(255, 255, 255);
   }
   
   [role='tooltip'] {
     .popup-content {
-      width: 150px;
-      box-shadow: rgba(0, 0, 0, 0.16) 0px 0px 3px;
+      width: 30px;
+      box-shadow: rgba(0, 0, 0, 0.16) 0px 0px 10px;
     }
   }
   
-  .popup-overlay {
-    background: rgba(0, 0, 0, 0.5);
-  }
   [data-popup='tooltip'].popup-overlay {
     background: transparent;
   }

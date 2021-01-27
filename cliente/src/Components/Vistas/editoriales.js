@@ -163,7 +163,7 @@ export default class Editoriales extends React.Component {
           provincia: this.state.provincia,
       })
       console.log("A enviar actualizacion: ", body);
-      fetch(`http://localhost:8000/editorial/${this.state.id_editorial}`, {        //revisar que efectivamente sea ../insert
+      fetch(`http://localhost:8000/editoriales/${this.state.id_editorial}`, {        //revisar que efectivamente sea ../insert
           method: "PUT",
           headers: headers,
           body: body

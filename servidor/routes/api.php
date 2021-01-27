@@ -43,6 +43,9 @@ Route::resource('clientes', 'App\Http\Controllers\ClientesController');
 //API para libros almacenados.
 Route::resource('librosAlmacenados', 'App\Http\Controllers\LibrosAlmacenadosController');
 
+//API para los generos almacenados.
+Route::resource('generos', 'App\Http\Controllers\GenerosController');
+
 //Api para iniciar session.
 Route::post('login', 'App\Http\Controllers\ClientesController@login');
 

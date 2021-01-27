@@ -42,12 +42,12 @@ class AutoresController extends Controller
             ));
 
             $id_autor = DB::table('autores')->insertGetId(array('nombre' => $request->input('nombre'),
-            'apellidos' => $request->input('apellidos'),
-            'direccion' => $request->input('direccion'),
-            'email' => $request->input('email'),
-            'telefono' => $request->input('telefono'),
-            'url' => $request->input('url'),
-            'id_localidad' => $id_localidad
+                'apellidos' => $request->input('apellidos'),
+                'direccion' => $request->input('direccion'),
+                'email' => $request->input('email'),
+                'telefono' => $request->input('telefono'),
+                'url' => $request->input('url'),
+                'id_localidad' => $id_localidad
             ));
 
             DB::commit();

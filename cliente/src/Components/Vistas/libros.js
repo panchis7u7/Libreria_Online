@@ -8,6 +8,10 @@ export default class Libros extends React.Component {
         super(props);
         this.state = {
             registros: [],
+            autores: [],
+            editoriales: [],
+            generos: [],
+            id_autor: "",
             id_libro: "",
             titulo: "",
             isbn: "",
@@ -33,6 +37,9 @@ export default class Libros extends React.Component {
 
   componentDidMount(){
       this.fetchRegistros();
+      this.getAutores();
+      this.getEditoriales();
+      this.getGeneros();
   };
 
     handleChange = (evt) => {
@@ -79,7 +86,7 @@ export default class Libros extends React.Component {
         portada_url: item.url,
         autor: item.autor,
         editorial: item.editorial,
-        categoria: item.categoria,
+        categoria: item.genero,
         update: true,
         update_message: "Actualizar libro",
         open: true,
@@ -230,9 +237,69 @@ export default class Libros extends React.Component {
           this.setState({
               alerta: true,
               msgAlerta: resultado.status,
-              tipoAlerta: "success",
+              tipoAlerta: resultado.tipo,
           });
           this.fetchRegistros();
+      });
+    }
+
+    getAutores = () => {
+      let headers = new Headers();
+        headers.append("Content-Type", "application/json");
+        fetch("http://localhost:8000/autores", {
+          method: "GET",
+          headers: headers,
+        })
+          .then((respuesta) => respuesta.json())
+          .then((resultado) => {
+            console.log(resultado);
+              this.setState({
+                autores: resultado,
+              });
+        })
+        .catch((error) => {
+          console.log("error: ", error)
+          return error;
+      });
+    }
+
+    getEditoriales = () => {
+      let headers = new Headers();
+        headers.append("Content-Type", "application/json");
+        fetch("http://localhost:8000/editoriales", {
+          method: "GET",
+          headers: headers,
+        })
+          .then((respuesta) => respuesta.json())
+          .then((resultado) => {
+            console.log(resultado);
+              this.setState({
+                editoriales: resultado,
+              });
+        })
+        .catch((error) => {
+          console.log("error: ", error)
+          return error;
+      });
+    }
+
+    getGeneros = () => {
+      let headers = new Headers();
+        headers.append("Content-Type", "application/json");
+        fetch("http://localhost:8000/generos", {
+          method: "GET",
+          headers: headers,
+        })
+          .then((respuesta) => respuesta.json())
+          .then((resultado) => {
+            console.log(resultado);
+              this.setState({
+                generos: resultado,
+              });
+        })
+        .catch((error) => {
+          console.log("error: ", error)
+          return error;
       });
     }
 
@@ -257,7 +324,7 @@ export default class Libros extends React.Component {
                 <Table striped bordered hover size="sm" >
                   <thead>
                     <tr>
-                      <th className="align-middle">Id</th>
+                      <th className="align-middle">ID</th>
                       <th className="align-middle">Titulo</th>
                       <th className="align-middle">ISBN</th>
                       <th className="align-middle">Autor</th>
@@ -283,9 +350,9 @@ export default class Libros extends React.Component {
                           <td className="align-middle">{item.editorial}</td>
                           <td className="align-middle">{item.anio_publicacion}</td>
                           <td className="align-middle">{item.descripcion}</td>
+                          <td className="align-middle">{item.precio_fisico}</td>
                           <td className="align-middle">{item.precio_electronico}</td>
                           <td className="align-middle">{item.tamanio}</td>
-                          <td className="align-middle">{item.precio_fisico}</td>
                           <td className="align-middle">{item.fecha_impresion}</td>
                           <td className="align-middle">{item.lugar_impresion}</td>
                           <td className="align-middle">
@@ -316,19 +383,34 @@ export default class Libros extends React.Component {
                     </Container>
                     <Container className="foraneos">
                         <FormLabel>Autor:</FormLabel>
-                        <FormControl as="select" name="autor">
-                            <option value="">ejemplo1</option>
-                            <option value="">ejemplo2</option>
+                        <FormControl as="select" name="autor" onChange={this.handleChange} value={this.state.autor}>
+                          <option value="">Seleccione el autor</option>
+                            {this.state.autores.map((item, index) =>{
+                              return (
+                                <option key={index} value={item.autor}>{item.nombre}</option>
+                              );
+                            })
+                          }
                         </FormControl>
                         <FormLabel>Editorial:</FormLabel>
-                        <FormControl as="select" name="editorial">
-                            <option value="">ejemplo1</option>
-                            <option value="">ejemplo2</option>
+                        <FormControl as="select" name="editorial" onChange={this.handleChange} value={this.state.editorial}>
+                        <option value="">Seleccione la editorial</option>
+                            {this.state.editoriales.map((item, index) =>{
+                              return (
+                                <option key={index} value={item.editorial}>{item.nombre}</option>
+                              );
+                            })
+                          }
                         </FormControl>
                         <FormLabel>Categoria:</FormLabel>
-                        <FormControl as="select" name="categoria">
-                            <option value="">ejemplo1</option>
-                            <option value="">ejemplo2</option>
+                        <FormControl as="select" name="categoria" onChange={this.handleChange} value={this.state.categoria}>
+                          <option value="">Seleccione la categoria</option>
+                          {this.state.generos.map((item, index) =>{
+                              return (
+                                <option key={index} value={item.genero}>{item.genero}</option>
+                              );
+                            })
+                          }
                         </FormControl>
                     </Container>
                 </Container>

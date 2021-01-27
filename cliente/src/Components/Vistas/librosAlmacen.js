@@ -2,6 +2,7 @@ import React from 'react';
 import {Container,Form, FormControl, FormLabel, Button, Alert, Row, Table} from 'react-bootstrap';
 import '../../SCSS/Base.scss'
 import Popup from 'reactjs-popup';
+import { Link } from 'react-router-dom'; 
 
 export default class Almacenes extends React.Component {
     constructor(props){
