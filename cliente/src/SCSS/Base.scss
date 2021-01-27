@@ -58,6 +58,18 @@
             padding: 0%;
         }
     }
+    .container_history {
+        box-shadow: 0 1px 10px 0 #666;
+        padding: 20px;
+        width: 98%;
+        display: grid;
+        .history {
+            width: 153px;
+            height: 202px;
+            margin: 20px;
+        }
+    }
+
     #btn-generar-pago{
         padding: 1em;
         background-color: rgb(15, 15, 105);

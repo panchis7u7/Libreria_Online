@@ -57,3 +57,6 @@ Route::post('carrito', 'App\Http\Controllers\CestasController@carrito');
 
 //API para obtener informacion de los libros en base al usuario.
 Route::post('getCarritos', 'App\Http\Controllers\CestasController@getCarrito');
+
+//API para obtener el historial del usuario.
+Route::post('history', 'App\Http\Controllers\CestasController@getHistorial');

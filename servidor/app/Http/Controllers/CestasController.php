@@ -15,9 +15,10 @@ class CestasController extends Controller
     public function index()
     {
         return DB::table('cestas')
-        ->select('libros.*')
+        ->select('cestas.id_cesta', 'libros.*')
         ->join('cesta_contiene_libro as c', 'c.id_cesta', '=', 'cestas.id_cesta')
         ->join('libros', 'libros.id_libro', '=', 'c.id_libro')
+        ->whereNotNull('cestas.fecha_compra')
         ->get();
     }
 
@@ -32,16 +33,22 @@ class CestasController extends Controller
         DB::beginTransaction();
         try {
 
-            DB::table('cestas')
-            ->where('id_cesta',$request->input('id_cesta'))
-            ->update(array(
-                'fecha_compra' => $request->input('fecha_compra')
-            ));
-
             $id_cliente = DB::table('clientes')
             ->select('id_cliente')
             ->where('email', '=', $request->input('email'))
             ->get();
+
+            $cestas = DB::table('cestas')
+            ->select('id_cesta')
+            ->whereNull('cestas.fecha_compra')
+            ->where('cestas.id_cliente', '=', $id_cliente[0]->id_cliente)
+            ->get();
+
+            DB::table('cestas')
+            ->where('id_cesta',$cestas[0]->id_cesta)
+            ->update(array(
+                'fecha_compra' => $request->input('fecha_compra')
+            ));
 
             $id_cesta = DB::table('cestas')->insertGetId(array(
                 'id_cliente' => $id_cliente[0]->id_cliente,
@@ -63,7 +70,7 @@ class CestasController extends Controller
 
     public function show($id)
     {
-        //
+
     }
 
     /**
@@ -114,10 +121,10 @@ class CestasController extends Controller
             ));
 
             DB::commit();
-            return response()->json(['id_cesta' => $id_cesta, 'status' => 'Insercion Exitosa!', 'status_code' => '1']);
+            return response()->json(['id_cesta' => $id_cesta, 'tipo' => 'success', 'status' => 'Libro añadido al carrito!', 'status_code' => '1']);
         } catch (\Exception $e){
             DB::rollback();
-            return response()->json(['id_cesta' => $id_cesta, 'status' => 'Insercion Fallida!', 'status_code' => '-1', 'error' => $e]);
+            return response()->json(['id_cesta' => $id_cesta, 'tipo' => 'danger', 'status' => 'Error!, no se añadio el libro', 'status_code' => '-1', 'error' => $e]);
         }
     }
 
@@ -131,6 +138,36 @@ class CestasController extends Controller
         ->join('cestas', 'cestas.id_cesta', '=', 'c.id_cesta')
         ->join('clientes', 'clientes.id_cliente', '=', 'cestas.id_cliente')
         ->where('clientes.email', '=', $request->input('email'))
+        ->whereNull('cestas.fecha_compra')
         ->get();
+    }
+
+    public function getHistorial(Request $request){
+
+        try {
+            $id_cliente = DB::table('clientes')
+            ->select('id_cliente')
+            ->where('email', '=', $request->input('email'))
+            ->get();
+
+            $cestas = DB::table('cestas')
+            ->select('id_cesta', 'fecha_compra')
+            ->whereNotNull('cestas.fecha_compra')
+            ->where('cestas.id_cliente', '=', $id_cliente[0]->id_cliente)
+            ->get();
+            
+            $libros_cesta = DB::table('cestas')
+            ->select('cestas.id_cesta', 'libros.*')
+            ->join('cesta_contiene_libro as c', 'c.id_cesta', '=', 'cestas.id_cesta')
+            ->join('libros', 'libros.id_libro', '=', 'c.id_libro')
+            ->whereNotNull('cestas.fecha_compra')
+            ->where('cestas.id_cliente', '=', $id_cliente[0]->id_cliente)
+            ->get();
+            
+            return response()->json(['cestas' => $cestas, 'libros' => $libros_cesta, 'status' => 'Historial Exitosa!', 'status_code' => '1']);
+        } catch (\Exception $e){
+            DB::rollback();
+            return response()->json(['status' => 'Historial Fallido!', 'status_code' => '-1', 'cestas' => $cestas[0]->id_cesta, 'error' => $e]);
+        }
     }
 }

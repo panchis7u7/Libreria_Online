@@ -1,6 +1,7 @@
 import React from 'react';
 import {Container, Alert, Button} from 'react-bootstrap';
 import '../../SCSS/Base.scss'
+import Carousel from 'react-multi-carousel';
 
 export default class Carrito extends React.Component {
     constructor(props){
@@ -27,10 +28,13 @@ export default class Carrito extends React.Component {
     onCompra = () => {
         let headers = new Headers();
         headers.append("Content-Type", "application/json");
+        let today = new Date();
         var body = JSON.stringify({
             email: JSON.parse(localStorage["appState"]).user.email,
+            fecha_compra: today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate() + ' ' + today.getHours() + ':' + today.getMinutes() + ':' + today.getSeconds(),
         });
-        fetch("http://127.0.0.1:8000/getCarritos", {
+        console.log(body);
+        fetch("http://127.0.0.1:8000/cestas", {
             method: "POST",
             headers: headers,
             body: body,
@@ -38,27 +42,9 @@ export default class Carrito extends React.Component {
         .then((respuesta) => respuesta.json())
         .then((resultado) => {
             console.log(resultado);
-            this.setState({
-                libros: resultado,
-            });
+            this.fetchHistory();
         }).catch((error) => console.log("error: ", error));
     }
-
-    /*fetchLibros = () => {
-        let headers = new Headers();
-        headers.append("Content-Type", "application/json");
-        fetch("http://127.0.0.1:8000/basic", {
-            method: "GET",
-            headers: headers,
-        })
-        .then((respuesta) => respuesta.json())
-        .then((resultado) => {
-            console.log(resultado);
-            this.setState({
-                libros: resultado,
-            });
-        }).catch((error) => console.log("error: ", error));
-    };*/
 
     fetchLibros = () => {
         let headers = new Headers();
@@ -81,28 +67,51 @@ export default class Carrito extends React.Component {
     };
 
     fetchHistory = () => {
-
+        let headers = new Headers();
+        headers.append("Content-Type", "application/json");
+        var body = JSON.stringify({
+            email: JSON.parse(localStorage["appState"]).user.email,
+        });
+        fetch("http://127.0.0.1:8000/history", {
+            method: "POST",
+            headers: headers,
+            body: body,
+        })
+        .then((respuesta) => respuesta.json())
+        .then((resultado) => {
+            console.log(resultado);
+            this.setState({
+                historial: resultado.cestas,
+                libros_historial: resultado.libros
+            });
+        }).catch((error) => console.log("error: ", error));
     }
 
 /************************************************************************************************************************/
 
     render(){
+        const responsive = {
+            superLargeDesktop: {
+              breakpoint: { max: 4000, min: 3000 },
+              items: 5
+            },
+            desktop: {
+              breakpoint: { max: 3000, min: 1024 },
+              items: 3
+            },
+            tablet: {
+              breakpoint: { max: 1024, min: 464 },
+              items: 2
+            },
+            mobile: {
+              breakpoint: { max: 464, min: 0 },
+              items: 1
+            }
+          };
       return(
-          <div className="main">
-            <Container>
+          <Container className="main">
             <h1 className="h1">Carrito de compras</h1><hr></hr>
-            {this.state.historial.map((item, index) => {
-                    return (
-                        <Container key={index} className="carrito">
-                                <Book titulo={item.titulo} author="prueba" precio={item.precio_fisico} portada={item.url} 
-                                    anio_publicacion={item.anio_publicacion} descripcion={item.descripcion}
-                                    nombre={item.nombre} apellidos={item.apellidos}></Book>
-                        </Container>
-                    );
-                })}
-                <hr></hr>
-              {
-                this.state.alerta === true ? (
+            {this.state.alerta === true ? (
                   <Alert variant={this.state.tipoAlerta} onClose={() => {
                     this.setState({
                       alerta: false,
@@ -111,20 +120,35 @@ export default class Carrito extends React.Component {
                     <Alert.Heading>{this.state.msgAlerta}</Alert.Heading>
                   </Alert>
                 ) : null}
-                {this.state.libros.map((item, index) => {
+            {this.state.libros.map((item, index) => {
+                return (
+                    <Container key={index} className="carrito">
+                            <Book titulo={item.titulo} author="prueba" precio={item.precio_fisico} portada={item.url} 
+                                anio_publicacion={item.anio_publicacion} descripcion={item.descripcion}
+                                nombre={item.nombre} apellidos={item.apellidos}></Book>
+                    </Container>
+                );
+            })}
+            <Button id="btn-generar-pago" type="button" onClick={this.onCompra} variant="primary" block>
+                Generar pago
+            </Button><br></br><br></br>
+            <h1 className="h1">Historial de compras</h1>
+            <hr></hr>
+            {this.state.historial.map((item, index) => {
                     return (
-                        <Container key={index} className="carrito">
-                                <Book titulo={item.titulo} author="prueba" precio={item.precio_fisico} portada={item.url} 
-                                    anio_publicacion={item.anio_publicacion} descripcion={item.descripcion}
-                                    nombre={item.nombre} apellidos={item.apellidos}></Book>
+                        <Container className="container_history">
+                            <h3>Compra de {item.fecha_compra}</h3>
+                            <Carousel key={index} ssr containerClass="first-carousel-container" responsive={responsive} infinite={true} swipeable={false} removeArrowOnDeviceType={["tablet", "mobile"]}>
+                            {this.state.libros_historial.map((item, index) => {
+                                return(
+                                    <img className="history" src={item.url}></img>
+                                );
+                            })}
+                            </Carousel>
                         </Container>
                     );
                 })}
-                <Button id="btn-generar-pago" type="button" onClick={this.onCompra} variant="primary" block>
-                    Generar pago
-                </Button><br></br>
             </Container>
-            </div>
         );
     }
 }
