@@ -2,19 +2,23 @@ import * as ReactBootStrap from 'react-bootstrap';
 import Popup from 'reactjs-popup';
 import '../SCSS/navBar.scss';
 import { useHistory } from 'react-router-dom';
-//import { useState, useEffect } from 'react'
+import { useContext } from 'react'
+import { UserContext } from './userContext';
 
 export default function NavBar(props){
+    const {user, setUser} = useContext(UserContext);
+    
     const history = useHistory();
     let state = JSON.parse(localStorage["appState"]);
     const onLogout = () => {
+        setUser(false);
         state.isLoggedIn = false;
         localStorage["appState"] = JSON.stringify(state);
         history.push("/");
     }
     return(
         <div className="main-nav">
-            <ReactBootStrap.Navbar className="nav" collapseOnSelect expand="lg" variant="dark">
+            <ReactBootStrap.Navbar hidden={!user} className="nav" collapseOnSelect expand="lg" variant="dark">
                     <ReactBootStrap.Navbar.Brand href="/main"><span className="navItem">Libreria Panchitos</span></ReactBootStrap.Navbar.Brand>
                 <ReactBootStrap.Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <ReactBootStrap.Navbar.Collapse id="responsive-navbar-nav">

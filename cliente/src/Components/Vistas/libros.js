@@ -2,8 +2,10 @@ import React from 'react';
 import {Container, Form, FormControl, FormLabel, Button, Alert, Row, Table} from 'react-bootstrap';
 import '../../SCSS/Base.scss';
 import Popup from 'reactjs-popup';
+import {UserContext} from '../userContext';
 
 export default class Libros extends React.Component {
+    static contextType = UserContext;
     constructor(props){
         super(props);
         this.state = {

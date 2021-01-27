@@ -1,9 +1,11 @@
 import React from 'react';
 //Importar el archivo que maneja la encriptacion de datos que se enviaran al lado del servidor!.
 import '../../SCSS/Login.scss';
-
+import { UserContext } from '../userContext';
 
 export default class Login extends React.Component{
+  static contextType = UserContext;
+
   constructor(props) {
     super(props);
     this.state = {
@@ -55,6 +57,7 @@ export default class Login extends React.Component{
 
   handleSubmit = (e) => {
     e.preventDefault();
+    const { user, setUser } = this.context;
     let headers = new Headers();
     headers.append("Content-Type", "application/json");
     let body = JSON.stringify({
@@ -77,6 +80,7 @@ export default class Login extends React.Component{
           id_cliente: resultado.id_cliente,
       });
       if(resultado.status_code === 1){
+        setUser(true);
         let appState = {
           isLoggedIn: this.state.isLoggedIn,
           user: {
@@ -87,6 +91,7 @@ export default class Login extends React.Component{
         };
         localStorage["appState"] = JSON.stringify(appState);
       } else {
+        setUser(false);
         let appState = {
           isLoggedIn: false,
           user: {
@@ -100,7 +105,7 @@ export default class Login extends React.Component{
           isLoggedIn: appState.isLoggedIn,
         })
       }
-      this.props.history.push(`${this.state.redirect}`, resultado);
+      this.props.history.push(resultado.redirect, resultado);
     })
     .catch((err) => console.log("Error: ", err));
   };
