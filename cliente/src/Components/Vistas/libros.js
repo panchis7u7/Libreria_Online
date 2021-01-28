@@ -89,6 +89,7 @@ export default class Libros extends React.Component {
         autor: item.autor,
         editorial: item.editorial,
         categoria: item.genero,
+        portada_url: item.url,
         update: true,
         update_message: "Actualizar libro",
         open: true,
@@ -187,7 +188,7 @@ export default class Libros extends React.Component {
         lugar_impresion: this.state.lugar_impresion,
         fecha_impresion: this.state.fecha_impresion,
         pdf: this.state.pdf,
-        portada: this.state.portada_url,
+        portada_url: this.state.portada_url,
       })
       console.log("A enviar actualizacion: ", body);
       fetch(`http://localhost:8000/libros/${this.state.id_libro}`, {        //revisar que efectivamente sea ../insert
@@ -336,6 +337,7 @@ export default class Libros extends React.Component {
                       <th className="align-middle">Precio Fisico</th>
                       <th className="align-middle">Precio Electronico</th>
                       <th className="align-middle">Tamaño</th>
+                      <th className="align-middle">Genero</th>
                       <th className="align-middle">Fecha impresion</th>
                       <th className="align-middle">Lugar Impresion</th>
                       <th className="align-middle" colSpan="2">Acciones</th>
@@ -355,6 +357,7 @@ export default class Libros extends React.Component {
                           <td className="align-middle">{item.precio_fisico}</td>
                           <td className="align-middle">{item.precio_electronico}</td>
                           <td className="align-middle">{item.tamanio}</td>
+                          <td className="align-middle">{item.genero}</td>
                           <td className="align-middle">{item.fecha_impresion}</td>
                           <td className="align-middle">{item.lugar_impresion}</td>
                           <td className="align-middle">

@@ -1,15 +1,6 @@
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
 
-let state_of_state = localStorage["appState"];
-if(!state_of_state){
-    let appState = {
-        isLoggedIn: false,
-        user: {}
-    };
-    localStorage["appState"] =JSON.stringify(appState);
-}
-
 let state = localStorage["appState"];
 let AppState = JSON.parse(state);
 

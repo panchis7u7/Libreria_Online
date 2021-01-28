@@ -20,7 +20,7 @@ export default function Rutas() {
   useEffect(() => {
     setUser(JSON.parse(localStorage["appState"]).isLoggedIn);
     console.log(JSON.parse(localStorage["appState"]).isLoggedIn);
-  }, []);
+  });
 
   return (
     <div className="App">

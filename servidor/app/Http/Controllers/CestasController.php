@@ -118,6 +118,7 @@ class CestasController extends Controller
                 'id_cesta' => $id_cesta[0]->id_cesta,
                 'id_libro' => $request->input('id_libro'),
                 'cantidad' => $request->input('cantidad'),
+                'tipo' => $request->input('tipo')
             ));
 
             DB::commit();
@@ -131,7 +132,7 @@ class CestasController extends Controller
     public function getCarrito(Request $request)
     {
         return DB::table('libros')
-        ->select('libros.*', 'autores.nombre', 'autores.apellidos', 'c.id_cesta', 'c.id_libro')
+        ->select('libros.*', 'autores.nombre', 'autores.apellidos', 'c.id_cesta', 'c.id_libro', 'c.tipo')
         ->join('autor_escribe_libro as a', 'a.id_libro', '=', 'libros.id_libro')
         ->join('autores', 'autores.id_autor', '=', 'a.id_autor')
         ->join('cesta_contiene_libro as c', 'c.id_libro', '=', 'libros.id_libro')

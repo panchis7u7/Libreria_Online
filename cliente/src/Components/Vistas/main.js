@@ -14,6 +14,8 @@ export default class Main extends React.Component {
             libros: [],
             terror: [],
             ciencia_ficcion: [],
+            drama:[],
+            suspenso: [],
             open: false,
             tipo: '',
             alerta: false,
@@ -37,7 +39,10 @@ export default class Main extends React.Component {
 
     componentDidMount(){
         this.fetchLibros();
-        this.fetchTerror(); 
+        this.fetchLibrosGenero("terror","Terror");
+        this.fetchLibrosGenero("ciencia_ficcion","Ciencia%20Ficcion");
+        this.fetchLibrosGenero("drama","Drama");
+        this.fetchLibrosGenero("suspenso","Suspenso"); 
     }
 
     onCloseHandler = (e) => {
@@ -52,7 +57,7 @@ export default class Main extends React.Component {
         });
     };
 
-    fetchLibros = () => {
+    fetchLibros = async () => {
         let headers = new Headers();
         headers.append("Content-Type", "application/json");
         fetch("http://127.0.0.1:8000/libros", {
@@ -68,10 +73,10 @@ export default class Main extends React.Component {
         }).catch((error) => console.log("error: ", error));
     }
     
-    fetchTerror = () => {
+    fetchLibrosGenero = async (neumonic, genero) => {
         let headers = new Headers();
         headers.append("Content-Type", "application/json");
-        fetch("http://127.0.0.1:8000/generos/Terror", {
+        fetch(`http://127.0.0.1:8000/generos/${genero}`, {
             method: "GET",
             headers: headers,
         })
@@ -79,7 +84,7 @@ export default class Main extends React.Component {
         .then((resultado) => {
             console.log(resultado);
             this.setState({
-                terror: resultado,
+                [neumonic]: resultado,
             });
         }).catch((error) => console.log("error: ", error));
     }
@@ -138,7 +143,6 @@ export default class Main extends React.Component {
                 <div className="banner">
                     <p className="bottom"><strong>Conoce un mundo<br></br>lleno de imaginacion</strong></p>
                 </div>
-                <section className="secciones">
                     {this.state.alerta === true ? (
                       <Alert variant={this.state.tipoAlerta} onClose={() => {
                         this.setState({
@@ -148,8 +152,9 @@ export default class Main extends React.Component {
                         <Alert.Heading>{this.state.msgAlerta}</Alert.Heading>
                       </Alert>
                     ) : null}
+                    <section className="secciones">
                     <Container className="titulos">Nuestra mejor seleccion de libros</Container>
-                    <Carousel  ssr containerClass="first-carousel-container" className="popular" responsive={responsive} infinite={false} swipeable={true} removeArrowOnDeviceType={["tablet", "mobile"]}>
+                    <Carousel  ssr containerClass="first-carousel-container" className="popular" responsive={responsive} infinite={true} swipeable={true} removeArrowOnDeviceType={["tablet", "mobile"]}>
                         {this.state.libros.map((item, index) => {
                             return (
                                 <div key={index} className="shadow-lg p-3 mb-5 bg-white rounded">
@@ -169,7 +174,7 @@ export default class Main extends React.Component {
                 <section className="secciones">
                     <Container className="titulos">Ciencia Ficcion</Container>
                     <Carousel ssr containerClass="first-carousel-container" className="popular" responsive={responsive} infinite={true} swipeable={true} removeArrowOnDeviceType={["tablet", "mobile"]}>
-                        {this.state.libros.map((item, index) => {
+                        {this.state.ciencia_ficcion.map((item, index) => {
                             return (
                                 <div key={index} className="shadow-lg p-3 mb-5 bg-white rounded">
                                     <Book titulo={item.titulo} author="prueba" portada={item.url} ></Book>
@@ -188,6 +193,42 @@ export default class Main extends React.Component {
                     <Container className="titulos">Terror!</Container>
                     <Carousel ssr containerClass="first-carousel-container" className="popular" responsive={responsive} infinite={true} swipeable={true} removeArrowOnDeviceType={["tablet", "mobile"]}>
                         {this.state.terror.map((item, index) => {
+                            return (
+                                <div key={index} className="shadow-lg p-3 mb-5 bg-white rounded">
+                                    <Book titulo={item.titulo} author="prueba" portada={item.url} ></Book>
+                                    <FormControl as="select" name="tipo" onChange={this.handleChange}>
+                                        <option value="">Seleccione el tipo</option>
+                                        <option disabled={!(item.precio_fisico)} value={"Fisico"}>Fisico ${item.precio_fisico}</option>
+                                        <option disabled={!(item.precio_electronico)} value={"Electronico"}>Electronico ${item.precio_electronico}</option>
+                                    </FormControl>
+                                    <button className="btn-agregar-carro" onClick={() => {this.insertarCarrito(item)}}>+</button>
+                                </div>
+                            );
+                        })}
+                    </Carousel>
+                </section>
+                <section className="secciones">
+                    <Container className="titulos">Drama!</Container>
+                    <Carousel ssr containerClass="first-carousel-container" className="popular" responsive={responsive} infinite={true} swipeable={true} removeArrowOnDeviceType={["tablet", "mobile"]}>
+                        {this.state.drama.map((item, index) => {
+                            return (
+                                <div key={index} className="shadow-lg p-3 mb-5 bg-white rounded">
+                                    <Book titulo={item.titulo} author="prueba" portada={item.url} ></Book>
+                                    <FormControl as="select" name="tipo" onChange={this.handleChange}>
+                                        <option value="">Seleccione el tipo</option>
+                                        <option disabled={!(item.precio_fisico)} value={"Fisico"}>Fisico ${item.precio_fisico}</option>
+                                        <option disabled={!(item.precio_electronico)} value={"Electronico"}>Electronico ${item.precio_electronico}</option>
+                                    </FormControl>
+                                    <button className="btn-agregar-carro" onClick={() => {this.insertarCarrito(item)}}>+</button>
+                                </div>
+                            );
+                        })}
+                    </Carousel>
+                </section>
+                <section className="secciones">
+                    <Container className="titulos">Suspenso!</Container>
+                    <Carousel ssr containerClass="first-carousel-container" className="popular" responsive={responsive} infinite={true} swipeable={true} removeArrowOnDeviceType={["tablet", "mobile"]}>
+                        {this.state.suspenso.map((item, index) => {
                             return (
                                 <div key={index} className="shadow-lg p-3 mb-5 bg-white rounded">
                                     <Book titulo={item.titulo} author="prueba" portada={item.url} ></Book>
@@ -225,13 +266,7 @@ class Book extends React.Component {
                 <div className="book-title">{this.state.titulo}</div>
                 <div className="book-authors">{this.state.autor}</div>
             </div>
-            <div className="book-cover"
-                style={{
-                    width: 128,
-                    height: 193,
-                    backgroundImage:
-                    `url('${this.state.portada}')`,
-                }}/>
+            <img className="book-cover" src={`${this.state.portada}`}></img>
             {/*<div className="book-footer">
                 <div className="book-price">Precio: ${this.state.precio}</div>
             </div>*/}

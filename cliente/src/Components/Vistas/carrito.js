@@ -23,11 +23,6 @@ export default class Carrito extends React.Component {
         }
     }
 
-    
-    setStatus = (status) => {
-        this.setState(({ status }));
-      }
-
     componentDidMount(){
         this.fetchLibros()
         this.fetchHistory();
@@ -140,10 +135,10 @@ export default class Carrito extends React.Component {
             {this.state.libros.map((item, index) => {
                 return (
                     <Container key={index} className="carrito">
-                        <statusContext.Provider value={{setStatus: this.setStatus, fetchLibros: this.fetchLibros}}>
-                            <Book titulo={item.titulo} author="prueba" id_libro={item.id_libro} id_cesta={item.id_cesta}
-                                precio={item.precio_fisico} portada={item.url} 
-                                anio_publicacion={item.anio_publicacion} descripcion={item.descripcion}
+                        <statusContext.Provider value={{fetchLibros: this.fetchLibros}}>
+                            <Book titulo={item.titulo} id_libro={item.id_libro} id_cesta={item.id_cesta}
+                                precio_fisico={item.precio_fisico} precio_electronico={item.precio_electronico} portada={item.url} 
+                                anio_publicacion={item.anio_publicacion} descripcion={item.descripcion} tipo={item.tipo}
                                 nombre={item.nombre} apellidos={item.apellidos}></Book>
                         </statusContext.Provider>
                     </Container>
@@ -190,17 +185,18 @@ class Book extends React.Component {
             descripcion: props.descripcion,
             precio: props.precio,
             nombre: props.nombre,
-            apellidos: props.apellidos
+            apellidos: props.apellidos,
+            tipo: props.tipo
         }
     }
 
-    onRemove = (id_cesta, id_libro) => {
+    onRemove = () => {
         const {setStatus, fetchLibros} = this.context;
         let headers = new Headers();
         headers.append("Content-Type", "application/json");
         var body = JSON.stringify({
-            id_cesta: id_cesta,
-            id_libro: id_libro
+            id_cesta: this.state.id_cesta,
+            id_libro: this.state.id_libro,
         });
         console.log(body);
         fetch("http://127.0.0.1:8000/remove", {
@@ -210,12 +206,6 @@ class Book extends React.Component {
         })
         .then((respuesta) => respuesta.json())
         .then((resultado) => {
-            let status = {
-                alerta: true,
-                msgAlerta: "Libro removido del carrito",
-                tipo: resultado.tipo
-            }
-            setStatus(status);
             fetchLibros();
         }).catch((error) => console.log("error: ", error));
     }
@@ -239,10 +229,10 @@ class Book extends React.Component {
                             Descripción: {this.state.descripcion}<br></br>
                         </p>
                         <div>
-                            <h3>
-                                $65.80
+                            <h3 id="precio">
+                                {this.props.tipo} : ${(this.props.tipo === 'Fisico') ? this.props.precio_fisico : this.props.precio_electronico}
                             </h3>
-                            <button className="btn-eliminar" onClick={() => {this.onRemove(this.props.id_cesta, this.props.id_libro)}}>Eliminar</button>
+                            <button className="btn-eliminar" onClick={this.onRemove}>Eliminar</button>
                         </div>
                     </div>
                 </div>

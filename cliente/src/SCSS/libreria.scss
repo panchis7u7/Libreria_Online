@@ -32,6 +32,7 @@ main {
     .popular {
         padding: 20px 20px 20px 20px;
         width: 100%;
+        text-align: center;
         .book {
             margin: 0vw 1.5em 0em 1.5em;
             position: relative;
@@ -48,6 +49,8 @@ main {
             .book-cover {
                 margin: 0.5em auto 2.5em auto;
                 -ms-interpolation-mode: bicubic;
+                width: 173px;
+                height: 232px;
             }
             .book-footer {
                 text-align: center;
