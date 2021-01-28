@@ -213,13 +213,7 @@ class Book extends React.Component {
     render(){
         return (
             <Container className="libro-descrip">
-                <div className="libro-cover"
-                    style={{
-                        width: 128,
-                        height: 190,
-                        backgroundImage:
-                        `url('${this.state.portada}')`,
-                }}/>
+                <img className="libro-cover" src={`${this.state.portada}`}></img>
                 <div className="libro-contenido">
                     <div className="libro-title">{this.state.titulo}</div><br></br>
                     <div className="libro-mas">
