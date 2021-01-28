@@ -162,7 +162,7 @@ export default class Libros extends React.Component {
                   categoria: '',
                   alerta: true,
                   msgAlerta: resultado.status,
-                  tipoAlerta: "success",
+                  tipoAlerta: resultado.tipo,
                   open: false,
               });
               this.fetchRegistros();
@@ -216,7 +216,7 @@ export default class Libros extends React.Component {
             categoria: '',
             alerta: true,
             msgAlerta: resultado.status,
-            tipoAlerta: "success",
+            tipoAlerta: resultado.tipo,
             open: false,
             update: false,
             update_message: 'Agregar libro',
@@ -385,7 +385,7 @@ export default class Libros extends React.Component {
                     </Container>
                     <Container className="foraneos">
                         <FormLabel>Autor:</FormLabel>
-                        <FormControl as="select" name="autor" onChange={this.handleChange} value={this.state.autor}>
+                        <FormControl as="select" name="autor" onChange={this.handleChange} value={this.state.autor} required>
                           <option value="">Seleccione el autor</option>
                             {this.state.autores.map((item, index) =>{
                               return (
@@ -395,7 +395,7 @@ export default class Libros extends React.Component {
                           }
                         </FormControl>
                         <FormLabel>Editorial:</FormLabel>
-                        <FormControl as="select" name="editorial" onChange={this.handleChange} value={this.state.editorial}>
+                        <FormControl as="select" name="editorial" onChange={this.handleChange} value={this.state.editorial} required>
                         <option value="">Seleccione la editorial</option>
                             {this.state.editoriales.map((item, index) =>{
                               return (
@@ -405,7 +405,7 @@ export default class Libros extends React.Component {
                           }
                         </FormControl>
                         <FormLabel>Categoria:</FormLabel>
-                        <FormControl as="select" name="categoria" onChange={this.handleChange} value={this.state.categoria}>
+                        <FormControl as="select" name="categoria" onChange={this.handleChange} value={this.state.categoria} required>
                           <option value="">Seleccione la categoria</option>
                           {this.state.generos.map((item, index) =>{
                               return (

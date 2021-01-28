@@ -55,7 +55,7 @@ class CestasController extends Controller
             ));
 
             DB::commit();
-            return response()->json(['id_cesta' => $request->input('id_cesta'), 'tipo' => 'success', 'status' => 'Compra exitosa!', 'status_code' => '1']);
+            return response()->json(['id_cesta' => $id_cesta[0]->id_cesta, 'tipo' => 'success', 'status' => 'Compra exitosa!', 'status_code' => '1']);
         } catch (\Exception $e){
             DB::rollback();
             return response()->json(['id_cesta' => '-1', 'tipo' => 'danger', 'status' => 'Actualizacion Fallida!', 'status_code' => '-1', 'error' => $e]);
@@ -131,7 +131,7 @@ class CestasController extends Controller
     public function getCarrito(Request $request)
     {
         return DB::table('libros')
-        ->select('libros.*', 'autores.nombre', 'autores.apellidos')
+        ->select('libros.*', 'autores.nombre', 'autores.apellidos', 'c.id_cesta', 'c.id_libro')
         ->join('autor_escribe_libro as a', 'a.id_libro', '=', 'libros.id_libro')
         ->join('autores', 'autores.id_autor', '=', 'a.id_autor')
         ->join('cesta_contiene_libro as c', 'c.id_libro', '=', 'libros.id_libro')
@@ -168,6 +168,19 @@ class CestasController extends Controller
         } catch (\Exception $e){
             DB::rollback();
             return response()->json(['status' => 'Historial Fallido!', 'status_code' => '-1', 'cestas' => $cestas[0]->id_cesta, 'error' => $e]);
+        }
+    }
+
+    public function removerLibro(Request $request){
+        try {
+            DB::table('cesta_contiene_libro')
+            ->where('id_cesta', '=', $request->input('id_cesta'))
+            ->where('id_libro', '=', $request->input('id_libro'))
+            ->delete();
+
+            return response()->json(['id_libro' => $request->input('id_libro'), 'tipo' =>'success', 'status' => 'Eliminacion Exitosa!', 'status_code' => '1']);
+        } catch (\Exception $e) {
+            return response()->json(['id_libro' => '-1', 'tipo' =>'danger', 'status' => 'Eliminacion Fallida!', 'status_code' => '-1', 'error' => $e]);
         }
     }
 }

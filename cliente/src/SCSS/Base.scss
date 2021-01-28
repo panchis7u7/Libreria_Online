@@ -14,6 +14,7 @@
 .main {
     text-align: center;
     padding-top: 3em;
+    padding-bottom: 50px;
     margin-bottom: 3em;
     label{
         @include labels();
@@ -26,6 +27,7 @@
         @include inputs();
         width: 80%;
     }
+
     .carrito{
         .libro-descrip{
             display: grid;
@@ -36,6 +38,7 @@
             width: 100%;
             box-shadow: 0 1px 10px 0 #666;
             .libro-contenido{
+                display: inline;
                 padding: 5px;
                 text-align: left;
                 .libro-title{
@@ -44,18 +47,23 @@
                 }
                 .libro-mas{
                     font-size: 15px;
+                    div{
+                        h3 {
+                            display: inline;
+                        }
+                        .btn-eliminar {
+                            width: 100px;
+                            height: 40px;
+                            margin: 10px 40px;
+                            background-color: darkred;
+                            color: white;
+                            border-radius: 5%;
+                            border: none;
+                            padding: 0%;
+                        }
+                    }
                 }
             }
-        }
-        .btn-eliminar {
-            width: 100px;
-            height: 40px;
-            margin: 10px;
-            background-color: darkred;
-            color: white;
-            border-radius: 5%;
-            border: none;
-            padding: 0%;
         }
     }
     .container_history {
@@ -63,6 +71,7 @@
         padding: 20px;
         width: 98%;
         display: grid;
+        margin: 50px 0px 0px 0px;
         .history {
             width: 153px;
             height: 202px;

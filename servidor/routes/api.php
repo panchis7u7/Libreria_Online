@@ -60,3 +60,6 @@ Route::post('getCarritos', 'App\Http\Controllers\CestasController@getCarrito');
 
 //API para obtener el historial del usuario.
 Route::post('history', 'App\Http\Controllers\CestasController@getHistorial');
+
+//API para obtener el historial del usuario.
+Route::post('remove', 'App\Http\Controllers\CestasController@removerLibro');

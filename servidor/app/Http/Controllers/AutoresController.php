@@ -51,10 +51,10 @@ class AutoresController extends Controller
             ));
 
             DB::commit();
-            return response()->json(['id_autor' => $id_autor, 'status' => 'Insercion Exitosa!', 'status_code' => '1']);
+            return response()->json(['id_autor' => $id_autor, 'tipo' =>'success', 'status' => 'Insercion Exitosa!', 'status_code' => '1']);
         } catch (\Exception $e){
             DB::rollback();
-            return response()->json(['id_autor' => '-1', 'status' => 'Insercion Fallida!', 'status_code' => '-1', 'error' => $e, 'id_provincia' => $id_provincia]);
+            return response()->json(['id_autor' => '-1', 'tipo' =>'danger', 'status' => 'Insercion Fallida!', 'status_code' => '-1', 'error' => $e, 'id_provincia' => $id_provincia]);
         }
     }
 
@@ -98,10 +98,10 @@ class AutoresController extends Controller
             ));
 
             DB::commit();
-            return response()->json(['id_autor' => $id, 'status' => 'Actualizacion Exitosa!', 'status_code' => '1']);
+            return response()->json(['id_autor' => $id, 'tipo' =>'success', 'status' => 'Actualizacion Exitosa!', 'status_code' => '1']);
         } catch (\Exception $e){
             DB::rollback();
-            return response()->json(['id_autor' => '-1', 'status' => 'Actualizacion Fallida!', 'status_code' => '-1', 'error' => $e, 'id' => $id]);
+            return response()->json(['id_autor' => '-1', 'tipo' =>'danger', 'status' => 'Actualizacion Fallida!', 'status_code' => '-1', 'error' => $e, 'id' => $id]);
         }
     }
 
@@ -120,10 +120,10 @@ class AutoresController extends Controller
             ->delete();
 
             DB::commit();
-            return response()->json(['id_autores' => $id, 'status' => 'Eliminacion Exitosa!', 'status_code' => '1']);
+            return response()->json(['id_autores' => $id, 'tipo' =>'danger', 'status' => 'Eliminacion Exitosa!', 'status_code' => '1']);
         } catch (\Exception $e){
             DB::rollback();
-            return response()->json(['id_autores' => '-1', 'status' => 'Eliminacion Fallida!', 'status_code' => '-1', 'error' => $e, 'id' => $id]);
+            return response()->json(['id_autores' => '-1', 'tipo' =>'danger', 'status' => 'Eliminacion Fallida!', 'status_code' => '-1', 'error' => $e, 'id' => $id]);
         }
     }
 }

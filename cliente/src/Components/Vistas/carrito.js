@@ -1,9 +1,12 @@
-import React from 'react';
+import React, {createContext} from 'react';
 import {Container, Alert, Button} from 'react-bootstrap';
 import '../../SCSS/Base.scss'
 import Carousel from 'react-multi-carousel';
 
+const statusContext = createContext();
+
 export default class Carrito extends React.Component {
+    static contextType = statusContext;
     constructor(props){
         super(props);
         this.state = {
@@ -11,8 +14,19 @@ export default class Carrito extends React.Component {
             historial: [],
             libros_historial: [],
             open: false,
+            alerta: false,
+            msgAlerta: "",
+            tipoAlerta: "success",
         };
+        let status = {
+
+        }
     }
+
+    
+    setStatus = (status) => {
+        this.setState(({ status }));
+      }
 
     componentDidMount(){
         this.fetchLibros()
@@ -24,6 +38,9 @@ export default class Carrito extends React.Component {
           [evt.target.name]: evt.target.value,
         });
     }; 
+
+ /************************************************************************************************************************/
+
 
     onCompra = () => {
         let headers = new Headers();
@@ -123,9 +140,12 @@ export default class Carrito extends React.Component {
             {this.state.libros.map((item, index) => {
                 return (
                     <Container key={index} className="carrito">
-                            <Book titulo={item.titulo} author="prueba" precio={item.precio_fisico} portada={item.url} 
+                        <statusContext.Provider value={{setStatus: this.setStatus, fetchLibros: this.fetchLibros}}>
+                            <Book titulo={item.titulo} author="prueba" id_libro={item.id_libro} id_cesta={item.id_cesta}
+                                precio={item.precio_fisico} portada={item.url} 
                                 anio_publicacion={item.anio_publicacion} descripcion={item.descripcion}
                                 nombre={item.nombre} apellidos={item.apellidos}></Book>
+                        </statusContext.Provider>
                     </Container>
                 );
             })}
@@ -134,15 +154,17 @@ export default class Carrito extends React.Component {
             </Button><br></br><br></br>
             <h1 className="h1">Historial de compras</h1>
             <hr></hr>
-            {this.state.historial.map((item, index) => {
+            {this.state.historial.map((cesta, index) => {
                     return (
                         <Container className="container_history">
-                            <h3>Compra de {item.fecha_compra}</h3>
+                            <h3>Compra de {cesta.fecha_compra}</h3>
                             <Carousel key={index} ssr containerClass="first-carousel-container" responsive={responsive} infinite={true} swipeable={false} removeArrowOnDeviceType={["tablet", "mobile"]}>
                             {this.state.libros_historial.map((item, index) => {
+                                {if(cesta.id_cesta === item.id_cesta)
                                 return(
-                                    <img className="history" src={item.url}></img>
+                                    <img key={index} alt="" className="history" src={item.url}></img>
                                 );
+                                }
                             })}
                             </Carousel>
                         </Container>
@@ -154,9 +176,13 @@ export default class Carrito extends React.Component {
 }
 
 class Book extends React.Component {
+    static contextType = statusContext;
+
     constructor(props){
         super(props);
         this.state = {
+            id_cesta: props.id_cesta,
+            id_libro: props.id_libro,
             titulo: props.titulo,
             autor: props.autor,
             portada: props.portada,
@@ -166,6 +192,32 @@ class Book extends React.Component {
             nombre: props.nombre,
             apellidos: props.apellidos
         }
+    }
+
+    onRemove = (id_cesta, id_libro) => {
+        const {setStatus, fetchLibros} = this.context;
+        let headers = new Headers();
+        headers.append("Content-Type", "application/json");
+        var body = JSON.stringify({
+            id_cesta: id_cesta,
+            id_libro: id_libro
+        });
+        console.log(body);
+        fetch("http://127.0.0.1:8000/remove", {
+            method: "POST",
+            headers: headers,
+            body: body,
+        })
+        .then((respuesta) => respuesta.json())
+        .then((resultado) => {
+            let status = {
+                alerta: true,
+                msgAlerta: "Libro removido del carrito",
+                tipo: resultado.tipo
+            }
+            setStatus(status);
+            fetchLibros();
+        }).catch((error) => console.log("error: ", error));
     }
 
     render(){
@@ -186,8 +238,13 @@ class Book extends React.Component {
                             Año de publicación: {this.state.anio_publicacion}<br></br>
                             Descripción: {this.state.descripcion}<br></br>
                         </p>
+                        <div>
+                            <h3>
+                                $65.80
+                            </h3>
+                            <button className="btn-eliminar" onClick={() => {this.onRemove(this.props.id_cesta, this.props.id_libro)}}>Eliminar</button>
+                        </div>
                     </div>
-                    <button className="btn-eliminar">Eliminar</button>
                 </div>
             </Container>
         );
