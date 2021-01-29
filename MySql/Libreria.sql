@@ -4,7 +4,7 @@ USE Libreria;
 
 CREATE TABLE IF NOT EXISTS provincias (
 	id_provincia INT UNIQUE NOT NULL AUTO_INCREMENT PRIMARY KEY, 
-	nombre VARCHAR(60)
+	nombre VARCHAR(60) NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS generos (
@@ -14,7 +14,7 @@ CREATE TABLE IF NOT EXISTS generos (
 
 CREATE TABLE IF NOT EXISTS localidades (
 	id_localidad INT UNIQUE NOT NULL AUTO_INCREMENT PRIMARY KEY, 
-	nombre VARCHAR(60),
+	nombre VARCHAR(60) NOT NULL,
 	id_provincia INT NOT NULL,
 	FOREIGN KEY (id_provincia) REFERENCES provincias (id_provincia) ON DELETE CASCADE ON UPDATE CASCADE
 );

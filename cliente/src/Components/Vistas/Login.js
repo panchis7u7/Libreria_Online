@@ -57,7 +57,7 @@ export default class Login extends React.Component{
 
   handleSubmit = (e) => {
     e.preventDefault();
-    const { user, setUser } = this.context;
+    const { setUser } = this.context;
     let headers = new Headers();
     headers.append("Content-Type", "application/json");
     let body = JSON.stringify({
@@ -82,7 +82,7 @@ export default class Login extends React.Component{
       if(resultado.status_code === 1){
         setUser(true);
         let appState = {
-          isLoggedIn: this.state.isLoggedIn,
+          isLoggedIn: true,
           user: {
             email: resultado.email,
             nombre: resultado.nombre,

@@ -2,9 +2,12 @@ import React from 'react';
 //Importar el archivo que maneja la encriptacion de datos que se enviaran al lado del servidor!.
 import '../../SCSS/Register.scss';
 import mexico from '../../Data/México.min.json';
-
+import { UserContext } from '../userContext';
 
 export default class Register extends React.Component{
+  
+  static contextType = UserContext;
+
   constructor(props) {
     super(props);
     this.state = {
@@ -108,6 +111,7 @@ export default class Register extends React.Component{
 
   handleSubmit = (e) => {
     e.preventDefault();
+    const { setUser } = this.context;
     let headers = new Headers();
     headers.append("Content-Type", "application/json");
     let body = JSON.stringify({

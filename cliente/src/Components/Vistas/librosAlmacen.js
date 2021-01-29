@@ -2,7 +2,6 @@ import React from 'react';
 import {Container,Form, FormControl, FormLabel, Button, Alert, Row, Table} from 'react-bootstrap';
 import '../../SCSS/Base.scss'
 import Popup from 'reactjs-popup';
-import { Link } from 'react-router-dom'; 
 
 export default class Almacenes extends React.Component {
     constructor(props){
@@ -248,8 +247,8 @@ export default class Almacenes extends React.Component {
                     <th className="align-middle">ID</th>
                       <th className="align-middle">Titulo</th>
                       <th className="align-middle">ISBN</th>
-                      <th className="align-middle">Autor</th>
-                      <th className="align-middle">Editorial</th>
+                      {/*<th className="align-middle">Autor</th>
+                      <th className="align-middle">Editorial</th>*/}
                       <th className="align-middle">Libros en stock</th>
                       <th className="align-middle">Eliminar</th>
                     </tr>
@@ -261,8 +260,8 @@ export default class Almacenes extends React.Component {
                           <td className="align-middle">{index+1}</td>
                           <td className="align-middle">{item.titulo}</td>
                           <td className="align-middle">{item.isbn}</td>
-                          <td className="align-middle">{item.autor}</td>
-                          <td className="align-middle">{item.editorial}</td>
+                          {/*<td className="align-middle">{item.autor}</td>
+                          <td className="align-middle">{item.editorial}</td>*/}
                           <td className="align-middle">{item.stock}</td>
                           <td key="button2" className="align-middle">
                             <Button onClick={() => {this.eliminarRegistro(item.id_libro)}} variant="danger">Eliminar</Button>

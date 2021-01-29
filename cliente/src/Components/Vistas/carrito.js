@@ -1,5 +1,5 @@
 import React, {createContext} from 'react';
-import {Container, Alert, Button} from 'react-bootstrap';
+import {Container, Alert, Button, FormControl, FormLabel} from 'react-bootstrap';
 import '../../SCSS/Base.scss'
 import Carousel from 'react-multi-carousel';
 
@@ -14,13 +14,11 @@ export default class Carrito extends React.Component {
             historial: [],
             libros_historial: [],
             open: false,
+            cantidad: '',
             alerta: false,
             msgAlerta: "",
             tipoAlerta: "success",
         };
-        let status = {
-
-        }
     }
 
     componentDidMount(){
@@ -34,6 +32,9 @@ export default class Carrito extends React.Component {
         });
     }; 
 
+    setCantidad = (cantidad) => {
+        this.setState({cantidad: cantidad});
+    }
  /************************************************************************************************************************/
 
 
@@ -135,7 +136,7 @@ export default class Carrito extends React.Component {
             {this.state.libros.map((item, index) => {
                 return (
                     <Container key={index} className="carrito">
-                        <statusContext.Provider value={{fetchLibros: this.fetchLibros}}>
+                        <statusContext.Provider value={{fetchLibros: this.fetchLibros, cantidad: this.state.cantidad, setCantidad: this.setCantidad}}>
                             <Book titulo={item.titulo} id_libro={item.id_libro} id_cesta={item.id_cesta}
                                 precio_fisico={item.precio_fisico} precio_electronico={item.precio_electronico} portada={item.url} 
                                 anio_publicacion={item.anio_publicacion} descripcion={item.descripcion} tipo={item.tipo}
@@ -186,12 +187,19 @@ class Book extends React.Component {
             precio: props.precio,
             nombre: props.nombre,
             apellidos: props.apellidos,
-            tipo: props.tipo
+            tipo: props.tipo,
+            cantidad: ''
         }
     }
 
+    handleChange = (evt) => {
+        this.setState({
+          [evt.target.name]: evt.target.value,
+        });
+    }; 
+
     onRemove = () => {
-        const {setStatus, fetchLibros} = this.context;
+        const {fetchLibros, cantidad, setCantidad} = this.context;
         let headers = new Headers();
         headers.append("Content-Type", "application/json");
         var body = JSON.stringify({
@@ -211,6 +219,7 @@ class Book extends React.Component {
     }
 
     render(){
+        const {fetchLibros, cantidad, setCantidad} = this.context;
         return (
             <Container className="libro-descrip">
                 <img className="libro-cover" src={`${this.state.portada}`}></img>
@@ -226,6 +235,7 @@ class Book extends React.Component {
                             <h3 id="precio">
                                 {this.props.tipo} : ${(this.props.tipo === 'Fisico') ? this.props.precio_fisico : this.props.precio_electronico}
                             </h3>
+                            <FormControl id="btn-cantidad" type="number" name="cantidad" onChange={this.handleChange} placeholder="Cantidad" value={this.state.cantidad}/>
                             <button className="btn-eliminar" onClick={this.onRemove}>Eliminar</button>
                         </div>
                     </div>

@@ -89,7 +89,6 @@ export default class Libros extends React.Component {
         autor: item.autor,
         editorial: item.editorial,
         categoria: item.genero,
-        portada_url: item.url,
         update: true,
         update_message: "Actualizar libro",
         open: true,

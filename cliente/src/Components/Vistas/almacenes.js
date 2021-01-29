@@ -57,6 +57,7 @@ export default class Almacenes extends React.Component {
     estadoChange = (e) => {
       this.handleChange(e);
       if (e.target.value !== ''){
+        console.log(e.target.value);
         var municipios = mexico.find(item => item.nombre === e.target.value).municipios;
         var nombres = [];
         municipios.forEach(element => {
@@ -87,6 +88,7 @@ export default class Almacenes extends React.Component {
           value: item.provincia,
         }
       }
+      console.log('provincia: ', item.provincia);
       console.log("id: ", item.id_almacen);
       this.estadoChange(e);
     }
@@ -276,8 +278,8 @@ export default class Almacenes extends React.Component {
                         <Container className="contenedor-1">
                           <div className="propietarios">
                               <FormLabel>Provincia:</FormLabel>
-                              <FormControl as="select" name="provincia" placeholder="Provincias" onChangeCapture={this.estadoChange} value={this.state.provincia}>
-                                <option></option>
+                              <FormControl as="select" name="provincia" placeholder="Provincias" onChangeCapture={this.estadoChange} value={this.state.provincia} required>
+                                <option value=''>Seleccione el estado</option>
                                 {mexico.map((estado, index) => {
                                   return (
                                     <option key={index}>{estado.nombre}</option>
@@ -287,8 +289,8 @@ export default class Almacenes extends React.Component {
                           </div>
                           <div className="propietarios">
                               <FormLabel>Localidad:</FormLabel>
-                              <FormControl as="select" disabled={this.state.disable_localidades} name="localidad" placeholder="Localidades" onChange={this.handleChange} value={this.state.localidad}>
-                                <option></option>
+                              <FormControl as="select" disabled={this.state.disable_localidades} name="localidad" placeholder="Localidades" onChange={this.handleChange} value={this.state.localidad} required>
+                                <option value=''>Seleccione la localidad</option>
                                 {
                                   this.state.localidades.map((localidad, index) => {
                                     return(

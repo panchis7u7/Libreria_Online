@@ -52,13 +52,22 @@
                 .libro-mas{
                     font-size: 15px;
                     div{
+                        vertical-align: middle;
                         h3 {
                             display: inline;
+                            margin-right: 40px;
                         }
+
+                        #btn-cantidad{
+                            width: 140px;
+                            height: 40px;
+                            display: inline;
+                        }
+
                         .btn-eliminar {
                             width: 100px;
                             height: 40px;
-                            margin: 10px 40px;
+                            margin: 0px 40px 20px 40px;
                             background-color: darkred;
                             color: white;
                             border-radius: 5%;

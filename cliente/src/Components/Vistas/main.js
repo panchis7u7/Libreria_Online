@@ -33,6 +33,8 @@ export default class Main extends React.Component {
             case 'error':
               NotificationManager.error('Intente más tarde', 'Error', 3000);
               break;
+            default:
+              break;
           }
         }
     };
@@ -266,7 +268,7 @@ class Book extends React.Component {
                 <div className="book-title">{this.state.titulo}</div>
                 <div className="book-authors">{this.state.autor}</div>
             </div>
-            <img className="book-cover" src={`${this.state.portada}`}></img>
+            <img alt="" className="book-cover" src={`${this.state.portada}`}></img>
             {/*<div className="book-footer">
                 <div className="book-price">Precio: ${this.state.precio}</div>
             </div>*/}

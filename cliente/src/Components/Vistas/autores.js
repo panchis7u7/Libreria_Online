@@ -302,7 +302,7 @@ export default class Autores extends React.Component {
                         <div className="propietarios">
                             <FormLabel>Provincia:</FormLabel>
                             <FormControl as="select" name="provincia" placeholder="Provincias" onChangeCapture={this.estadoChange} value={this.state.provincia}>
-                              <option></option>
+                              <option value=''>Seleccione el estado</option>
                               {mexico.map((estado, index) => {
                                 return (
                                   <option key={index}>{estado.nombre}</option>
@@ -315,6 +315,7 @@ export default class Autores extends React.Component {
                         <div className="propietarios">
                             <FormLabel>Localidad:</FormLabel>
                             <FormControl as="select" disabled={this.state.disable_localidades} name="localidad" placeholder="Localidades" onChange={this.handleChange} value={this.state.localidad}>
+                            <option value=''>Seleccione la localidad</option>
                             {
                               this.state.localidades.map((localidad, index) => {
                                 return(
