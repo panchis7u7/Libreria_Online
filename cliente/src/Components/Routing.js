@@ -1,6 +1,7 @@
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
-import Main from './Vistas/main'
+import Main from './Vistas/main';
 import Libros from './Vistas/libros';
+import Libros_ from './Vistas/libros_2';
 import Autores from './Vistas/autores';
 import Editoriales from './Vistas/editoriales';
 import Almacenes from './Vistas/almacenes';
@@ -33,6 +34,7 @@ export default function Rutas() {
                   <Route path="/register" component={Register}></Route>
                   <ProtectedRoute path="/main" component={Main}></ProtectedRoute>
                   <ProtectedRoute path="/libros" component={Libros}></ProtectedRoute>
+                  <ProtectedRoute path="/libros2" component={Libros_}></ProtectedRoute>
                   <ProtectedRoute path="/autores" component={Autores}></ProtectedRoute>
                   <ProtectedRoute path="/editoriales" component={Editoriales}></ProtectedRoute>
                   <ProtectedRoute path="/clientes" component={Clientes}></ProtectedRoute>

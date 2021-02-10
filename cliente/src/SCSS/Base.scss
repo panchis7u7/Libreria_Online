@@ -15,7 +15,6 @@
     text-align: center;
     padding-top: 3em;
     padding-bottom: 50px;
-    margin-bottom: 3em;
     label{
         @include labels();
     }
@@ -255,3 +254,11 @@ h1{
   }
 
 //------------------- /Popup ---------------------
+
+.tabla-material {
+    padding: 6em 4em 4em 4em;
+}
+
+/* .MuiTable-root {
+    background-color: rgba(41, 39, 39, 0.5);
+} */
